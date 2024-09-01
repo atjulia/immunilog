@@ -5,5 +5,5 @@ O **Immunilog** é uma aplicação projetada para gerenciar de forma eficiente o
 ## Casos de uso, requisitos e modelos
 Acesse a documentação nas respectivas paginas 
 - [Casos de uso](docs/use-cases.md)
-- Requisitos
-- Modelos C4
+- [Requisitos](docs/requirements.md)
+- [Modelos C4](docs/models.md)
