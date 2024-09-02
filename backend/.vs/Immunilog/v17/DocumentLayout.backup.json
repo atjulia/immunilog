@@ -25,8 +25,16 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -37,13 +45,12 @@
               "RelativeToolTip": "..\\..\\..\\..\\AppData\\Roaming\\Microsoft\\UserSecrets\\b6b45155-a8b9-4efb-916e-63879860a3f9\\secrets.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-02T14:52:17.34Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-02T14:52:17.34Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Immunilog.UI",
+              "Title": "Immunilog.UI.csproj",
               "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.UI\\Immunilog.UI.csproj",
               "RelativeDocumentMoniker": "Immunilog.UI\\Immunilog.UI.csproj",
               "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.UI\\Immunilog.UI.csproj",
@@ -52,14 +59,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-09-02T14:44:13.978Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
               "$type": "Document",
@@ -71,8 +70,7 @@
               "RelativeToolTip": "Immunilog.UI\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-02T14:52:06.738Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-02T14:52:06.738Z"
             },
             {
               "$type": "Document",
@@ -84,8 +82,7 @@
               "RelativeToolTip": "Immunilog.UI\\Controllers\\ProductController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T14:44:21.552Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-02T14:44:21.552Z"
             }
           ]
         }
