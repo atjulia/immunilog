@@ -1,8 +1,6 @@
 ﻿using Immunilog.Repositories;
 using Immunilog.Repositories.DbContexts;
 using Immunilog.Repositories.Repositories;
-using Immunilog.Repositories.Repositories.Products;
-using Immunilog.Repositories.Repositories.Sectors;
 using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection;
@@ -29,8 +27,8 @@ public static class Extensions
         services.AddDbContext<SqlServerDbContext>();
         services.AddDbContext<MySqlDbContext>();
 
-        services.AddScoped<IProductRepository, ProductRepository>();
-        services.AddScoped<ISectorRepository, SectorRepository>();
+        services.AddScoped<IPessoaRepository, PessoaRepository>();
+        services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
     }
 }

@@ -15,6 +15,6 @@ public class ApiBaseDbContext : DbContextBase
     {
     }
 
-    public DbSet<Product> Product { get; set; } = default!;
-    public DbSet<Sector> Sector { get; set; } = default!;
+    public DbSet<Pessoa> Pessoa { get; set; } = default!;
+    public DbSet<Usuario> Usuario { get; set; } = default!;
 }

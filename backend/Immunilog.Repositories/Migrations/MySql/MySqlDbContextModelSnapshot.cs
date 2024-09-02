@@ -22,72 +22,89 @@ namespace Immunilog.Repositories.Migrations.MySql
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("Immunilog.Domain.Entities.Product", b =>
+            modelBuilder.Entity("Immunilog.Domain.Entities.Pessoa", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime?>("LastUpdateDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("Cpf")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<Guid>("SectorId")
+                    b.Property<DateTime>("DtCriacao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DtNascimento")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DtUpdate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("TipoPessoa")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UsuarioId")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SectorId");
+                    b.HasIndex("UsuarioId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Pessoa");
                 });
 
-            modelBuilder.Entity("Immunilog.Domain.Entities.Sector", b =>
+            modelBuilder.Entity("Immunilog.Domain.Entities.Usuario", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<DateTime>("CreationDate")
+                    b.Property<DateTime>("DtCriacao")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Description")
+                    b.Property<DateTime?>("DtUpdate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<DateTime?>("LastUpdateDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("UltimoAcesso")
+                        .HasColumnType("datetime(6)");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Sector");
+                    b.ToTable("Usuario");
                 });
 
-            modelBuilder.Entity("Immunilog.Domain.Entities.Product", b =>
+            modelBuilder.Entity("Immunilog.Domain.Entities.Pessoa", b =>
                 {
-                    b.HasOne("Immunilog.Domain.Entities.Sector", "Sector")
+                    b.HasOne("Immunilog.Domain.Entities.Usuario", "Usuario")
                         .WithMany()
-                        .HasForeignKey("SectorId")
+                        .HasForeignKey("UsuarioId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Sector");
+                    b.Navigation("Usuario");
                 });
 #pragma warning restore 612, 618
         }

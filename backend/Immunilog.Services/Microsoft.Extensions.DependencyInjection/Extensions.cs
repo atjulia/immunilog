@@ -1,6 +1,6 @@
 ﻿using Immunilog.Repositories;
-using Immunilog.Services.Services.Products;
-using Immunilog.Services.Services.Sectors;
+using Immunilog.Services.Services.Pessoa;
+using Immunilog.Services.Services.Usuario;
 using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection;
@@ -13,8 +13,8 @@ public static class Extensions
 
         //services.AddScoped<INotifier, Notifier>();
 
-        services.AddScoped<IProductService, ProductService>();
-        services.AddScoped<ISectorService, SectorService>();
+        services.AddScoped<IPessoaService, PessoaService>();
+        services.AddScoped<IUsuarioService, UsuarioService>();
 
         return services;
     }
