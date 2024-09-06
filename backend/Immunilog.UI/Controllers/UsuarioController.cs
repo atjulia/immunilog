@@ -25,21 +25,21 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPost("usuarios/")]
-    public async Task<ActionResult> CreateUsuario([FromBody] CreationUsuarioDto Usuario)
+    public async Task<ActionResult> CreateUsuario([FromBody] CreationUsuarioDto usuario)
     {
         if (!ModelState.IsValid) return BadRequest();
 
-        var id = await usuarioService.CreateAsync(Usuario);
+        var id = await usuarioService.CreateAsync(usuario);
 
         return Ok(id);
     }
 
     [HttpPut("usuarios/")]
-    public async Task<ActionResult> UpdateUsuario([FromBody] UsuarioDto SectorDto)
+    public async Task<ActionResult> UpdateUsuario([FromBody] UsuarioDto usuarioDto)
     {
         if (!ModelState.IsValid) return BadRequest();
             
-        var id = await usuarioService.UpdateAsync(SectorDto);
+        var id = await usuarioService.UpdateAsync(usuarioDto);
 
         return Ok(id);
     }

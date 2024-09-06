@@ -22,6 +22,21 @@ namespace Immunilog.Repositories.Migrations.MySql
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
+            modelBuilder.Entity("Immunilog.Domain.Entities.Doenca", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Doenca");
+                });
+
             modelBuilder.Entity("Immunilog.Domain.Entities.Pessoa", b =>
                 {
                     b.Property<Guid>("Id")
@@ -96,6 +111,51 @@ namespace Immunilog.Repositories.Migrations.MySql
                     b.ToTable("Usuario");
                 });
 
+            modelBuilder.Entity("Immunilog.Domain.Entities.Vacina", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("DtCriacao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DtUpdate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("IdadeRecomendada")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Vacina");
+                });
+
+            modelBuilder.Entity("Immunilog.Domain.Entities.VacinaDoenca", b =>
+                {
+                    b.Property<Guid>("VacinaId")
+                        .HasColumnType("char(36)")
+                        .HasColumnOrder(0);
+
+                    b.Property<Guid>("DoencaId")
+                        .HasColumnType("char(36)")
+                        .HasColumnOrder(1);
+
+                    b.HasKey("VacinaId", "DoencaId");
+
+                    b.HasIndex("DoencaId");
+
+                    b.ToTable("VacinaDoencas");
+                });
+
             modelBuilder.Entity("Immunilog.Domain.Entities.Pessoa", b =>
                 {
                     b.HasOne("Immunilog.Domain.Entities.Usuario", "Usuario")
@@ -105,6 +165,35 @@ namespace Immunilog.Repositories.Migrations.MySql
                         .IsRequired();
 
                     b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Immunilog.Domain.Entities.VacinaDoenca", b =>
+                {
+                    b.HasOne("Immunilog.Domain.Entities.Doenca", "Doenca")
+                        .WithMany("VacinaDoencas")
+                        .HasForeignKey("DoencaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Immunilog.Domain.Entities.Vacina", "Vacina")
+                        .WithMany("VacinaDoencas")
+                        .HasForeignKey("VacinaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Doenca");
+
+                    b.Navigation("Vacina");
+                });
+
+            modelBuilder.Entity("Immunilog.Domain.Entities.Doenca", b =>
+                {
+                    b.Navigation("VacinaDoencas");
+                });
+
+            modelBuilder.Entity("Immunilog.Domain.Entities.Vacina", b =>
+                {
+                    b.Navigation("VacinaDoencas");
                 });
 #pragma warning restore 612, 618
         }

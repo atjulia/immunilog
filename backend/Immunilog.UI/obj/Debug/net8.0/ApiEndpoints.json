@@ -144,7 +144,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Usuario",
+        "Name": "usuario",
         "Type": "Immunilog.Domain.Dto.Usuario.CreationUsuarioDto",
         "IsRequired": true
       },
@@ -165,7 +165,7 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "SectorDto",
+        "Name": "usuarioDto",
         "Type": "Immunilog.Domain.Dto.Usuario.UsuarioDto",
         "IsRequired": true
       },
@@ -208,6 +208,116 @@
     "Parameters": [
       {
         "Name": "usuarioId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Immunilog.UI.Controllers.VacinaController",
+    "Method": "GetVacinas",
+    "RelativePath": "vacina",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Immunilog.Domain.Dto.Vacina.VacinaDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Immunilog.UI.Controllers.VacinaController",
+    "Method": "CreateVacina",
+    "RelativePath": "vacina",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vacina",
+        "Type": "Immunilog.Domain.Dto.Vacina.CreationVacinaDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Immunilog.UI.Controllers.VacinaController",
+    "Method": "UpdateVacina",
+    "RelativePath": "vacina",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vacina",
+        "Type": "Immunilog.Domain.Dto.Vacina.VacinaDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Immunilog.UI.Controllers.VacinaController",
+    "Method": "GetVacina",
+    "RelativePath": "vacina/{vacinaId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vacinaId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Immunilog.UI.Controllers.VacinaController",
+    "Method": "DeleteVacina",
+    "RelativePath": "vacina/{vacinaId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vacinaId",
         "Type": "System.Guid",
         "IsRequired": true
       },

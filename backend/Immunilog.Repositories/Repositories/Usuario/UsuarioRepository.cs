@@ -75,13 +75,13 @@ public class UsuarioRepository : IUsuarioRepository
 
     public async Task<bool> DeleteAsync(Guid id)
     {
-        var sector = await dbContext.Usuario
+        var usuario = await dbContext.Usuario
             .FirstOrDefaultAsync(pu => pu.Id == id);
 
-        if (sector == null)
+        if (usuario == null)
             return false;
 
-        dbContext.Usuario.Remove(sector);
+        dbContext.Usuario.Remove(usuario);
         await dbContext.SaveChangesAsync();
 
         return true;

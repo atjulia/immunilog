@@ -3,6 +3,78 @@
   "WorkspaceRootPath": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.domain\\entities\\vacinadoenca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|solutionrelative:immunilog.domain\\entities\\vacinadoenca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.domain\\entities\\vacina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|solutionrelative:immunilog.domain\\entities\\vacina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.domain\\entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|solutionrelative:immunilog.domain\\entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7B58F7F-454F-41F4-B2CB-057D226ED540}|Immunilog.Services\\Immunilog.Services.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.services\\services\\vacina\\vacinaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7B58F7F-454F-41F4-B2CB-057D226ED540}|Immunilog.Services\\Immunilog.Services.csproj|solutionrelative:immunilog.services\\services\\vacina\\vacinaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBB0CA23-1727-4A67-BA16-9DFED0C5F3BB}|Immunilog.UI\\Immunilog.UI.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.ui\\controllers\\vacinacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBB0CA23-1727-4A67-BA16-9DFED0C5F3BB}|Immunilog.UI\\Immunilog.UI.csproj|solutionrelative:immunilog.ui\\controllers\\vacinacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.repositories\\microsoft.extensions.dependencyinjection\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|solutionrelative:immunilog.repositories\\microsoft.extensions.dependencyinjection\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.repositories\\repositories\\vacina\\vacinarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|solutionrelative:immunilog.repositories\\repositories\\vacina\\vacinarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.domain\\dto\\vacina\\usuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|solutionrelative:immunilog.domain\\dto\\vacina\\usuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.repositories\\repositories\\usuario\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|solutionrelative:immunilog.repositories\\repositories\\usuario\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.repositories\\dbcontexts\\apibasedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|solutionrelative:immunilog.repositories\\dbcontexts\\apibasedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.domain\\entities\\doenca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|solutionrelative:immunilog.domain\\entities\\doenca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.domain\\dto\\vacina\\creationvacinadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|solutionrelative:immunilog.domain\\dto\\vacina\\creationvacinadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.domain\\entities\\pessoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|solutionrelative:immunilog.domain\\entities\\pessoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBB0CA23-1727-4A67-BA16-9DFED0C5F3BB}|Immunilog.UI\\Immunilog.UI.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.ui\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBB0CA23-1727-4A67-BA16-9DFED0C5F3BB}|Immunilog.UI\\Immunilog.UI.csproj|solutionrelative:immunilog.ui\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A7B58F7F-454F-41F4-B2CB-057D226ED540}|Immunilog.Services\\Immunilog.Services.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.services\\services\\usuario\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A7B58F7F-454F-41F4-B2CB-057D226ED540}|Immunilog.Services\\Immunilog.Services.csproj|solutionrelative:immunilog.services\\services\\usuario\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DBB0CA23-1727-4A67-BA16-9DFED0C5F3BB}|Immunilog.UI\\Immunilog.UI.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.ui\\controllers\\pessoacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DBB0CA23-1727-4A67-BA16-9DFED0C5F3BB}|Immunilog.UI\\Immunilog.UI.csproj|solutionrelative:immunilog.ui\\controllers\\pessoacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.repositories\\migrations\\sqlserver\\sqlserverdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|solutionrelative:immunilog.repositories\\migrations\\sqlserver\\sqlserverdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.repositories\\migrations\\sqlserver\\20240827125808_add_migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|solutionrelative:immunilog.repositories\\migrations\\sqlserver\\20240827125808_add_migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.repositories\\migrations\\mysql\\mysqldbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|solutionrelative:immunilog.repositories\\migrations\\mysql\\mysqldbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,68 +87,44 @@
       "RelativeMoniker": "D:0:0:{A7B58F7F-454F-41F4-B2CB-057D226ED540}|Immunilog.Services\\Immunilog.Services.csproj|solutionrelative:immunilog.services\\microsoft.extensions.dependencyinjection\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DBB0CA23-1727-4A67-BA16-9DFED0C5F3BB}|Immunilog.UI\\Immunilog.UI.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.ui\\controllers\\pessoacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBB0CA23-1727-4A67-BA16-9DFED0C5F3BB}|Immunilog.UI\\Immunilog.UI.csproj|solutionrelative:immunilog.ui\\controllers\\pessoacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7B58F7F-454F-41F4-B2CB-057D226ED540}|Immunilog.Services\\Immunilog.Services.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.services\\services\\pessoa\\pessoaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7B58F7F-454F-41F4-B2CB-057D226ED540}|Immunilog.Services\\Immunilog.Services.csproj|solutionrelative:immunilog.services\\services\\pessoa\\pessoaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DBB0CA23-1727-4A67-BA16-9DFED0C5F3BB}|Immunilog.UI\\Immunilog.UI.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.ui\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DBB0CA23-1727-4A67-BA16-9DFED0C5F3BB}|Immunilog.UI\\Immunilog.UI.csproj|solutionrelative:immunilog.ui\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A7B58F7F-454F-41F4-B2CB-057D226ED540}|Immunilog.Services\\Immunilog.Services.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.services\\services\\usuario\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A7B58F7F-454F-41F4-B2CB-057D226ED540}|Immunilog.Services\\Immunilog.Services.csproj|solutionrelative:immunilog.services\\services\\usuario\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.repositories\\microsoft.extensions.dependencyinjection\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|solutionrelative:immunilog.repositories\\microsoft.extensions.dependencyinjection\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.repositories\\repositories\\pessoa\\pessoarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|solutionrelative:immunilog.repositories\\repositories\\pessoa\\pessoarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.domain\\dto\\pessoa\\creationpessoadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|solutionrelative:immunilog.domain\\dto\\pessoa\\creationpessoadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.repositories\\repositories\\usuario\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|solutionrelative:immunilog.repositories\\repositories\\usuario\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.domain\\entities\\pessoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|solutionrelative:immunilog.domain\\entities\\pessoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.domain\\dto\\pessoa\\pessoadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|solutionrelative:immunilog.domain\\dto\\pessoa\\pessoadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.domain\\entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|solutionrelative:immunilog.domain\\entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.repositories\\dbcontexts\\apibasedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{538C4AB6-F7FC-4F34-8335-30094771CB3C}|Immunilog.Repositories\\Immunilog.Repositories.csproj|solutionrelative:immunilog.repositories\\dbcontexts\\apibasedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.domain\\dto\\usuario\\usuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|solutionrelative:immunilog.domain\\dto\\usuario\\usuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.domain\\dto\\usuario\\creationusuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BA14BB47-AABA-4F54-AB82-503B4C4C138A}|Immunilog.Domain\\Immunilog.Domain.csproj|solutionrelative:immunilog.domain\\dto\\usuario\\creationusuariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DBB0CA23-1727-4A67-BA16-9DFED0C5F3BB}|Immunilog.UI\\Immunilog.UI.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.ui\\immunilog.ui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{DBB0CA23-1727-4A67-BA16-9DFED0C5F3BB}|Immunilog.UI\\Immunilog.UI.csproj|solutionrelative:immunilog.ui\\immunilog.ui.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DBB0CA23-1727-4A67-BA16-9DFED0C5F3BB}|Immunilog.UI\\Immunilog.UI.csproj|c:\\users\\dev\\desktop\\projeto\\immunilog\\backend\\immunilog.ui\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{DBB0CA23-1727-4A67-BA16-9DFED0C5F3BB}|Immunilog.UI\\Immunilog.UI.csproj|solutionrelative:immunilog.ui\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\SqlServer\\20240902202924_Addpessoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Immunilog.Repositories\\Migrations\\SqlServer\\20240902202924_Addpessoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\MySql\\20240902202934_Addpessoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Immunilog.Repositories\\Migrations\\MySql\\20240902202934_Addpessoa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Repositories\\Pessoa\\PessoaRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Immunilog.Repositories\\Repositories\\Pessoa\\PessoaRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Dto\\Pessoa\\CreationPessoaDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Immunilog.Domain\\Dto\\Pessoa\\CreationPessoaDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Services\\Services\\Pessoa\\PessoaService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Immunilog.Services\\Services\\Pessoa\\PessoaService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Dto\\Pessoa\\PessoaDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Immunilog.Domain\\Dto\\Pessoa\\PessoaDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Dto\\Usuario\\UsuarioDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Immunilog.Domain\\Dto\\Usuario\\UsuarioDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Dto\\Usuario\\CreationUsuarioDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Immunilog.Domain\\Dto\\Usuario\\CreationUsuarioDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -86,8 +134,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "VacinaDoenca.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Entities\\VacinaDoenca.cs",
+              "RelativeDocumentMoniker": "Immunilog.Domain\\Entities\\VacinaDoenca.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Entities\\VacinaDoenca.cs",
+              "RelativeToolTip": "Immunilog.Domain\\Entities\\VacinaDoenca.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-06T00:48:43.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Vacina.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Entities\\Vacina.cs",
+              "RelativeDocumentMoniker": "Immunilog.Domain\\Entities\\Vacina.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Entities\\Vacina.cs",
+              "RelativeToolTip": "Immunilog.Domain\\Entities\\Vacina.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-06T00:22:43.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UsuarioDto.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Dto\\Vacina\\UsuarioDto.cs",
+              "RelativeDocumentMoniker": "Immunilog.Domain\\Dto\\Vacina\\UsuarioDto.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Dto\\Vacina\\UsuarioDto.cs",
+              "RelativeToolTip": "Immunilog.Domain\\Dto\\Vacina\\UsuarioDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAcAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-06T00:18:01.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "VacinaRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Repositories\\Vacina\\VacinaRepository.cs",
+              "RelativeDocumentMoniker": "Immunilog.Repositories\\Repositories\\Vacina\\VacinaRepository.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Repositories\\Vacina\\VacinaRepository.cs",
+              "RelativeToolTip": "Immunilog.Repositories\\Repositories\\Vacina\\VacinaRepository.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAIA3wCwAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-06T00:15:19.906Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
@@ -98,33 +198,188 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MySqlDbContextModelSnapshot.cs",
-              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\MySql\\MySqlDbContextModelSnapshot.cs",
-              "RelativeDocumentMoniker": "Immunilog.Repositories\\Migrations\\MySql\\MySqlDbContextModelSnapshot.cs",
-              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\MySql\\MySqlDbContextModelSnapshot.cs",
-              "RelativeToolTip": "Immunilog.Repositories\\Migrations\\MySql\\MySqlDbContextModelSnapshot.cs",
-              "ViewState": "AgIAAEAAAAAAAAAAAAAgwFAAAAAlAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "ApiBaseDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\DbContexts\\ApiBaseDbContext.cs",
+              "RelativeDocumentMoniker": "Immunilog.Repositories\\DbContexts\\ApiBaseDbContext.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\DbContexts\\ApiBaseDbContext.cs",
+              "RelativeToolTip": "Immunilog.Repositories\\DbContexts\\ApiBaseDbContext.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAcwBUAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T20:28:00.431Z",
+              "WhenOpened": "2024-09-02T19:19:45.282Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "20240827125815_Add_Migration.cs",
-              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\MySql\\20240827125815_Add_Migration.cs",
-              "RelativeDocumentMoniker": "Immunilog.Repositories\\Migrations\\MySql\\20240827125815_Add_Migration.cs",
-              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\MySql\\20240827125815_Add_Migration.cs",
-              "RelativeToolTip": "Immunilog.Repositories\\Migrations\\MySql\\20240827125815_Add_Migration.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "UsuarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Repositories\\Usuario\\UsuarioRepository.cs",
+              "RelativeDocumentMoniker": "Immunilog.Repositories\\Repositories\\Usuario\\UsuarioRepository.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Repositories\\Usuario\\UsuarioRepository.cs",
+              "RelativeToolTip": "Immunilog.Repositories\\Repositories\\Usuario\\UsuarioRepository.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAkwEcAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T20:27:59.014Z",
+              "WhenOpened": "2024-09-02T18:51:24.372Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Entities\\Usuario.cs",
+              "RelativeDocumentMoniker": "Immunilog.Domain\\Entities\\Usuario.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Entities\\Usuario.cs",
+              "RelativeToolTip": "Immunilog.Domain\\Entities\\Usuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAkAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T19:14:11.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Extensions.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Microsoft.Extensions.DependencyInjection\\Extensions.cs",
+              "RelativeDocumentMoniker": "Immunilog.Repositories\\Microsoft.Extensions.DependencyInjection\\Extensions.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Microsoft.Extensions.DependencyInjection\\Extensions.cs",
+              "RelativeToolTip": "Immunilog.Repositories\\Microsoft.Extensions.DependencyInjection\\Extensions.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAIA2wCIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T20:19:55.224Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VacinaController.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.UI\\Controllers\\VacinaController.cs",
+              "RelativeDocumentMoniker": "Immunilog.UI\\Controllers\\VacinaController.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.UI\\Controllers\\VacinaController.cs",
+              "RelativeToolTip": "Immunilog.UI\\Controllers\\VacinaController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-06T00:06:57.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "VacinaService.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Services\\Services\\Vacina\\VacinaService.cs",
+              "RelativeDocumentMoniker": "Immunilog.Services\\Services\\Vacina\\VacinaService.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Services\\Services\\Vacina\\VacinaService.cs",
+              "RelativeToolTip": "Immunilog.Services\\Services\\Vacina\\VacinaService.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAowA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-06T00:11:54.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Doenca.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Entities\\Doenca.cs",
+              "RelativeDocumentMoniker": "Immunilog.Domain\\Entities\\Doenca.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Entities\\Doenca.cs",
+              "RelativeToolTip": "Immunilog.Domain\\Entities\\Doenca.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-06T00:34:39.663Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CreationVacinaDto.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Dto\\Vacina\\CreationVacinaDto.cs",
+              "RelativeDocumentMoniker": "Immunilog.Domain\\Dto\\Vacina\\CreationVacinaDto.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Dto\\Vacina\\CreationVacinaDto.cs",
+              "RelativeToolTip": "Immunilog.Domain\\Dto\\Vacina\\CreationVacinaDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA4AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-06T00:17:38.505Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Pessoa.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Entities\\Pessoa.cs",
+              "RelativeDocumentMoniker": "Immunilog.Domain\\Entities\\Pessoa.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Entities\\Pessoa.cs",
+              "RelativeToolTip": "Immunilog.Domain\\Entities\\Pessoa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T19:57:10.625Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "UsuarioService.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Services\\Services\\Usuario\\UsuarioService.cs",
+              "RelativeDocumentMoniker": "Immunilog.Services\\Services\\Usuario\\UsuarioService.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Services\\Services\\Usuario\\UsuarioService.cs",
+              "RelativeToolTip": "Immunilog.Services\\Services\\Usuario\\UsuarioService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T18:49:10.462Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UsuarioController.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.UI\\Controllers\\UsuarioController.cs",
+              "RelativeDocumentMoniker": "Immunilog.UI\\Controllers\\UsuarioController.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.UI\\Controllers\\UsuarioController.cs",
+              "RelativeToolTip": "Immunilog.UI\\Controllers\\UsuarioController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T16:20:13.684Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "PessoaController.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.UI\\Controllers\\PessoaController.cs",
+              "RelativeDocumentMoniker": "Immunilog.UI\\Controllers\\PessoaController.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.UI\\Controllers\\PessoaController.cs",
+              "RelativeToolTip": "Immunilog.UI\\Controllers\\PessoaController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACIAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T14:44:21.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "SqlServerDbContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\SqlServer\\SqlServerDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "Immunilog.Repositories\\Migrations\\SqlServer\\SqlServerDbContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\SqlServer\\SqlServerDbContextModelSnapshot.cs",
+              "RelativeToolTip": "Immunilog.Repositories\\Migrations\\SqlServer\\SqlServerDbContextModelSnapshot.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAgwG8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T20:32:23.164Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "20240902202934_Addpessoa.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\MySql\\20240902202934_Addpessoa.cs",
+              "RelativeDocumentMoniker": "Immunilog.Repositories\\Migrations\\MySql\\20240902202934_Addpessoa.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\MySql\\20240902202934_Addpessoa.cs",
+              "RelativeToolTip": "Immunilog.Repositories\\Migrations\\MySql\\20240902202934_Addpessoa.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAiwB8AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T20:30:22.27Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "Extensions.cs",
               "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Services\\Microsoft.Extensions.DependencyInjection\\Extensions.cs",
               "RelativeDocumentMoniker": "Immunilog.Services\\Microsoft.Extensions.DependencyInjection\\Extensions.cs",
@@ -132,38 +387,59 @@
               "RelativeToolTip": "Immunilog.Services\\Microsoft.Extensions.DependencyInjection\\Extensions.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T20:20:24.775Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-02T20:20:24.775Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Extensions.cs",
-              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Microsoft.Extensions.DependencyInjection\\Extensions.cs",
-              "RelativeDocumentMoniker": "Immunilog.Repositories\\Microsoft.Extensions.DependencyInjection\\Extensions.cs",
-              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Microsoft.Extensions.DependencyInjection\\Extensions.cs",
-              "RelativeToolTip": "Immunilog.Repositories\\Microsoft.Extensions.DependencyInjection\\Extensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 19,
+              "Title": "20240827125815_Add_Migration.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\MySql\\20240827125815_Add_Migration.cs",
+              "RelativeDocumentMoniker": "Immunilog.Repositories\\Migrations\\MySql\\20240827125815_Add_Migration.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\MySql\\20240827125815_Add_Migration.cs",
+              "RelativeToolTip": "Immunilog.Repositories\\Migrations\\MySql\\20240827125815_Add_Migration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T20:19:55.224Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-02T20:27:59.014Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Pessoa.cs",
-              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Entities\\Pessoa.cs",
-              "RelativeDocumentMoniker": "Immunilog.Domain\\Entities\\Pessoa.cs",
-              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Entities\\Pessoa.cs",
-              "RelativeToolTip": "Immunilog.Domain\\Entities\\Pessoa.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAjAAAAAAAAAA==",
+              "DocumentIndex": 18,
+              "Title": "MySqlDbContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\MySql\\MySqlDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "Immunilog.Repositories\\Migrations\\MySql\\MySqlDbContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\MySql\\MySqlDbContextModelSnapshot.cs",
+              "RelativeToolTip": "Immunilog.Repositories\\Migrations\\MySql\\MySqlDbContextModelSnapshot.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAgwB8AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T19:57:10.625Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-02T20:28:00.431Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 17,
+              "Title": "20240827125808_Add_Migration.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\SqlServer\\20240827125808_Add_Migration.cs",
+              "RelativeDocumentMoniker": "Immunilog.Repositories\\Migrations\\SqlServer\\20240827125808_Add_Migration.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\SqlServer\\20240827125808_Add_Migration.cs",
+              "RelativeToolTip": "Immunilog.Repositories\\Migrations\\SqlServer\\20240827125808_Add_Migration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T20:31:28.705Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "20240902202924_Addpessoa.cs",
+              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\SqlServer\\20240902202924_Addpessoa.cs",
+              "RelativeDocumentMoniker": "Immunilog.Repositories\\Migrations\\SqlServer\\20240902202924_Addpessoa.cs",
+              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Migrations\\SqlServer\\20240902202924_Addpessoa.cs",
+              "RelativeToolTip": "Immunilog.Repositories\\Migrations\\SqlServer\\20240902202924_Addpessoa.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-02T20:32:00.539Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
               "Title": "PessoaRepository.cs",
               "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Repositories\\Pessoa\\PessoaRepository.cs",
               "RelativeDocumentMoniker": "Immunilog.Repositories\\Repositories\\Pessoa\\PessoaRepository.cs",
@@ -171,12 +447,11 @@
               "RelativeToolTip": "Immunilog.Repositories\\Repositories\\Pessoa\\PessoaRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T19:55:47.318Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-02T19:55:47.318Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 26,
               "Title": "CreationPessoaDto.cs",
               "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Dto\\Pessoa\\CreationPessoaDto.cs",
               "RelativeDocumentMoniker": "Immunilog.Domain\\Dto\\Pessoa\\CreationPessoaDto.cs",
@@ -184,12 +459,11 @@
               "RelativeToolTip": "Immunilog.Domain\\Dto\\Pessoa\\CreationPessoaDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwA4AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T19:53:31.627Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-02T19:53:31.627Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 27,
               "Title": "PessoaService.cs",
               "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Services\\Services\\Pessoa\\PessoaService.cs",
               "RelativeDocumentMoniker": "Immunilog.Services\\Services\\Pessoa\\PessoaService.cs",
@@ -197,64 +471,11 @@
               "RelativeToolTip": "Immunilog.Services\\Services\\Pessoa\\PessoaService.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAIwAoAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T19:52:59.224Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-02T19:52:59.224Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "UsuarioRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Repositories\\Usuario\\UsuarioRepository.cs",
-              "RelativeDocumentMoniker": "Immunilog.Repositories\\Repositories\\Usuario\\UsuarioRepository.cs",
-              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\Repositories\\Usuario\\UsuarioRepository.cs",
-              "RelativeToolTip": "Immunilog.Repositories\\Repositories\\Usuario\\UsuarioRepository.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAkwAcAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T18:51:24.372Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UsuarioService.cs",
-              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Services\\Services\\Usuario\\UsuarioService.cs",
-              "RelativeDocumentMoniker": "Immunilog.Services\\Services\\Usuario\\UsuarioService.cs",
-              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Services\\Services\\Usuario\\UsuarioService.cs",
-              "RelativeToolTip": "Immunilog.Services\\Services\\Usuario\\UsuarioService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T18:49:10.462Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.UI\\Controllers\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "Immunilog.UI\\Controllers\\UsuarioController.cs",
-              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.UI\\Controllers\\UsuarioController.cs",
-              "RelativeToolTip": "Immunilog.UI\\Controllers\\UsuarioController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAcwB4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T16:20:13.684Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PessoaController.cs",
-              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.UI\\Controllers\\PessoaController.cs",
-              "RelativeDocumentMoniker": "Immunilog.UI\\Controllers\\PessoaController.cs",
-              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.UI\\Controllers\\PessoaController.cs",
-              "RelativeToolTip": "Immunilog.UI\\Controllers\\PessoaController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T14:44:21.552Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 28,
               "Title": "PessoaDto.cs",
               "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Dto\\Pessoa\\PessoaDto.cs",
               "RelativeDocumentMoniker": "Immunilog.Domain\\Dto\\Pessoa\\PessoaDto.cs",
@@ -262,38 +483,11 @@
               "RelativeToolTip": "Immunilog.Domain\\Dto\\Pessoa\\PessoaDto.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAhwAgAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T19:48:49.156Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-02T19:48:49.156Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Entities\\Usuario.cs",
-              "RelativeDocumentMoniker": "Immunilog.Domain\\Entities\\Usuario.cs",
-              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Entities\\Usuario.cs",
-              "RelativeToolTip": "Immunilog.Domain\\Entities\\Usuario.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T19:14:11.265Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ApiBaseDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\DbContexts\\ApiBaseDbContext.cs",
-              "RelativeDocumentMoniker": "Immunilog.Repositories\\DbContexts\\ApiBaseDbContext.cs",
-              "ToolTip": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Repositories\\DbContexts\\ApiBaseDbContext.cs",
-              "RelativeToolTip": "Immunilog.Repositories\\DbContexts\\ApiBaseDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBEAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T19:19:45.282Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 29,
               "Title": "UsuarioDto.cs",
               "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Dto\\Usuario\\UsuarioDto.cs",
               "RelativeDocumentMoniker": "Immunilog.Domain\\Dto\\Usuario\\UsuarioDto.cs",
@@ -301,12 +495,11 @@
               "RelativeToolTip": "Immunilog.Domain\\Dto\\Usuario\\UsuarioDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwAsAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-02T16:24:17.684Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-02T16:24:17.684Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 30,
               "Title": "CreationUsuarioDto.cs",
               "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.Domain\\Dto\\Usuario\\CreationUsuarioDto.cs",
               "RelativeDocumentMoniker": "Immunilog.Domain\\Dto\\Usuario\\CreationUsuarioDto.cs",
@@ -319,7 +512,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "Immunilog.UI.csproj",
               "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.UI\\Immunilog.UI.csproj",
               "RelativeDocumentMoniker": "Immunilog.UI\\Immunilog.UI.csproj",
@@ -327,12 +520,11 @@
               "RelativeToolTip": "Immunilog.UI\\Immunilog.UI.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-09-02T14:44:13.978Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-02T14:44:13.978Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 22,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.UI\\appsettings.json",
               "RelativeDocumentMoniker": "Immunilog.UI\\appsettings.json",
