@@ -47,9 +47,9 @@ public class UsuarioController : ControllerBase
     [HttpGet("usuarios/{usuarioId}")]
     public async Task<ActionResult> GetUsuario(Guid usuarioId)
     {
-        var sector = await usuarioService.GetAsync(usuarioId);
+        var usuario = await usuarioService.GetAsync(usuarioId);
 
-        return Ok(sector);
+        return Ok(usuario);
     }
 
     [HttpDelete("usuarios/{usuarioId}")]

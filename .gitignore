@@ -1,1 +1,14 @@
 .vs/
+
+/backend/Immunilog.Repositories/obj/Debug/
+/backend/Immunilog.Repositories/bin/Debug/
+
+/backend/Immunilog.UI/obj/Debug/
+/backend/Immunilog.UI/bin/Debug/
+/backend/Immunilog.UI/log/
+
+/backend/Immunilog.Services/obj/Debug/
+/backend/Immunilog.Services/bin/Debug/
+
+/backend/Immunilog.Domain/obj/Debug/
+/backend/Immunilog.Domain/bin/Debug/

@@ -55,12 +55,23 @@ public class VacinaRepository : IVacinaRepository
 
         if (data.Doencas != null && data.Doencas.Any())
         {
-            var doencas = await dbContext.Doenca
-                .Where(d => data.Doencas.Contains(d.Nome))
-                .ToListAsync();
-
-            foreach (var doenca in doencas)
+            foreach (var doencaNome in data.Doencas)
             {
+                var doenca = await dbContext.Doenca
+                    .FirstOrDefaultAsync(d => d.Nome == doencaNome);
+
+                if (doenca == null)
+                {
+                    doenca = new Doenca
+                    {
+                        Id = Guid.NewGuid(),
+                        Nome = doencaNome
+                    };
+
+                    await dbContext.Doenca.AddAsync(doenca);
+                    await dbContext.SaveChangesAsync();
+                }
+
                 var vacinaDoenca = new VacinaDoenca
                 {
                     VacinaId = newVacina.Id,
@@ -75,6 +86,7 @@ public class VacinaRepository : IVacinaRepository
 
         return newVacina.Id;
     }
+
 
     public async Task UpdateAsync(VacinaDto data)
     {
