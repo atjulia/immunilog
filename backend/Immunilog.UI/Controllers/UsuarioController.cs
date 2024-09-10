@@ -9,17 +9,17 @@ namespace Immunilog.UI.Controllers;
 [AllowAnonymous]
 public class UsuarioController : ControllerBase
 {
-    private readonly IUsuarioService usuarioService;
+    private readonly IUsuarioService _usuarioService;
 
     public UsuarioController(IUsuarioService usuarioService)
     {
-        this.usuarioService = usuarioService;
+        _usuarioService = usuarioService;
     }
 
     [HttpGet("usuarios/")]
     public async Task<ActionResult<UsuarioDto?>> GetUsuarios()
     {
-        var usuario = await usuarioService.GetListAsync();
+        var usuario = await _usuarioService.GetListAsync();
 
         return Ok(usuario);
     }
@@ -29,7 +29,7 @@ public class UsuarioController : ControllerBase
     {
         if (!ModelState.IsValid) return BadRequest();
 
-        var id = await usuarioService.CreateAsync(usuario);
+        var id = await _usuarioService.CreateAsync(usuario);
 
         return Ok(id);
     }
@@ -39,7 +39,7 @@ public class UsuarioController : ControllerBase
     {
         if (!ModelState.IsValid) return BadRequest();
             
-        var id = await usuarioService.UpdateAsync(usuarioDto);
+        var id = await _usuarioService.UpdateAsync(usuarioDto);
 
         return Ok(id);
     }
@@ -47,7 +47,7 @@ public class UsuarioController : ControllerBase
     [HttpGet("usuarios/{usuarioId}")]
     public async Task<ActionResult> GetUsuario(Guid usuarioId)
     {
-        var usuario = await usuarioService.GetAsync(usuarioId);
+        var usuario = await _usuarioService.GetAsync(usuarioId);
 
         return Ok(usuario);
     }
@@ -55,7 +55,7 @@ public class UsuarioController : ControllerBase
     [HttpDelete("usuarios/{usuarioId}")]
     public async Task<ActionResult> DeleteUsuario(Guid usuarioId)
     {
-        await usuarioService.DeleteAsync(usuarioId);
+        await _usuarioService.DeleteAsync(usuarioId);
 
         return Ok();
     }

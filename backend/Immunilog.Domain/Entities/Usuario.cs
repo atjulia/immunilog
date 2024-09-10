@@ -13,3 +13,9 @@ public class Usuario : SimpleEntityBase
     public DateTime? UltimoAcesso { get; set; }
     public int Role { get; set; }
 }
+
+public class AuthUsuario
+{
+    public string Email { get; set; }
+    public string Senha { get; set; }
+}

@@ -14,6 +14,7 @@ public interface IUsuarioRepository
     Task<Guid> CreateAsync(CreationUsuarioDto data);
     Task UpdateAsync(UsuarioDto data);
     Task<bool> DeleteAsync(Guid id);
+    Task<UsuarioDto> GetUserByEmail(string email);
 }
 public class UsuarioRepository : IUsuarioRepository
 {
@@ -38,6 +39,13 @@ public class UsuarioRepository : IUsuarioRepository
             .ProjectToType<UsuarioDto>()
             .Where(c => c.Id == id)
             .FirstOrDefaultAsync();
+    }
+    public async Task<UsuarioDto?> GetUserByEmail(string email)
+    {
+        return await dbContext.Usuario
+            .AsNoTracking()
+            .ProjectToType<UsuarioDto>()
+            .FirstOrDefaultAsync(u => u.Email == email);
     }
 
     public async Task<Guid> CreateAsync(CreationUsuarioDto data)

@@ -11,27 +11,26 @@ public interface IUsuarioService
     Task<Guid> CreateAsync(CreationUsuarioDto model);
     Task<bool> UpdateAsync(UsuarioDto model);
     Task<bool> DeleteAsync(Guid id);
-
 }
 
 public class UsuarioService : IUsuarioService
 {
-    private readonly IUsuarioRepository usuarioRepository;
+    private readonly IUsuarioRepository _usuarioRepository;
 
 
-    public UsuarioService(IUsuarioRepository usuarioRepository)
+    public UsuarioService(IUsuarioRepository _usuarioRepository)
     {
-        this.usuarioRepository = usuarioRepository;
+        _usuarioRepository = _usuarioRepository;
     }
 
     public async Task<List<UsuarioDto>> GetListAsync()
-        => await usuarioRepository.GetListAsync();
+        => await _usuarioRepository.GetListAsync();
 
     public async Task<UsuarioDto?> GetAsync(Guid id)
-        => await usuarioRepository.GetAsync(id);
+        => await _usuarioRepository.GetAsync(id);
 
     public async Task<bool> DeleteAsync(Guid id)
-    => await usuarioRepository.DeleteAsync(id);
+    => await _usuarioRepository.DeleteAsync(id);
 
     public async Task<Guid> CreateAsync(CreationUsuarioDto model)
     {
@@ -39,9 +38,9 @@ public class UsuarioService : IUsuarioService
 
         //VALIDACOES
 
-        var projectId = await usuarioRepository.CreateAsync(model);
+        var usuarioId = await _usuarioRepository.CreateAsync(model);
 
-        return projectId;
+        return usuarioId;
     }
 
     public async Task<bool> UpdateAsync(UsuarioDto model)
@@ -50,7 +49,7 @@ public class UsuarioService : IUsuarioService
 
         //VALIDACOES
 
-        await usuarioRepository.UpdateAsync(model);
+        await _usuarioRepository.UpdateAsync(model);
 
         return true;
     }
