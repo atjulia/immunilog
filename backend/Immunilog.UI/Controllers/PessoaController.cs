@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [AllowAnonymous]
+[Route("api/[controller]")]
 public class PessoaController : ControllerBase
 {
     private readonly IPessoaService pessoaService;
@@ -14,7 +15,7 @@ public class PessoaController : ControllerBase
         this.pessoaService = pessoaService;
     }
 
-    [HttpGet("pessoa/")]
+    [HttpGet("GetPessoas")]
     public async Task<ActionResult<PessoaDto?>> GetPessoas()
     {
         var pessoa = await pessoaService.GetListAsync();
@@ -22,7 +23,7 @@ public class PessoaController : ControllerBase
         return Ok(pessoa);
     }
 
-    [HttpPost("pessoa/")]
+    [HttpPost("CreatePessoa")]
     public async Task<ActionResult> CreatePessoa([FromBody] CreationPessoaDto pessoaDto)
     {
         if (!ModelState.IsValid) return BadRequest();
@@ -32,7 +33,7 @@ public class PessoaController : ControllerBase
         return Ok(id);
     }
 
-    [HttpPut("pessoa/")]
+    [HttpPut("UpdatePessoa")]
     public async Task<ActionResult> UpdatePessoa([FromBody] PessoaDto pessoaDto)
     {
         if (!ModelState.IsValid) return BadRequest();
@@ -42,15 +43,15 @@ public class PessoaController : ControllerBase
         return Ok(id);
     }
 
-    [HttpGet("pessoa/{pessoaId}")]
-    public async Task<ActionResult> GetPessoa(Guid pessoaId)
+    [HttpGet("GetPessoaById/{pessoaId}")]
+    public async Task<ActionResult> GetPessoaById(Guid pessoaId)
     {
         var product = await pessoaService.GetAsync(pessoaId);
 
         return Ok(product);
     }
 
-    [HttpDelete("pessoa/{pessoaId}")]
+    [HttpDelete("DeletePessoa/{pessoaId}")]
     public async Task<ActionResult> DeletePessoa(Guid pessoaId)
     {
         await pessoaService.DeleteAsync(pessoaId);

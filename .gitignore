@@ -11,4 +11,5 @@
 /backend/Immunilog.Services/bin/Debug/
 
 /backend/Immunilog.Domain/obj/Debug/
-/backend/Immunilog.Domain/bin/Debug/
+
+/backend/.vs/

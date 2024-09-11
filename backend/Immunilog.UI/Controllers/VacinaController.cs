@@ -7,6 +7,7 @@ namespace Immunilog.UI.Controllers;
 
 [ApiController]
 [AllowAnonymous]
+[Route("api/[controller]")]
 public class VacinaController : ControllerBase
 {
     private readonly IVacinaService vacinaService;
@@ -16,7 +17,7 @@ public class VacinaController : ControllerBase
         this.vacinaService = vacinaService;
     }
 
-    [HttpGet("vacina/")]
+    [HttpGet("GetVacinas")]
     public async Task<ActionResult<VacinaDto?>> GetVacinas()
     {
         var vacina = await vacinaService.GetListAsync();
@@ -24,7 +25,7 @@ public class VacinaController : ControllerBase
         return Ok(vacina);
     }
 
-    [HttpPost("vacina/")]
+    [HttpPost("CreateVacina")]
     public async Task<ActionResult> CreateVacina([FromBody] CreationVacinaDto vacina)
     {
         if (!ModelState.IsValid) return BadRequest();
@@ -34,7 +35,7 @@ public class VacinaController : ControllerBase
         return Ok(id);
     }
 
-    [HttpPut("vacina/")]
+    [HttpPut("UpdateVacina")]
     public async Task<ActionResult> UpdateVacina([FromBody] VacinaDto vacina)
     {
         if (!ModelState.IsValid) return BadRequest();
@@ -44,15 +45,15 @@ public class VacinaController : ControllerBase
         return Ok(id);
     }
 
-    [HttpGet("vacina/{vacinaId}")]
-    public async Task<ActionResult> GetVacina(Guid vacinaId)
+    [HttpGet("GetVacinaById/{vacinaId}")]
+    public async Task<ActionResult> GetVacinaById(Guid vacinaId)
     {
         var usuario = await vacinaService.GetAsync(vacinaId);
 
         return Ok(usuario);
     }
 
-    [HttpDelete("vacina/{vacinaId}")]
+    [HttpDelete("DeleteVacina/{vacinaId}")]
     public async Task<ActionResult> DeleteVacina(Guid vacinaId)
     {
         await vacinaService.DeleteAsync(vacinaId);
