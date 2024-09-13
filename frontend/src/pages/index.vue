@@ -1,12 +1,18 @@
 <template>
   <div class="fill-height">
-    <Login />
-    <!-- <v-toolbar density="compact" color="#F8F7F5">
+    <Login v-if="!token"/>
+    <v-toolbar v-else density="compact" color="#F8F7F5">
       <v-toolbar-title text="immunilog" class="d-flex justify-center"/>
-    </v-toolbar> -->
+    </v-toolbar>
   </div>
 </template>
 
-<script setup>
-  //
+<script>
+export default {
+  data () {
+    return {
+      token: localStorage.getItem('credentials')
+    }
+  }
+}
 </script>
