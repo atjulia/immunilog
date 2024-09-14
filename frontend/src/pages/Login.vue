@@ -52,6 +52,7 @@ export default {
             ...decodedToken
           }));
           console.log("Login bem-sucedido. Token armazenado.");
+          this.$router.push('/home');
         } else {
           console.log("Falha na autenticação.");
         }
