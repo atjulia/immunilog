@@ -33,17 +33,31 @@ public class PessoaDto : BaseDto
             meses += 12;
         }
 
-        if (meses == 0)
+        if (hoje.Day < dataNascimento.Day)
         {
-            return $"{idade} anos";
-        } else if (idade == 0)
-        {
-            return $"{meses} meses";
-        } else
-        {
-            return $"{idade} anos e {meses} meses";
+            meses--;
         }
 
+        if (meses < 0)
+        {
+            meses += 12;
+        }
+
+        if (idade == 0)
+        {
+            return meses == 1 ? "1 mês" : $"{meses} meses";
+        }
+        else if (meses == 0)
+        {
+            return idade == 1 ? "1 ano" : $"{idade} anos";
+        }
+        else
+        {
+            string ano = idade == 1 ? "1 ano" : $"{idade} anos";
+            string mes = meses == 1 ? "1 mês" : $"{meses} meses";
+            return $"{ano} e {mes}";
+        }
     }
+
 }
 

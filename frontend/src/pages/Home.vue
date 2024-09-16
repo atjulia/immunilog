@@ -47,46 +47,66 @@
       <v-col cols="12" class="px-5">
         <span class="text-title">Gerenciar Dependentes</span>
       </v-col>
-      <v-col cols="12">
-        <v-table
-          style="background-color: #F8F7F5;"
-          density="compact"
-          fixed-header
-        >
-          <thead>
-            <tr>
-              <th class="text-left">
-                Nome
-              </th>
-              <th class="text-left">
-                Data Nascimento
-              </th>
-              <th class="text-left">
-                Tipo Usuario
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="item in pessoas"
-              :key="item.Id"
+      <v-col cols="6" class="mx-5">
+        <v-row class="pb-3">
+          <v-btn density="comfortable" icon color="primary" variant="outlined" @click="AddDependente">
+            <v-tooltip
+              activator="parent"
+              location="top"
+            >Adicionar Dependente</v-tooltip>
+            <v-icon color="primary">
+              mdi mdi-plus
+            </v-icon>
+          </v-btn>
+        </v-row>
+        <v-row>
+          <v-col cols="12" class="pa-0">
+            <v-table
+              style="background-color: #F8F7F5;"
+              density="compact"
+              fixed-header
             >
-              <td>{{ item.Nome }}</td>
-              <td>{{ item.IdadeFormatada }}</td>
-              <td>{{ item.TipoPessoa === 1 ? 'Principal' : 'Dependente' }}</td>
-            </tr>
-          </tbody>
-        </v-table>
+              <thead>
+                <tr>
+                  <th class="text-left">
+                    Nome
+                  </th>
+                  <th class="text-left">
+                    Idade
+                  </th>
+                  <th class="text-left">
+                    Tipo Usuario
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="item in pessoas"
+                  :key="item.Id"
+                >
+                  <td>{{ item.Nome }}</td>
+                  <td>{{ item.IdadeFormatada }}</td>
+                  <td>{{ item.TipoPessoa === 1 ? 'Principal' : 'Dependente' }}</td>
+                </tr>
+              </tbody>
+            </v-table>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
+    <dependenteEdit ref="dependente" @refresh="fetchPessoas"/>
   </div>
 </template>
 
 
 <script>
 import { getPessoasByUsuarioId } from '@/api/controllers/pessoa';
+import DependenteEdit from './DependenteEdit.vue';
 
 export default {
+  components: { 
+    DependenteEdit 
+  },
   data () {
     return {
       credentials: JSON.parse(localStorage.getItem('credentials')),
@@ -108,6 +128,9 @@ export default {
     await this.fetchPessoas();
   },
   methods: {
+    AddDependente () {
+      this.$refs.dependente.openModal()
+    },
     async fetchPessoas () {
       try {
         const response = await getPessoasByUsuarioId(this.credentials.UsuarioId);

@@ -38,6 +38,7 @@ public class PessoaRepository : IPessoaRepository
             .ProjectToType<PessoaDto>()
             .Where(c => c.UsuarioId == id)
             .OrderByDescending(c => c.TipoPessoa == 1)
+            .ThenBy(c => c.DtCriacao)
             .ToListAsync();
     }
 
@@ -47,7 +48,7 @@ public class PessoaRepository : IPessoaRepository
         {
             Id = Guid.NewGuid(),
             DtCriacao = DateTime.Now,
-            Nome = data.Nome.ToUpper(),
+            Nome = data.Nome,
             UsuarioId = data.UsuarioId,
             Cpf = data.Cpf,
             DtNascimento = data.DtNascimento,

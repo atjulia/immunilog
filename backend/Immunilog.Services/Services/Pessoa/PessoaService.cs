@@ -39,9 +39,9 @@ public class PessoaService : IPessoaService
 
         //VALIDACOES
 
-        var projectId = await pessoaRepository.CreateAsync(model);
+        var pessoaId = await pessoaRepository.CreateAsync(model);
 
-        return projectId;
+        return pessoaId;
     }
 
     public async Task<bool> UpdateAsync(PessoaDto model)

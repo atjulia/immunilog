@@ -1,8 +1,21 @@
-import axios from 'axios';
-
-const API_BASE_URL = 'https://localhost:7015/api';
+import apiClient from '../index';
 
 export const getPessoasByUsuarioId = async (usuarioId) => {
-  const response = await axios.get(`${API_BASE_URL}/Pessoa/GetPessoasByUsuarioId/${usuarioId}`);
-  return response.data;
+  try {
+    const response = await apiClient.get(`/Pessoa/GetPessoasByUsuarioId/${usuarioId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao buscar pessoas:', error);
+    throw error;
+  }
+};
+
+export const CreatePessoa = async (data) => {
+  try {
+    const response = await apiClient.post('/Pessoa/CreatePessoa', data);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao criar pessoa:', error);
+    throw error;
+  }
 };
