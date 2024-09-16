@@ -1,8 +1,9 @@
 <template>
   <v-app>
-    <v-main>
+    <Login v-if="!credentials"/>
+    <v-main v-else>
       <Toolbar />
-      <router-view />
+      <router-view class="px-8"/>
       <!-- <Footer /> -->
     </v-main>
   </v-app>
@@ -11,11 +12,13 @@
 <script>
 import Toolbar from '@/components/Toolbar.vue'
 import Footer from '@/components/Footer.vue'
+import Login from '@/pages/Login.vue'
 
 export default {
   components: {
     Toolbar,
-    Footer
+    Footer,
+    Login
   },
   data () {
     return {

@@ -10,7 +10,7 @@ namespace Immunilog.Repositories.Repositories;
 public interface IPessoaRepository
 {
     Task<List<PessoaDto>> GetListAsync();
-    Task<PessoaDto?> GetAsync(Guid id);
+    Task<List<PessoaDto>> GetPessoasByUsuarioId(Guid id);
     Task<Guid> CreateAsync(CreationPessoaDto data);
     Task UpdateAsync(PessoaDto data);
     Task<bool> DeleteAsync(Guid id);
@@ -31,13 +31,14 @@ public class PessoaRepository : IPessoaRepository
             .ToListAsync();
     }
 
-    public async Task<PessoaDto?> GetAsync(Guid id)
+    public async Task<List<PessoaDto>> GetPessoasByUsuarioId(Guid id)
     {
         return await dbContext.Pessoa
             .AsNoTracking()
             .ProjectToType<PessoaDto>()
-            .Where(c => c.Id == id)
-            .FirstOrDefaultAsync();
+            .Where(c => c.UsuarioId == id)
+            .OrderByDescending(c => c.TipoPessoa == 1)
+            .ToListAsync();
     }
 
     public async Task<Guid> CreateAsync(CreationPessoaDto data)

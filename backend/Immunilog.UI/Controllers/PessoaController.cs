@@ -43,12 +43,12 @@ public class PessoaController : ControllerBase
         return Ok(id);
     }
 
-    [HttpGet("GetPessoaById/{pessoaId}")]
-    public async Task<ActionResult> GetPessoaById(Guid pessoaId)
+    [HttpGet("GetPessoasByUsuarioId/{usuarioId}")]
+    public async Task<ActionResult> GetPessoasByUsuarioId(Guid usuarioId)
     {
-        var product = await pessoaService.GetAsync(pessoaId);
+        var pessoas = await pessoaService.GetPessoasByUsuarioId(usuarioId);
 
-        return Ok(product);
+        return Ok(pessoas);
     }
 
     [HttpDelete("DeletePessoa/{pessoaId}")]

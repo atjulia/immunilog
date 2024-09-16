@@ -1,5 +1,5 @@
 <template>
-	<v-toolbar density="compact" color="background" class="d-flex py-3 justify-space-between align-center">
+	<v-toolbar density="compact" color="background" class="d-flex py-3 px-5 justify-space-between align-center">
 		<!-- Item da esquerda -->
 		<v-toolbar-title>
 			<v-icon color="primary" size="small" icon="mdi mdi-menu"></v-icon>

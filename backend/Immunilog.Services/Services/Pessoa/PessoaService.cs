@@ -7,7 +7,7 @@ namespace Immunilog.Services.Services.Pessoa;
 public interface IPessoaService
 {
     Task<List<PessoaDto>> GetListAsync();
-    Task<PessoaDto?> GetAsync(Guid id);
+    Task<List<PessoaDto>> GetPessoasByUsuarioId(Guid id);
     Task<Guid> CreateAsync(CreationPessoaDto model);
     Task<bool> UpdateAsync(PessoaDto model);
     Task<bool> DeleteAsync(Guid id);
@@ -27,8 +27,8 @@ public class PessoaService : IPessoaService
     public async Task<List<PessoaDto>> GetListAsync()
         => await pessoaRepository.GetListAsync();
 
-    public async Task<PessoaDto?> GetAsync(Guid id)
-    => await pessoaRepository.GetAsync(id);
+    public async Task<List<PessoaDto>> GetPessoasByUsuarioId(Guid id)
+    => await pessoaRepository.GetPessoasByUsuarioId(id);
 
     public async Task<bool> DeleteAsync(Guid id)
     => await pessoaRepository.DeleteAsync(id);
