@@ -11,13 +11,13 @@
       >
 			<v-row class="px-4">
 				<v-col cols="12">
-					<v-text-field label="CPF" v-model="model.Cpf" variant="outlined" />
+					<v-text-field label="CPF" v-model="model.Cpf" variant="outlined" v-mask="'###.###.###-##'"/>
 				</v-col>
 				<v-col cols="12">
 					<v-text-field label="Nome" v-model="model.Nome" variant="outlined" />
 				</v-col>
 				<v-col cols="12">
-					<v-text-field label="Data de nascimento" v-model="model.DtNascimento" variant="outlined" />
+					<v-text-field label="Data de nascimento" v-model="model.DtNascimento" variant="outlined" v-mask="'##/##/####'"/>
 				</v-col>
 			</v-row>
         <template v-slot:actions>
@@ -59,6 +59,7 @@ export default {
 			try {
 				var dto = {
 					...this.model,
+					DtNascimento: this.convertDateTime(this.model.DtNascimento),
 					TipoPessoa: 2,
 					UsuarioId: this.credentials.UsuarioId
 				}
@@ -69,6 +70,10 @@ export default {
 			} catch (error) {
 				console.error('Erro ao buscar pessoas:', error);
 			}
+		},
+		convertDateTime (data) {
+			const [dia, mes, ano] = data.split('/');
+			return new Date(ano, mes - 1, dia);
 		},
 		close () {
 			this.show = false

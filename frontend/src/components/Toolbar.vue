@@ -2,7 +2,7 @@
 	<v-toolbar density="compact" color="background" class="d-flex py-3 px-5 justify-space-between align-center">
 		<!-- Item da esquerda -->
 		<v-toolbar-title>
-			<v-icon color="primary" size="small" icon="mdi mdi-menu"></v-icon>
+			<v-icon color="primary"><PhList :size="32" /></v-icon>
 			<span class="text pl-3">Menu</span>
 		</v-toolbar-title>
 		
@@ -16,8 +16,8 @@
 			<span class="text pr-3">
 				{{ credentials.unique_name }}
 			</span>
-			<v-icon color="primary" class="pr-3" size="small" icon="mdi mdi-bell"></v-icon>
-			<v-icon color="primary" class="pr-3" size="small" icon="mdi mdi-white-balance-sunny"></v-icon>
+			<v-icon color="primary" class="pr-3"><PhBell :size="64" /></v-icon>
+			<v-icon color="primary" class="pr-3"><PhSun :size="32" /></v-icon>
 		</v-toolbar-title>
 	</v-toolbar>
 </template>

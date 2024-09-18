@@ -15,11 +15,22 @@
             class="d-flex flex-column align-items-center pr-4"
             style="min-width: 125px;"
           >
-            <div class="d-flex align-items-center justify-center flex-grow-1">
-              <card class="card d-block">
-                {{ card.id }}
-              </card>
-            </div>
+            <v-btn
+              height="100"
+              min-width="100"
+              flat
+              rounded="lg"
+              color="background"
+              @click="card.action"
+            >
+              <div class="d-flex align-items-center justify-center flex-grow-1">
+                <card class="card d-block">
+                  <div class="d-flex justify-center">
+                    <v-img :src="card.image" :width="42" />
+                  </div>
+                </card>
+              </div>
+            </v-btn>
             <span class="text-card pt-3">{{ card.text }}</span>
           </v-col>
         </v-row>
@@ -49,13 +60,13 @@
       </v-col>
       <v-col cols="6" class="mx-5">
         <v-row class="pb-3">
-          <v-btn density="comfortable" icon color="primary" variant="outlined" @click="AddDependente">
+          <v-btn density="comfortable" icon color="primary" variant="outlined" @click="addDependente">
             <v-tooltip
               activator="parent"
               location="top"
             >Adicionar Dependente</v-tooltip>
             <v-icon color="primary">
-              mdi mdi-plus
+              <PhPlus :size="24" />
             </v-icon>
           </v-btn>
         </v-row>
@@ -94,7 +105,8 @@
         </v-row>
       </v-col>
     </v-row>
-    <dependenteEdit ref="dependente" @refresh="fetchPessoas"/>
+    <dependenteEdit ref="dependente" @refresh="fetchPessoas" />
+    <ModalDependenteList ref="dependenteList" />
   </div>
 </template>
 
@@ -102,6 +114,12 @@
 <script>
 import { getPessoasByUsuarioId } from '@/api/controllers/pessoa';
 import DependenteEdit from './DependenteEdit.vue';
+import ModalDependenteList from '../components/ModalDependenteList.vue';
+
+import AddVacina from '../assets/cards/AddVacina.svg';
+import CarteiraVacina from '../assets/cards/CarteiraVacina.svg';
+import ProgramaImunizacao from '../assets/cards/ProgramaImunizacao.svg';
+import GerenciarPerfil from '../assets/cards/GerenciarPerfil.svg';
 
 export default {
   components: { 
@@ -115,21 +133,52 @@ export default {
   },
   computed: {
     cards () {
-      var list = [
-        { id: 0, text: 'Adicionar Vacina', image: '' },
-        { id: 1, text: 'Carteira de Vacinação', image: '' },
-        { id: 2, text: 'Programa de Imunização', image: '' },
-        { id: 3, text: 'Gerenciar Meu Perfil', image: '' },
-      ]
-      return list
-    },
+      return [
+        { 
+          id: 0, 
+          text: 'Adicionar Vacina', 
+          action: this.addDependente, 
+          image: AddVacina // caminho da imagem importado
+        },
+        { 
+          id: 1, 
+          text: 'Carteira de Vacinação', 
+          action: this.verCarteira, 
+          image: CarteiraVacina 
+        },
+        { 
+          id: 2, 
+          text: 'Programa de Imunização', 
+          action: this.verProgramaImunizacao, 
+          image: ProgramaImunizacao 
+        },
+        { 
+          id: 3, 
+          text: 'Gerenciar Meu Perfil', 
+          action: this.gerenciarPerfil, 
+          image: GerenciarPerfil 
+        }
+      ];
+    }
   },
   async created () {
     await this.fetchPessoas();
   },
   methods: {
-    AddDependente () {
-      this.$refs.dependente.openModal()
+    getImageUrl(imagePath) {
+      return new URL(imagePath, import.meta.url).href;
+    },
+    addDependente () {
+      this.$refs.dependenteList.openModal(this.pessoas, 1)
+    },
+    verCarteira() {
+      this.$refs.dependenteList.openModal(this.pessoas, 2)
+    },
+    verProgramaImunizacao() {
+      console.log('Visualizando Programa de Imunização');
+    },
+    gerenciarPerfil() {
+      console.log('Gerenciando Perfil');
     },
     async fetchPessoas () {
       try {

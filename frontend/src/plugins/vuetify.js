@@ -22,7 +22,7 @@ const myCustomLightTheme = {
     'on-surface-variant': '#EEEEEE',
     primary: '#384593',
     'primary-darken-1': '#1F5592',
-    secondary: '#48A9A6',
+    secondary: '#F6AF49',
     'secondary-darken-1': '#018786',
     error: '#B00020',
     info: '#2196F3',
