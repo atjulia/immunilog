@@ -142,7 +142,7 @@ export default {
           id: 0, 
           text: 'Adicionar Vacina', 
           action: this.choseDependenteVacina, 
-          image: AddVacina // caminho da imagem importado
+          image: AddVacina
         },
         { 
           id: 1, 

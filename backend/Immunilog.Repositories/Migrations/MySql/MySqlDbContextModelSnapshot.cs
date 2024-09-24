@@ -134,6 +134,17 @@ namespace Immunilog.Repositories.Migrations.MySql
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("TipoCalendario")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TipoDose")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TipoDoseObs")
+                        .HasColumnType("longtext");
+
                     b.HasKey("Id");
 
                     b.ToTable("Vacina");

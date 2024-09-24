@@ -12,6 +12,10 @@ public class CreationVacinaDto
     public string Nome { get; set; } = string.Empty;
     public DateTime DtCriacao { get; set; }
     public string Descricao { get; set; } = string.Empty;
-    public int IdadeRecomendada { get; set; }
+    public float IdadeRecomendada { get; set; }
+    public int TipoCalendario { get; set; }
+    public int TipoDose { get; set; }
+    public string? TipoDoseObs { get; set; }
+
     public List<string> Doencas { get; set; }
 }

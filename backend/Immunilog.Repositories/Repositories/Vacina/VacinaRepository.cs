@@ -1,8 +1,11 @@
 ﻿using Immunilog.Domain.Dto.Vacina;
 using Immunilog.Domain.Entities;
+using Immunilog.Domain.Enums;
 using Immunilog.Repositories.DbContexts;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
+using System.Reflection;
 using Z.EntityFramework.Plus;
 
 namespace Immunilog.Repositories.Repositories;
@@ -42,13 +45,19 @@ public class VacinaRepository : IVacinaRepository
 
     public async Task<Guid> CreateAsync(CreationVacinaDto data)
     {
+        DoseVacina tipoDoseEnum = (DoseVacina)Enum.ToObject(typeof(DoseVacina), data.TipoDose);
+        TipoCalendario tipoCalendarioEnum = (TipoCalendario)Enum.ToObject(typeof(TipoCalendario), data.TipoCalendario);
+
         var newVacina = new Vacina
         {
             Id = Guid.NewGuid(),
             DtCriacao = DateTime.Now,
             Nome = data.Nome,
             Descricao = data.Descricao,
-            IdadeRecomendada = data.IdadeRecomendada
+            IdadeRecomendada = data.IdadeRecomendada,
+            TipoCalendario = GetEnumDescription(tipoCalendarioEnum),
+            TipoDose = GetEnumDescription(tipoDoseEnum),
+            TipoDoseObs = data.TipoDoseObs
         };
 
         await dbContext.Vacina.AddAsync(newVacina);
@@ -98,9 +107,15 @@ public class VacinaRepository : IVacinaRepository
             throw new Exception("Vacina não encontrada.");
         }
 
+        DoseVacina tipoDoseEnum = (DoseVacina)Enum.ToObject(typeof(DoseVacina), data.TipoDose);
+        TipoCalendario tipoCalendarioEnum = (TipoCalendario)Enum.ToObject(typeof(TipoCalendario), data.TipoCalendario);
+
         vacina.Nome = data.Nome;
         vacina.Descricao = data.Descricao;
         vacina.IdadeRecomendada = data.IdadeRecomendada;
+        vacina.TipoCalendario = GetEnumDescription(tipoCalendarioEnum);
+        vacina.TipoDose = GetEnumDescription(tipoDoseEnum);
+        vacina.TipoDoseObs = data.TipoDoseObs;
         vacina.DtUpdate = DateTime.Now;
 
         if (data.Doencas != null && data.Doencas.Any())
@@ -126,11 +141,8 @@ public class VacinaRepository : IVacinaRepository
                 await dbContext.VacinaDoencas.AddAsync(vacinaDoenca);
             }
         }
-
         await dbContext.SaveChangesAsync();
     }
-
-
     public async Task<bool> DeleteAsync(Guid id)
     {
         var vacina = await dbContext.Vacina
@@ -143,5 +155,14 @@ public class VacinaRepository : IVacinaRepository
         await dbContext.SaveChangesAsync();
 
         return true;
+    }
+    //TODO: colocar em um helper
+    public static string GetEnumDescription(Enum value)
+    {
+        FieldInfo field = value.GetType().GetField(value.ToString());
+
+        DescriptionAttribute attribute = field.GetCustomAttribute<DescriptionAttribute>();
+
+        return attribute == null ? value.ToString() : attribute.Description;
     }
 }

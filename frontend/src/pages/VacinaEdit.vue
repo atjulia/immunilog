@@ -17,12 +17,18 @@
 						<v-text-field label="Data de nascimento" v-model="model.DtNascimento" variant="outlined" v-mask="'##/##/####'"/>
 					</v-col>
 			</v-row>
-        <template v-slot:actions>
+			<template v-slot:actions>
 					<v-row class="pa-2">
 						<v-btn
 							class="ml-2"
 							text="Fechar"
 							@click="show = false"
+						></v-btn>
+						<v-btn
+							class="ms-auto"
+							text="Confirmar"
+							type="submit"
+							@click="submit"
 						></v-btn>
 					</v-row>
         </template>
@@ -32,6 +38,8 @@
 </template>
 
 <script>
+import { CreateSolicitacaoVacina } from '@/api/controllers/pessoaVacina';
+
 export default {
 	data () {
 		return {
@@ -45,11 +53,23 @@ export default {
 		openModal (dependente) {
 			this.show = true
 			console.log('Adicionar vacina', dependente)
-			this.model = dependente
+			this.model.DependenteId = dependente.Id
 		},
-		selectDependente (dependente) {
-			console.log(dependente)
-			console.log(dependente.Id)
+		async submit () {
+			try {
+				var dto = {
+					...this.model,
+					DtNascimento: this.convertDateTime(this.model.DtNascimento),
+					TipoPessoa: 2,
+					UsuarioId: this.credentials.UsuarioId
+				}
+				const response = await CreateSolicitacaoVacina(dto);
+				console.log(response);
+				this.$emit('refresh')
+				this.close()
+			} catch (error) {
+				console.error('Erro ao buscar pessoas:', error);
+			}
 		},
 		close () {
 			this.show = false
