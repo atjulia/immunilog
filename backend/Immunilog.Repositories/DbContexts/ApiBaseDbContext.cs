@@ -20,6 +20,7 @@ public class ApiBaseDbContext : DbContextBase
     public DbSet<Vacina> Vacina { get; set; } = default!;
     public DbSet<Doenca> Doenca { get; set; }
     public DbSet<VacinaDoenca> VacinaDoencas { get; set; }
+    public DbSet<VacinaPessoa> VacinaPessoa { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -43,12 +43,6 @@
 							text="Fechar"
 							@click="show = false"
 						></v-btn>
-						<v-btn
-							class="ms-auto"
-							text="Confirmar"
-							type="submit"
-							@click="submit"
-						></v-btn>
 					</v-row>
         </template>
       </v-card>
@@ -73,7 +67,12 @@ export default {
 			this.dependentes = dependentes
 		},
 		selectDependente (dependente) {
-			console.log(dependente)
+			if (this.tipo === 1) {
+				this.$emit('dependente', dependente)
+				this.close()
+			} else {
+				console.log('carteira')
+			}
 		},
 		close () {
 			this.show = false

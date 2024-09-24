@@ -106,7 +106,8 @@
       </v-col>
     </v-row>
     <dependenteEdit ref="dependente" @refresh="fetchPessoas" />
-    <ModalDependenteList ref="dependenteList" />
+    <VacinaEdit ref="vacinaAdd" />
+    <ModalDependenteList ref="dependenteList" @dependente="addVacina"/>
   </div>
 </template>
 
@@ -114,6 +115,7 @@
 <script>
 import { getPessoasByUsuarioId } from '@/api/controllers/pessoa';
 import DependenteEdit from './DependenteEdit.vue';
+import VacinaEdit from './VacinaEdit.vue';
 import ModalDependenteList from '../components/ModalDependenteList.vue';
 
 import AddVacina from '../assets/cards/AddVacina.svg';
@@ -123,7 +125,9 @@ import GerenciarPerfil from '../assets/cards/GerenciarPerfil.svg';
 
 export default {
   components: { 
-    DependenteEdit 
+    DependenteEdit,
+    VacinaEdit,
+    ModalDependenteList
   },
   data () {
     return {
@@ -137,7 +141,7 @@ export default {
         { 
           id: 0, 
           text: 'Adicionar Vacina', 
-          action: this.addDependente, 
+          action: this.choseDependenteVacina, 
           image: AddVacina // caminho da imagem importado
         },
         { 
@@ -169,7 +173,13 @@ export default {
       return new URL(imagePath, import.meta.url).href;
     },
     addDependente () {
+      this.$refs.dependente.openModal()
+    },
+    choseDependenteVacina () {
       this.$refs.dependenteList.openModal(this.pessoas, 1)
+    },
+    addVacina (dependente) {
+      this.$refs.vacinaAdd.openModal(dependente)
     },
     verCarteira() {
       this.$refs.dependenteList.openModal(this.pessoas, 2)

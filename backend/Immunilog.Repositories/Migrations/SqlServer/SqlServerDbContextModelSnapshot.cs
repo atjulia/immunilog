@@ -127,8 +127,8 @@ namespace Immunilog.Repositories.Migrations.SqlServer
                     b.Property<DateTime?>("DtUpdate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdadeRecomendada")
-                        .HasColumnType("int");
+                    b.Property<float>("IdadeRecomendada")
+                        .HasColumnType("real");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -142,18 +142,47 @@ namespace Immunilog.Repositories.Migrations.SqlServer
             modelBuilder.Entity("Immunilog.Domain.Entities.VacinaDoenca", b =>
                 {
                     b.Property<Guid>("VacinaId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnOrder(0);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("DoencaId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnOrder(1);
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("VacinaId", "DoencaId");
 
                     b.HasIndex("DoencaId");
 
                     b.ToTable("VacinaDoencas");
+                });
+
+            modelBuilder.Entity("Immunilog.Domain.Entities.VacinaPessoa", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DtCriacao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DtUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("PessoaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Reacao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReacaoOutros")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("VacinaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VacinaPessoa");
                 });
 
             modelBuilder.Entity("Immunilog.Domain.Entities.Pessoa", b =>

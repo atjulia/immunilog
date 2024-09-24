@@ -11,7 +11,6 @@ public interface IVacinaService
     Task<Guid> CreateAsync(CreationVacinaDto model);
     Task<bool> UpdateAsync(VacinaDto model);
     Task<bool> DeleteAsync(Guid id);
-
 }
 
 public class VacinaService : IVacinaService
@@ -39,9 +38,9 @@ public class VacinaService : IVacinaService
 
         //VALIDACOES
 
-        var projectId = await vacinaRepository.CreateAsync(model);
+        var vacinaId = await vacinaRepository.CreateAsync(model);
 
-        return projectId;
+        return vacinaId;
     }
 
     public async Task<bool> UpdateAsync(VacinaDto model)
