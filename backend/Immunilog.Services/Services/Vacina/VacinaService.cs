@@ -8,6 +8,7 @@ public interface IVacinaService
 {
     Task<List<VacinaDto>> GetListAsync();
     Task<VacinaDto?> GetAsync(Guid id);
+    Task<List<Immunilog.Domain.Entities.Vacina>> GetVacinaByIdadePessoa(Guid id);
     Task<Guid> CreateAsync(CreationVacinaDto model);
     Task<bool> UpdateAsync(VacinaDto model);
     Task<bool> DeleteAsync(Guid id);
@@ -28,6 +29,12 @@ public class VacinaService : IVacinaService
 
     public async Task<VacinaDto?> GetAsync(Guid id)
         => await vacinaRepository.GetAsync(id);
+    public async Task<List<Immunilog.Domain.Entities.Vacina>> GetVacinaByIdadePessoa(Guid id)
+    {
+        var listVacina = await vacinaRepository.GetVacinaByIdadePessoa(id);
+        return listVacina;
+    }
+
 
     public async Task<bool> DeleteAsync(Guid id)
     => await vacinaRepository.DeleteAsync(id);

@@ -52,6 +52,13 @@ public class VacinaController : ControllerBase
 
         return Ok(usuario);
     }
+    [HttpGet("GetVacinaByIdadePessoa/{pessoaId}")]
+    public async Task<ActionResult> GetVacinaByIdadePessoa(Guid pessoaId)
+    {
+        var vacinas = await vacinaService.GetVacinaByIdadePessoa(pessoaId);
+
+        return Ok(vacinas);
+    }
 
     [HttpDelete("DeleteVacina/{vacinaId}")]
     public async Task<ActionResult> DeleteVacina(Guid vacinaId)

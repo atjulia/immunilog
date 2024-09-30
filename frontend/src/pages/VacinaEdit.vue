@@ -7,14 +7,27 @@
     >
       <v-card title="Adicionar Vacina">
 				<v-row class="px-4">
-					<v-col cols="12">
-						<v-text-field label="sdasdasdasd" v-model="model.Cpf" variant="outlined" v-mask="'###.###.###-##'"/>
+					<v-col cols="6">
+						<v-select :items="optionVacinas" label="Vacina" v-model="model.VacinaId" variant="outlined" item-title="text" item-value="value" />
+					</v-col>
+					<v-col cols="6">
+						<v-select
+							v-model="model.Reacao"
+							:items="reacoes"
+							label="Reação"
+							chips
+							multiple
+							variant="outlined" />
 					</v-col>
 					<v-col cols="12">
-						<v-text-field label="Nome" v-model="model.Nome" variant="outlined" />
-					</v-col>
-					<v-col cols="12">
-						<v-text-field label="Data de nascimento" v-model="model.DtNascimento" variant="outlined" v-mask="'##/##/####'"/>
+						<v-file-input
+							label="Anexar Comprovante de Vacina"
+							v-model="model.file"
+							accept=".pdf,.doc,.docx,.jpg,.png" 
+							@change="handleFileChange"
+							variant="outlined"
+							prepend-icon="mdi-upload"
+						/>
 					</v-col>
 			</v-row>
 			<template v-slot:actions>
@@ -38,7 +51,8 @@
 </template>
 
 <script>
-import { CreateSolicitacaoVacina } from '@/api/controllers/pessoaVacina';
+import { GetVacinaByIdadePessoa } from '@/api/controllers/vacina';
+import { CreateVacinaPessoa } from '@/api/controllers/pessoaVacina';
 
 export default {
 	data () {
@@ -46,29 +60,38 @@ export default {
 			show: false,
 			model: {},
 			tipo: null,
-      credentials: JSON.parse(localStorage.getItem('credentials')),
+			reacoes: ['Enjoo', 'Dor de Cabeça', 'Coceira', 'Dor no corpo'],
+			optionVacinas: [],
+      fileUrl: null,
 		}
 	},
 	methods: {
-		openModal (dependente) {
-			this.show = true
+		async openModal (dependente) {
 			console.log('Adicionar vacina', dependente)
 			this.model.DependenteId = dependente.Id
+			var response = await GetVacinaByIdadePessoa(dependente.Id);
+			this.optionVacinas = response.map(p => {
+				return { text: `${p.Nome} - ${p.TipoDose}`, value: p.Id }
+			})
+			console.log(this.optionVacinas)
+			this.show = true
 		},
+		handleFileChange(event) {
+      const selectedFile = event.target.files[0];
+      if (selectedFile) {
+        this.file = selectedFile;
+        this.fileUrl = URL.createObjectURL(selectedFile);
+				console.log(this.fileUrl)
+      }
+    },
 		async submit () {
 			try {
-				var dto = {
-					...this.model,
-					DtNascimento: this.convertDateTime(this.model.DtNascimento),
-					TipoPessoa: 2,
-					UsuarioId: this.credentials.UsuarioId
-				}
-				const response = await CreateSolicitacaoVacina(dto);
+				const response = await CreateVacinaPessoa(this.model);
 				console.log(response);
 				this.$emit('refresh')
 				this.close()
 			} catch (error) {
-				console.error('Erro ao buscar pessoas:', error);
+				console.error('Erro ao criar vacina:', error);
 			}
 		},
 		close () {

@@ -14,6 +14,7 @@ public interface IVacinaRepository
 {
     Task<List<VacinaDto>> GetListAsync();
     Task<VacinaDto?> GetAsync(Guid id);
+    Task<List<Immunilog.Domain.Entities.Vacina>> GetVacinaByIdadePessoa(Guid pessoaId);
     Task<Guid> CreateAsync(CreationVacinaDto data);
     Task UpdateAsync(VacinaDto data);
     Task<bool> DeleteAsync(Guid id);
@@ -41,6 +42,38 @@ public class VacinaRepository : IVacinaRepository
             .ProjectToType<VacinaDto>()
             .Where(c => c.Id == id)
             .FirstOrDefaultAsync();
+    }
+    public async Task<List<Vacina>> GetVacinaByIdadePessoa(Guid pessoaId)
+    {
+        var pessoa = await dbContext.Pessoa
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p => p.Id == pessoaId);
+
+        if (pessoa == null)
+        {
+            throw new Exception("Pessoa não encontrada");
+        }
+
+        var dataAtual = DateTime.Now;
+        int anos = dataAtual.Year - pessoa.DtNascimento.Year;
+
+        if (dataAtual < pessoa.DtNascimento.AddYears(anos))
+        {
+            anos--;
+        }
+
+        int meses = (dataAtual.Year - pessoa.DtNascimento.Year) * 12 + dataAtual.Month - pessoa.DtNascimento.Month;
+
+        var vacinas = await dbContext.Vacina
+            .AsNoTracking()
+            .Where(v =>
+                (v.IdadeRecomendada >= anos ||
+                (v.IdadeRecomendada < 1 && (v.IdadeRecomendada * 100) <= meses)))
+            .OrderBy(v => v.Nome)
+            .ProjectToType<Vacina>()
+            .ToListAsync();
+
+        return vacinas;
     }
 
     public async Task<Guid> CreateAsync(CreationVacinaDto data)
