@@ -71,7 +71,8 @@ export default {
 				this.$emit('dependente', dependente)
 				this.close()
 			} else {
-				console.log('carteira')
+				this.$router.push({ path: '/carteira', query: { id: dependente.Id } })
+				this.close()
 			}
 		},
 		close () {

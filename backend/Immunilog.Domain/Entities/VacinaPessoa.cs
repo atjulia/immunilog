@@ -9,6 +9,7 @@ public class VacinaPessoa : SimpleEntityBase
     public Guid PessoaId { get; set; }
     public DateTime DtCriacao { get; set; }
     public DateTime DtUpdate { get; set; }
+    public DateTime DtAplicacao { get; set; }
     public string Reacao { get; set; } = string.Empty;
     public string ReacaoOutros { get; set; } = string.Empty;
 }

@@ -30,6 +30,7 @@ public static class Extensions
         services.AddScoped<IPessoaRepository, PessoaRepository>();
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         services.AddScoped<IVacinaRepository, VacinaRepository>();
+        services.AddScoped<IVacinaPessoaRepository, VacinaPessoaRepository>();
 
     }
 }

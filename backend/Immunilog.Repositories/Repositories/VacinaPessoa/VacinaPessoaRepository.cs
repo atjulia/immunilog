@@ -51,8 +51,9 @@ public class VacinaPessoaRepository : IVacinaPessoaRepository
             VacinaId = data.VacinaId,
             DtCriacao = new DateTime(),
             Reacao = data.Reacao,
-            ReacaoOutros = data.ReacaoOutros
-            
+            ReacaoOutros = data.ReacaoOutros,
+            DtAplicacao = data.DtAplicacao
+
         };
 
         await dbContext.SaveChangesAsync();

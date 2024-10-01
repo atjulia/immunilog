@@ -171,6 +171,9 @@ namespace Immunilog.Repositories.Migrations.SqlServer
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("DtAplicacao")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("DtCriacao")
                         .HasColumnType("datetime2");
 

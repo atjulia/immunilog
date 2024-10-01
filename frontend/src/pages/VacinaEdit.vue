@@ -3,14 +3,14 @@
     <v-dialog
       v-model="show"
 			persistent
-			width="800"
+			width="500"
     >
       <v-card title="Adicionar Vacina">
 				<v-row class="px-4">
-					<v-col cols="6">
+					<v-col cols="12">
 						<v-select :items="optionVacinas" label="Vacina" v-model="model.VacinaId" variant="outlined" item-title="text" item-value="value" />
 					</v-col>
-					<v-col cols="6">
+					<v-col cols="12">
 						<v-select
 							v-model="model.Reacao"
 							:items="reacoes"
@@ -20,14 +20,7 @@
 							variant="outlined" />
 					</v-col>
 					<v-col cols="12">
-						<v-file-input
-							label="Anexar Comprovante de Vacina"
-							v-model="model.file"
-							accept=".pdf,.doc,.docx,.jpg,.png" 
-							@change="handleFileChange"
-							variant="outlined"
-							prepend-icon="mdi-upload"
-						/>
+						<v-text-field label="Data de aplicação" v-model="model.DtAplicacao" variant="outlined" v-mask="'##/##/####'"/>
 					</v-col>
 			</v-row>
 			<template v-slot:actions>
@@ -52,7 +45,7 @@
 
 <script>
 import { GetVacinaByIdadePessoa } from '@/api/controllers/vacina';
-import { CreateVacinaPessoa } from '@/api/controllers/pessoaVacina';
+import { CreateSolicitacaoVacina } from '@/api/controllers/pessoaVacina';
 
 export default {
 	data () {
@@ -68,7 +61,7 @@ export default {
 	methods: {
 		async openModal (dependente) {
 			console.log('Adicionar vacina', dependente)
-			this.model.DependenteId = dependente.Id
+			this.model.PessoaId = dependente.Id
 			var response = await GetVacinaByIdadePessoa(dependente.Id);
 			this.optionVacinas = response.map(p => {
 				return { text: `${p.Nome} - ${p.TipoDose}`, value: p.Id }
@@ -76,17 +69,13 @@ export default {
 			console.log(this.optionVacinas)
 			this.show = true
 		},
-		handleFileChange(event) {
-      const selectedFile = event.target.files[0];
-      if (selectedFile) {
-        this.file = selectedFile;
-        this.fileUrl = URL.createObjectURL(selectedFile);
-				console.log(this.fileUrl)
-      }
-    },
+		convertDateTime (data) {
+			const [dia, mes, ano] = data.split('/');
+			return new Date(ano, mes - 1, dia);
+		},
 		async submit () {
 			try {
-				const response = await CreateVacinaPessoa(this.model);
+				const response = await CreateSolicitacaoVacina({...this.model, DtAplicacao: this.convertDateTime(this.model.DtAplicacao), Reacao: JSON.stringify(this.model.Reacao)});
 				console.log(response);
 				this.$emit('refresh')
 				this.close()

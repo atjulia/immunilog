@@ -42,6 +42,13 @@ public class PessoaController : ControllerBase
 
         return Ok(id);
     }
+    [HttpGet("getPessoaById/{pessoaId}")]
+    public async Task<ActionResult> getPessoaById(Guid pessoaId)
+    {
+        var pessoas = await pessoaService.GetPessoaByIdAsync(pessoaId);
+
+        return Ok(pessoas);
+    }
 
     [HttpGet("GetPessoasByUsuarioId/{usuarioId}")]
     public async Task<ActionResult> GetPessoasByUsuarioId(Guid usuarioId)

@@ -10,6 +10,7 @@ public interface IPessoaService
     Task<List<PessoaDto>> GetPessoasByUsuarioId(Guid id);
     Task<Guid> CreateAsync(CreationPessoaDto model);
     Task<bool> UpdateAsync(PessoaDto model);
+    Task<PessoaDto> GetPessoaByIdAsync(Guid id);
     Task<bool> DeleteAsync(Guid id);
 
 }
@@ -27,6 +28,16 @@ public class PessoaService : IPessoaService
     public async Task<List<PessoaDto>> GetListAsync()
         => await pessoaRepository.GetListAsync();
 
+    public async Task<PessoaDto> GetPessoaByIdAsync(Guid id)
+    {
+        if (id == Guid.Empty) throw new ValidationException("ID inválido");
+
+        var pessoa = await pessoaRepository.GetPessoaByIdAsync(id);
+
+        if (pessoa == null) throw new ValidationException("Pessoa não encontrada");
+
+        return pessoa;
+    }
     public async Task<List<PessoaDto>> GetPessoasByUsuarioId(Guid id)
     => await pessoaRepository.GetPessoasByUsuarioId(id);
 

@@ -9,6 +9,15 @@ export const getPessoasByUsuarioId = async (usuarioId) => {
     throw error;
   }
 };
+export const getPessoaById = async (pessoaId) => {
+  try {
+    const response = await apiClient.get(`/Pessoa/getPessoaById/${pessoaId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao buscar pessoas:', error);
+    throw error;
+  }
+};
 
 export const CreatePessoa = async (data) => {
   try {

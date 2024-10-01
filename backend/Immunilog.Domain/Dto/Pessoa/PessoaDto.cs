@@ -1,5 +1,6 @@
 ﻿using Immunilog.Domain.Dto.Base;
 using Immunilog.Domain.Dto.Usuario;
+using Immunilog.Domain.Dto.Vacina;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Immunilog.Domain.Dto.Pessoa;
@@ -16,6 +17,7 @@ public class PessoaDto : BaseDto
     
     [ForeignKey(nameof(UsuarioId))]
     public Guid UsuarioId { get; set; }
+    public List<PessoaVacinaDTO> Vacinas { get; set; } = new List<PessoaVacinaDTO>();
 
     private string CalcularIdade(DateTime dataNascimento)
     {

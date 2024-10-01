@@ -171,6 +171,9 @@ namespace Immunilog.Repositories.Migrations.MySql
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<DateTime>("DtAplicacao")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<DateTime>("DtCriacao")
                         .HasColumnType("datetime(6)");
 

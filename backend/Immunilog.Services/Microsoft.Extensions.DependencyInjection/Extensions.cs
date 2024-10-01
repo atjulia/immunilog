@@ -2,6 +2,7 @@
 using Immunilog.Services.Services.Pessoa;
 using Immunilog.Services.Services.Usuario;
 using Immunilog.Services.Services.Vacina;
+using Immunilog.Services.Services.VacinaPessoa;
 using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.Extensions.DependencyInjection;
@@ -16,7 +17,8 @@ public static class Extensions
 
         services.AddScoped<IPessoaService, PessoaService>();
         services.AddScoped<IUsuarioService, UsuarioService>();
-        services.AddScoped<IVacinaService, VacinaService>();
+        services.AddScoped<IVacinaService, VacinaService>(); 
+        services.AddScoped<IVacinaPessoaService, VacinaPessoaService>();
 
         return services;
     }
