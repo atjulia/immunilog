@@ -11,9 +11,9 @@ export const CreateSolicitacaoVacina = async (data) => {
   }
 };
 
-export const CreateVacinaPessoa = async (data) => {
+export const GetVacinasByPessoaId = async (data) => {
   try {
-    const response = await apiClient.post('/VacinaPessoa/CreateVacinaPessoa', data);
+    const response = await apiClient.post('/VacinaPessoa/GetVacinasByPessoaId', data);
     return response.data;
   } catch (error) {
     console.error('Erro ao criar pessoa:', error);

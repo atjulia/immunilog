@@ -7,8 +7,8 @@ namespace Immunilog.Services.Services.VacinaPessoa;
 public interface IVacinaPessoaService
 {
     Task<Guid> CreateSolicitacaoVacina(CreationVacinaPessoaDto model);
-    Task<Guid> CreateVacinaPessoa(CreationVacinaPessoaDto model);
     Task<bool> UpdateVacinaPessoa(VacinaPessoaDto model);
+    Task<IEnumerable<VacinaPessoaDto>> GetVacinasByPessoaId(Guid pessoaId);
 
 }
 
@@ -31,13 +31,13 @@ public class VacinaPessoaService : IVacinaPessoaService
 
         return vacinaPessoaId;
     }
-    public async Task<Guid> CreateVacinaPessoa(CreationVacinaPessoaDto model)
+    public async Task<IEnumerable<VacinaPessoaDto>> GetVacinasByPessoaId(Guid pessoaId)
     {
-        if (model == null) throw new ValidationException("Dados inválidos");
+        if (pessoaId == null) throw new ValidationException("Dados inválidos");
 
         //VALIDACOES
 
-        var vacinaPessoaId = await vacinaPessoaRepository.CreateVacinaPessoa(model);
+        var vacinaPessoaId = await vacinaPessoaRepository.GetVacinasByPessoaId(pessoaId);
 
         return vacinaPessoaId;
     }

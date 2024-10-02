@@ -205,15 +205,15 @@ export default {
 
 <style scoped>
 .text-card {
-  font-weight: bold;  /* Texto em negrito */
-  font-size: 14px;    /* Tamanho da fonte */
-  color: #384593;     /* Cor do texto */
-  text-align: center; /* Alinhamento central do texto */
+  font-weight: bold;
+  font-size: 14px;
+  color: #384593;
+  text-align: center;
 }
 .text-title {
-  font-weight: 500; /* Semibold */
-  font-size: 24px;  /* Tamanho da fonte */
-  color: #384593;   /* Cor especificada */
+  font-weight: 500;
+  font-size: 24px;
+  color: #384593;
 }
 .card {
   width: 100px;

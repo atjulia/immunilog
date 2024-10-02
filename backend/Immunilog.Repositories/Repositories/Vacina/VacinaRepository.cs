@@ -14,7 +14,7 @@ public interface IVacinaRepository
 {
     Task<List<VacinaDto>> GetListAsync();
     Task<VacinaDto?> GetAsync(Guid id);
-    Task<List<Immunilog.Domain.Entities.Vacina>> GetVacinaByIdadePessoa(Guid pessoaId);
+    Task<List<Immunilog.Domain.Entities.Vacina>> GetVacinaByIdadePessoa(Guid pessoaId, string param);
     Task<Guid> CreateAsync(CreationVacinaDto data);
     Task UpdateAsync(VacinaDto data);
     Task<bool> DeleteAsync(Guid id);
@@ -43,8 +43,9 @@ public class VacinaRepository : IVacinaRepository
             .Where(c => c.Id == id)
             .FirstOrDefaultAsync();
     }
-    public async Task<List<Vacina>> GetVacinaByIdadePessoa(Guid pessoaId)
+    public async Task<List<Vacina>> GetVacinaByIdadePessoa(Guid pessoaId, string param)
     {
+        // Busca a pessoa pelo pessoaId
         var pessoa = await dbContext.Pessoa
             .AsNoTracking()
             .FirstOrDefaultAsync(p => p.Id == pessoaId);
@@ -54,9 +55,9 @@ public class VacinaRepository : IVacinaRepository
             throw new Exception("Pessoa não encontrada");
         }
 
+        // Cálculo da idade da pessoa em anos e meses
         var dataAtual = DateTime.Now;
         int anos = dataAtual.Year - pessoa.DtNascimento.Year;
-
         if (dataAtual < pessoa.DtNascimento.AddYears(anos))
         {
             anos--;
@@ -64,17 +65,36 @@ public class VacinaRepository : IVacinaRepository
 
         int meses = (dataAtual.Year - pessoa.DtNascimento.Year) * 12 + dataAtual.Month - pessoa.DtNascimento.Month;
 
-        var vacinas = await dbContext.Vacina
+        // Inicializa a consulta de vacinas com base na idade da pessoa
+        var vacinasQuery = dbContext.Vacina
             .AsNoTracking()
             .Where(v =>
                 (v.IdadeRecomendada >= anos ||
                 (v.IdadeRecomendada < 1 && (v.IdadeRecomendada * 100) <= meses)))
             .OrderBy(v => v.Nome)
+            .AsQueryable();
+
+        // Se o param for "filtroVacina", filtra as vacinas que ainda não estão na tabela VacinaPessoa para essa pessoa
+        if (param == "filtroVacina")
+        {
+            var vacinasJaRegistradas = await dbContext.VacinaPessoa
+                .AsNoTracking()
+                .Where(vp => vp.PessoaId == pessoaId)
+                .Select(vp => vp.VacinaId)
+                .ToListAsync();
+
+            // Exclui as vacinas que já foram registradas na VacinaPessoa
+            vacinasQuery = vacinasQuery.Where(v => !vacinasJaRegistradas.Contains(v.Id));
+        }
+
+        // Projeta para o tipo Vacina e retorna a lista final
+        var vacinas = await vacinasQuery
             .ProjectToType<Vacina>()
             .ToListAsync();
 
         return vacinas;
     }
+
 
     public async Task<Guid> CreateAsync(CreationVacinaDto data)
     {

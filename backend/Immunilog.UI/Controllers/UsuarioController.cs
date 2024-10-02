@@ -45,10 +45,10 @@ public class UsuarioController : ControllerBase
         return Ok(id);
     }
 
-    [HttpGet("GetUsuario/{usuarioId}")]
-    public async Task<ActionResult> GetUsuario(Guid usuarioId)
+    [HttpGet("GetUsuarioById/{usuarioId}")]
+    public async Task<ActionResult> GetUsuarioById(Guid usuarioId)
     {
-        var usuario = await _usuarioService.GetAsync(usuarioId);
+        var usuario = await _usuarioService.GetUsuarioById(usuarioId);
 
         return Ok(usuario);
     }

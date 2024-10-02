@@ -28,15 +28,24 @@ public class VacinaPessoaController : ControllerBase
         return Ok(id);
     }
 
-    [HttpPost("CreateVacinaPessoa")]
-    public async Task<ActionResult> CreateVacinaPessoa([FromBody] CreationVacinaPessoaDto vacina)
+    [HttpPost("GetVacinasByPessoaId")]
+    public async Task<IActionResult> GetVacinasByPessoaId([FromBody] Guid pessoaId)
     {
-        if (!ModelState.IsValid) return BadRequest();
+        if (pessoaId == Guid.Empty)
+        {
+            return BadRequest("O ID da pessoa é inválido.");
+        }
 
-        var id = await vacinaPessoaService.CreateVacinaPessoa(vacina);
+        var vacinas = await vacinaPessoaService.GetVacinasByPessoaId(pessoaId);
 
-        return Ok(id);
+        if (vacinas == null || !vacinas.Any())
+        {
+            return NotFound("Nenhuma vacina encontrada para o ID da pessoa fornecido.");
+        }
+
+        return Ok(vacinas);
     }
+
     [HttpPut("UpdateVacinaPessoa")]
     public async Task<ActionResult> UpdateVacinaPessoa([FromBody] VacinaPessoaDto vacina)
     {

@@ -14,7 +14,6 @@ namespace Immunilog.Repositories.Repositories;
 
 public interface IPessoaRepository
 {
-    Task<List<PessoaDto>> GetListAsync();
     Task<List<PessoaDto>> GetPessoasByUsuarioId(Guid id);
     Task<Guid> CreateAsync(CreationPessoaDto data);
     Task<PessoaDto> GetPessoaByIdAsync(Guid id);
@@ -29,25 +28,16 @@ public class PessoaRepository : IPessoaRepository
     {
         this.dbContext = dbContext;
     }
-    public async Task<List<PessoaDto>> GetListAsync()
-    {
-        return await dbContext.Pessoa
-            .AsNoTracking()
-            .ProjectToType<PessoaDto>()
-            .ToListAsync();
-    }
 
     public async Task<PessoaDto> GetPessoaByIdAsync(Guid id)
     {
-        // Buscando a pessoa e as vacinas associadas
         var pessoa = await dbContext.Pessoa
                                    .AsNoTracking()
-                                   .Include(p => p.Vacinas) // Incluindo as vacinas associadas
+                                   .Include(p => p.Vacinas)
                                    .FirstOrDefaultAsync(p => p.Id == id);
         if (pessoa == null)
             return null;
 
-        // Mapeando a pessoa para o DTO
         var pessoaDto = new PessoaDto
         {
             Id = pessoa.Id,
@@ -58,7 +48,6 @@ public class PessoaRepository : IPessoaRepository
             DtCriacao = pessoa.DtCriacao,
             DtUpdate = pessoa.DtUpdate,
 
-            // Mapeando a lista de vacinas associadas
             Vacinas = await dbContext.Vacina
                 .Where(v => pessoa.Vacinas.Select(vp => vp.VacinaId).Contains(v.Id))
                 .Select(v => new PessoaVacinaDTO

@@ -15,14 +15,6 @@ public class PessoaController : ControllerBase
         this.pessoaService = pessoaService;
     }
 
-    [HttpGet("GetPessoas")]
-    public async Task<ActionResult<PessoaDto?>> GetPessoas()
-    {
-        var pessoa = await pessoaService.GetListAsync();
-
-        return Ok(pessoa);
-    }
-
     [HttpPost("CreatePessoa")]
     public async Task<ActionResult> CreatePessoa([FromBody] CreationPessoaDto pessoaDto)
     {

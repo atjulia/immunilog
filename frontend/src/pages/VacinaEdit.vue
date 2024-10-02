@@ -62,7 +62,7 @@ export default {
 		async openModal (dependente) {
 			console.log('Adicionar vacina', dependente)
 			this.model.PessoaId = dependente.Id
-			var response = await GetVacinaByIdadePessoa(dependente.Id);
+			var response = await GetVacinaByIdadePessoa(dependente.Id, 'filtroVacina');
 			this.optionVacinas = response.map(p => {
 				return { text: `${p.Nome} - ${p.TipoDose}`, value: p.Id }
 			})
@@ -85,6 +85,7 @@ export default {
 		},
 		close () {
 			this.show = false
+			this.model = {}
 		}
 	}
 }

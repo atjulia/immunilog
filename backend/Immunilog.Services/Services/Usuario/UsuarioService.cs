@@ -7,7 +7,7 @@ namespace Immunilog.Services.Services.Usuario;
 public interface IUsuarioService
 {
     Task<List<UsuarioDto>> GetListAsync();
-    Task<UsuarioDto?> GetAsync(Guid id);
+    Task<UsuarioDto?> GetUsuarioById(Guid id);
     Task<Guid> CreateAsync(CreationUsuarioDto model);
     Task<bool> UpdateAsync(UsuarioDto model);
     Task<bool> DeleteAsync(Guid id);
@@ -26,8 +26,8 @@ public class UsuarioService : IUsuarioService
     public async Task<List<UsuarioDto>> GetListAsync()
         => await _usuarioRepository.GetListAsync();
 
-    public async Task<UsuarioDto?> GetAsync(Guid id)
-        => await _usuarioRepository.GetAsync(id);
+    public async Task<UsuarioDto?> GetUsuarioById(Guid id)
+        => await _usuarioRepository.GetUsuarioById(id);
 
     public async Task<bool> DeleteAsync(Guid id)
     => await _usuarioRepository.DeleteAsync(id);

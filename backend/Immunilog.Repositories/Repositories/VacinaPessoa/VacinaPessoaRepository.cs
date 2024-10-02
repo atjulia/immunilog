@@ -10,8 +10,8 @@ namespace Immunilog.Repositories.Repositories;
 public interface IVacinaPessoaRepository
 {
     Task<Guid> CreateSolicitacaoVacina(CreationVacinaPessoaDto data);
-    Task<Guid> CreateVacinaPessoa(CreationVacinaPessoaDto model);
     Task UpdateVacinaPessoa(VacinaPessoaDto model);
+    Task<IEnumerable<VacinaPessoaDto>> GetVacinasByPessoaId(Guid pessoaId);
 }
 public class VacinaPessoaRepository : IVacinaPessoaRepository
 {
@@ -33,32 +33,32 @@ public class VacinaPessoaRepository : IVacinaPessoaRepository
             DtCriacao = new DateTime(),
             Reacao = data.Reacao,
             ReacaoOutros = data.ReacaoOutros
-
         };
 
+        await dbContext.VacinaPessoa.AddAsync(newVacinaPessoa);
         await dbContext.SaveChangesAsync();
 
         return newVacinaPessoa.Id;
     }
-    public async Task<Guid> CreateVacinaPessoa(CreationVacinaPessoaDto data)
+    public async Task<IEnumerable<VacinaPessoaDto>> GetVacinasByPessoaId(Guid pessoaId)
     {
-        //var vacina = await dbContext.Vacina.FirstOrDefaultAsync(c => c.Id == data.Id);
+        var vacinaPessoas = await dbContext.VacinaPessoa
+            .AsNoTracking()
+            .Where(vp => vp.PessoaId == pessoaId)
+            .ToListAsync();
 
-        var newVacinaPessoa = new VacinaPessoa
-        {
-            Id = Guid.NewGuid(),
-            PessoaId = data.PessoaId,
-            VacinaId = data.VacinaId,
-            DtCriacao = new DateTime(),
-            Reacao = data.Reacao,
-            ReacaoOutros = data.ReacaoOutros,
-            DtAplicacao = data.DtAplicacao
+        if (!vacinaPessoas.Any())
+            return Enumerable.Empty<VacinaPessoaDto>();
 
-        };
+        var vacinaIds = vacinaPessoas.Select(vp => vp.VacinaId).Distinct();
 
-        await dbContext.SaveChangesAsync();
+        var vacinas = await dbContext.Vacina
+            .AsNoTracking()
+            .Where(v => vacinaIds.Contains(v.Id))
+            .ProjectToType<VacinaPessoaDto>()
+            .ToListAsync();
 
-        return newVacinaPessoa.Id;
+        return vacinas;
     }
     public async Task UpdateVacinaPessoa(VacinaPessoaDto data)
     => await dbContext.VacinaPessoa
