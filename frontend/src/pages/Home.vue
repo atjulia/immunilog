@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row class="px-5 pt-8">
-      <v-col cols="7">
+      <v-col cols="6">
         <v-row>
           <v-col cols="12">
             <span class="text-title">Minha saúde</span>
@@ -36,27 +36,19 @@
         </v-row>
         <v-row>
           <v-col cols="12" class="px-5">
-            <span class="text-title">Links Úteis</span>
+            <span class="text-title2">Programas governamentais para saúde</span>
           </v-col>
-          <v-row>
-            <v-col
-              cols="1"
-              class="d-flex flex-column align-items-center pr-4"
-              style="min-width: 125px;"
-            >
-              <div class="d-flex align-items-center justify-center flex-grow-1">
-                <card class="card d-block">
-                  link
-                </card>
-              </div>
-            </v-col>
+          <v-row class="pl-6 pt-6">
+            <div class="d-flex align-items-center justify-center card2">
+              <v-img src="../assets/link1.svg" />
+            </div>
           </v-row>
         </v-row>
       </v-col>
-      <v-col cols="5">
+      <v-col cols="6">
         <v-col cols="12" class="px-5 d-flex justify-space-between">
           <span class="text-title">Gerenciar Dependentes</span>
-          <v-btn density="comfortable" color="primary" variant="outlined" @click="addDependente">
+          <v-btn density="comfortable" color="primary" @click="addDependente">
             Adicionar Dependente
             <v-icon color="primary" class="pl-2">
               <PhPlus :size="24" />
@@ -202,7 +194,6 @@ export default {
       try {
         const response = await getPessoasByUsuarioId(this.credentials.UsuarioId);
         this.pessoas = response;
-        console.log(response);
       } catch (error) {
         console.error('Erro ao buscar pessoas:', error);
       }
@@ -223,9 +214,20 @@ export default {
   font-size: 24px;
   color: #384593;
 }
+.text-title2 {
+  font-weight: 500;
+  font-size: 16px;
+  color: #384593;
+}
 .card {
   width: 100px;
   height: 100px;
+  border: 2px solid #384593;
+  border-radius: 16px;
+}
+.card2 {
+  min-width: 450px;
+  height: 165px;
   border: 2px solid #384593;
   border-radius: 16px;
 }

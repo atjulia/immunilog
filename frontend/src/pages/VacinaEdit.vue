@@ -1,5 +1,5 @@
 <template>
-	<div class="text-center pa-4">
+	<div class="text-center pa-4" v-if="show">
     <v-dialog
       v-model="show"
 			persistent
@@ -60,13 +60,11 @@ export default {
 	},
 	methods: {
 		async openModal (dependente) {
-			console.log('Adicionar vacina', dependente)
 			this.model.PessoaId = dependente.Id
 			var response = await GetVacinaByIdadePessoa(dependente.Id, 'filtroVacina');
 			this.optionVacinas = response.map(p => {
 				return { text: `${p.Nome} - ${p.TipoDose}`, value: p.Id }
 			})
-			console.log(this.optionVacinas)
 			this.show = true
 		},
 		convertDateTime (data) {

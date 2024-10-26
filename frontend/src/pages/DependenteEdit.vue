@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center pa-4">
+  <div class="text-center pa-4" v-if="show">
     <v-dialog
       v-model="show"
       width="auto"
@@ -64,7 +64,6 @@ export default {
 					UsuarioId: this.credentials.UsuarioId
 				}
 				const response = await CreatePessoa(dto);
-				console.log(response);
 				this.$emit('refresh')
 				this.close()
 			} catch (error) {

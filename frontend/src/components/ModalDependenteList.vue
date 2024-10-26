@@ -1,5 +1,5 @@
 <template>
-	<div class="text-center pa-4">
+	<div class="text-center pa-4" v-if="show">
     <v-dialog
       v-model="show"
 			persistent

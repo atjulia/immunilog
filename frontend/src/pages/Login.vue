@@ -51,8 +51,7 @@ export default {
           localStorage.setItem("credentials", JSON.stringify({
             ...decodedToken
           }));
-          console.log("Login bem-sucedido. Token armazenado.");
-          this.$router.push('/home');
+          location.reload();
         } else {
           console.log("Falha na autenticação.");
         }

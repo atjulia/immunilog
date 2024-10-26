@@ -4,54 +4,56 @@
       <v-row class="px-10">
         <v-col cols="12" class="justify-space-between d-flex">
           <span class="text-title">Carteira de Vacinação</span>
-          <span class="text-body"> <b>{{ model.Nome }}</b> | {{ model.IdadeFormatada }}</span>
-          <!-- <v-alert type="info" border="left">
-            Para ficar em dia com seu calendário vacinal, recomendamos as seguintes vacinas:
-            <ul>
-              <li v-for="vacina in model.Vacinas" :key="vacina.Id">
-                {{ vacina.Nome }} ({{ vacina.TipoDose }})
-              </li>
-            </ul>
-          </v-alert> -->
+          <span class="text-body"><b>{{ model.Nome }}</b> | {{ model.IdadeFormatada }}</span>
         </v-col>
-				<v-divider></v-divider>
+        <v-divider></v-divider>
       </v-row>
-
-
-      <v-timeline align="start" side="end" color="blue" class="custom-timeline">
-        <v-timeline-item
-          v-for="vacina in model.Vacinas"
-          :key="vacina.Id"
-          color="blue"
-          small
-        >
-          <template opposite>
-            <v-avatar size="40" color="blue darken-1">
-              <v-icon color="white">mdi-syringe</v-icon>
-            </v-avatar>
-          </template>
-
-          <v-card>
-            <v-card-title>{{ vacina.Nome }}</v-card-title>
-            <v-card-subtitle>{{ vacina.TipoDose }}</v-card-subtitle>
-            <v-card-text>
-              <p>{{ vacina.Descricao }}</p>
-              <p><strong>Idade Recomendada:</strong> {{ formatIdade(vacina.IdadeRecomendada) }}</p>
-              <p><strong>Data da aplicação:</strong> {{ vacina.DtUpdate ? formatDate(vacina.DtUpdate) : 'Não Aplicada' }}</p>
-            </v-card-text>
-            <v-card-actions>
-              <v-btn @click="moreInfo(vacina.Id)" text>Saiba mais</v-btn>
-            </v-card-actions>
+      <div class="pt-5" v-if="model.Vacinas.length > 0">
+        <v-timeline side="end" align="start">
+          <v-timeline-item
+            v-for="vacina in model.Vacinas"
+            :key="vacina.Id"
+            fill-dot
+            dot-color="secondary"
+            size="small"
+          >
+          <v-card style="min-width: 80vw;" :value="true">
+            <v-card-title class="pt-4">
+              <div class="d-flex justify-space-between" style="width: 100%;">
+                <span class="text-primary">{{ vacina.Nome }}</span>
+                <v-chip variant="outlined" color="secondary">
+                  <span class="pr-1">
+                    {{ vacina.TipoDose }}
+                  </span>
+                  <v-icon><PhSyringe :size="32" /></v-icon>
+                </v-chip>
+              </div>
+            </v-card-title>
+            <v-card-subtitle>
+              {{ vacina.Descricao }}
+            </v-card-subtitle>
+            <div class="d-flex justify-space-between align-center py-2">
+              <v-card-text class="text-primary">
+                <p><strong>Idade Recomendada:</strong> {{ formatIdade(vacina.IdadeRecomendada) }}</p>
+                <p><strong>Data da aplicação:</strong> {{ vacina.DtUpdate ? formatDate(vacina.DtUpdate) : 'Não Aplicada' }}</p>
+              </v-card-text>
+            
+              <v-btn @click="moreInfo(vacina.Id)" flat class="text-primary mr-4" text>
+                <span class="pr-2">Saiba mais</span> 
+                <v-icon><PhInfo :size="32" /></v-icon>
+              </v-btn>
+            </div>
           </v-card>
-        </v-timeline-item>
-      </v-timeline>
-    </div>
-    <div v-else>
-      <v-row justify="center">
-        <v-col cols="12" md="4">
-          <v-skeleton-loader type="card" />
-        </v-col>
-      </v-row>
+          </v-timeline-item>
+        </v-timeline>
+      </div>
+      <div v-else>
+        <div class="justify-center d-flex pt-5">
+          <span class="text-primary">
+            Não há registros para serem apresentados
+          </span>
+        </div>
+      </div>
     </div>
   </v-container>
 </template>
@@ -62,7 +64,19 @@ export default {
   data() {
     return {
       model: {},
-      load: false
+      load: false,
+      items: [
+        {
+          id: 1,
+          color: 'info',
+          icon: 'mdi-information',
+        },
+        {
+          id: 2,
+          color: 'error',
+          icon: 'mdi-alert-circle',
+        },
+      ],
     };
   },
   methods: {
@@ -76,10 +90,9 @@ export default {
       console.log('More info for vaccine ID:', vacinaId);
     }
   },
-  async created() {
+  async beforeCreate() {
     this.model = await getPessoaById(this.$route.query.id);
     this.load = true;
-    console.log(this.model);
   }
 }
 </script>

@@ -1,10 +1,16 @@
 <template>
   <v-app>
-    <Login v-if="!credentials"/>
-    <v-main v-else>
-      <Toolbar />
-      <router-view class="px-8"/>
-      <!-- <Footer /> -->
+    <Login v-if="!credentials" />
+    <v-main v-else class="app-main">
+      <v-app-bar app flat>
+        <Toolbar />
+      </v-app-bar>
+      <div class="content">
+        <router-view class="px-8" />
+      </div>
+      <v-footer app color="background">
+        <Footer />
+      </v-footer>
     </v-main>
   </v-app>
 </template>
@@ -25,6 +31,22 @@ export default {
       model: {},
       credentials: JSON.parse(localStorage.getItem('credentials'))
     }
+  },
+  mounted () {
+    if (this.credentials) {
+      this.$router.push('/home')
+    }
   }
-}
+};
 </script>
+
+<style scoped>
+.app-main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.content {
+  flex: 1;
+}
+</style>

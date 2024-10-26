@@ -2,7 +2,6 @@ import apiClient from '../index';
 
 export const CreateSolicitacaoVacina = async (data) => {
   try {
-    console.log(data);
     const response = await apiClient.post('/VacinaPessoa/CreateSolicitacaoVacina', data);
     return response.data;
   } catch (error) {
