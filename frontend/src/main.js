@@ -1,6 +1,5 @@
 // Plugins
 import { registerPlugins } from '@/plugins'
-import { Analytics } from '@vercel/analytics';
 
 // Components
 import App from './App.vue'
@@ -20,7 +19,6 @@ app.config.globalProperties.$api = {
 
 registerPlugins(app)
 
-app.use(Analytics)
 app.use(VueTheMask)
 app.use(PhosphorIcons)
 
