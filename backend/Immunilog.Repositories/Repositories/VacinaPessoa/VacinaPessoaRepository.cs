@@ -21,18 +21,18 @@ public class VacinaPessoaRepository : IVacinaPessoaRepository
     {
         this.dbContext = dbContext;
     }
-    public async Task<Guid> CreateSolicitacaoVacina(CreationVacinaPessoaDto data)
+    public async Task<Guid> CreateSolicitacaoVacina(CreationVacinaPessoaDto model)
     {
-        //var vacina = await dbContext.Vacina.FirstOrDefaultAsync(c => c.Id == data.Id);
+        //var vacina = await dbContext.Vacina.FirstOrDefaultAsync(c => c.Id == model.Id);
 
         var newVacinaPessoa = new VacinaPessoa
         {
             Id = Guid.NewGuid(),
-            PessoaId = data.PessoaId,
-            VacinaId = data.VacinaId,
+            PessoaId = model.PessoaId,
+            VacinaId = model.VacinaId,
             DtCriacao = new DateTime(),
-            Reacao = data.Reacao,
-            ReacaoOutros = data.ReacaoOutros
+            Reacao = model.Reacao,
+            ReacaoOutros = model.ReacaoOutros
         };
 
         await dbContext.VacinaPessoa.AddAsync(newVacinaPessoa);

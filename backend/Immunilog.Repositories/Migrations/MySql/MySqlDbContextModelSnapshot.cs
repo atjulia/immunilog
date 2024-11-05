@@ -196,6 +196,8 @@ namespace Immunilog.Repositories.Migrations.MySql
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PessoaId");
+
                     b.ToTable("VacinaPessoa");
                 });
 
@@ -229,9 +231,23 @@ namespace Immunilog.Repositories.Migrations.MySql
                     b.Navigation("Vacina");
                 });
 
+            modelBuilder.Entity("Immunilog.Domain.Entities.VacinaPessoa", b =>
+                {
+                    b.HasOne("Immunilog.Domain.Entities.Pessoa", null)
+                        .WithMany("Vacinas")
+                        .HasForeignKey("PessoaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Immunilog.Domain.Entities.Doenca", b =>
                 {
                     b.Navigation("VacinaDoencas");
+                });
+
+            modelBuilder.Entity("Immunilog.Domain.Entities.Pessoa", b =>
+                {
+                    b.Navigation("Vacinas");
                 });
 
             modelBuilder.Entity("Immunilog.Domain.Entities.Vacina", b =>

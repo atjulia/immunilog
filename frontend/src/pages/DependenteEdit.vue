@@ -57,7 +57,7 @@ export default {
 		},
 		async submit () {
 			try {
-				var dto = {
+				const dto = {
 					...this.model,
 					DtNascimento: this.convertDateTime(this.model.DtNascimento),
 					TipoPessoa: 2,

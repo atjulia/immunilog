@@ -61,7 +61,7 @@ export default {
 	methods: {
 		async openModal (dependente) {
 			this.model.PessoaId = dependente.Id
-			var response = await GetVacinaByIdadePessoa(dependente.Id, 'filtroVacina');
+			const response = await GetVacinaByIdadePessoa(dependente.Id, 'filtroVacina');
 			this.optionVacinas = response.map(p => {
 				return { text: `${p.Nome} - ${p.TipoDose}`, value: p.Id }
 			})

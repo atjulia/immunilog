@@ -21,15 +21,30 @@ public class PessoaDto : BaseDto
 
     private string CalcularIdade(DateTime dataNascimento)
     {
+        int anos = CalcularAnos(dataNascimento);
+        int meses = CalcularMeses(dataNascimento, anos);
+
+        return FormatarIdade(anos, meses);
+    }
+
+    private int CalcularAnos(DateTime dataNascimento)
+    {
         var hoje = DateTime.UtcNow;
-        var idade = hoje.Year - dataNascimento.Year;
+        int idade = hoje.Year - dataNascimento.Year;
 
         if (hoje.Month < dataNascimento.Month || (hoje.Month == dataNascimento.Month && hoje.Day < dataNascimento.Day))
         {
             idade--;
         }
 
-        var meses = hoje.Month - dataNascimento.Month;
+        return idade;
+    }
+
+    private int CalcularMeses(DateTime dataNascimento, int idade)
+    {
+        var hoje = DateTime.UtcNow;
+        int meses = hoje.Month - dataNascimento.Month;
+
         if (meses < 0)
         {
             meses += 12;
@@ -45,17 +60,22 @@ public class PessoaDto : BaseDto
             meses += 12;
         }
 
-        if (idade == 0)
+        return meses;
+    }
+
+    private string FormatarIdade(int anos, int meses)
+    {
+        if (anos == 0)
         {
             return meses == 1 ? "1 mês" : $"{meses} meses";
         }
         else if (meses == 0)
         {
-            return idade == 1 ? "1 ano" : $"{idade} anos";
+            return anos == 1 ? "1 ano" : $"{anos} anos";
         }
         else
         {
-            string ano = idade == 1 ? "1 ano" : $"{idade} anos";
+            string ano = anos == 1 ? "1 ano" : $"{anos} anos";
             string mes = meses == 1 ? "1 mês" : $"{meses} meses";
             return $"{ano} e {mes}";
         }

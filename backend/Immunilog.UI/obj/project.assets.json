@@ -5425,6 +5425,7 @@
       "outputPath": "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\backend\\Immunilog.UI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
+        "C:\\Users\\Dev\\Desktop\\projeto\\immunilog\\NuGet.Config",
         "C:\\Users\\Dev\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5434,7 +5435,8 @@
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.devexpress.com/eAoAeOhbGCQsiySRQAGQZPCUdJRZhtTkSREBbfuO2ai5xGxTBZ/api": {}
       },
       "frameworks": {
         "net8.0": {

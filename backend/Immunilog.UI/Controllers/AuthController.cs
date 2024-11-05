@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Immunilog.UI.Controllers;
 
+[Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
@@ -21,15 +22,20 @@ public class AuthController : ControllerBase
     [HttpPost("login/")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
-        var token = await _authService.Authenticate(request.Email, request.Senha);
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(new { Message = "Dados de entrada inválidos" });
+        }
 
+        var token = await _authService.Authenticate(request.Email, request.Senha);
         if (token == null)
         {
-            return Unauthorized(new { Message = "Credencial invalida" });
+            return Unauthorized(new { Message = "Credenciais inválidas" });
         }
 
         return Ok(new { Token = token });
     }
+
 }
 
 public class LoginRequest
