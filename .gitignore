@@ -15,4 +15,4 @@
 
 /backend/.vs/
 
-sonar-project.properties/
+.sonarcloud.properties/
