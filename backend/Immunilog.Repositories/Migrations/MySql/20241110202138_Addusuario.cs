@@ -10,9 +10,13 @@ namespace Immunilog.Repositories.Migrations.MySql
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropColumn(
+                name: "IdadeLog",
+                table: "Usuario");
+
             migrationBuilder.AddColumn<int>(
                 name: "IdadeLog",
-                table: "Usuario",
+                table: "Pessoa",
                 type: "int",
                 nullable: false,
                 defaultValue: 0);
@@ -23,7 +27,14 @@ namespace Immunilog.Repositories.Migrations.MySql
         {
             migrationBuilder.DropColumn(
                 name: "IdadeLog",
-                table: "Usuario");
+                table: "Pessoa");
+
+            migrationBuilder.AddColumn<int>(
+                name: "IdadeLog",
+                table: "Usuario",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
         }
     }
 }

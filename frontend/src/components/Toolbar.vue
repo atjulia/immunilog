@@ -6,7 +6,7 @@
 		</v-toolbar-title>
 		
 		<v-toolbar-title class="text-center">
-			<v-img src="@/assets/logo.svg" height="25" />
+			<v-img src="@/assets/logo.svg" @click="$router.push('/home')" style="cursor: pointer;" height="25" />
 		</v-toolbar-title>
 		
 		<v-toolbar-title class="text-right pr-2">

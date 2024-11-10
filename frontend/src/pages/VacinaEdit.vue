@@ -20,7 +20,14 @@
 							variant="outlined" />
 					</v-col>
 					<v-col cols="12">
-						<v-text-field label="Data de aplicação" v-model="model.DtAplicacao" variant="outlined" v-mask="'##/##/####'"/>
+						<v-text-field
+							label="Data de aplicação"
+							v-model="model.DtAplicacao"
+							variant="outlined"
+							v-mask="'##/##/####'"
+							:error-messages="dateError"
+							@input="validateDate"
+						/>
 					</v-col>
 			</v-row>
 			<template v-slot:actions>
@@ -44,8 +51,9 @@
 </template>
 
 <script>
-import { GetVacinaByIdadePessoa } from '@/api/controllers/vacina';
+import { getVacinas } from '@/api/controllers/vacina';
 import { CreateSolicitacaoVacina } from '@/api/controllers/pessoaVacina';
+import { getPessoaById } from '@/api/controllers/pessoa';
 
 export default {
 	data () {
@@ -56,14 +64,19 @@ export default {
 			reacoes: ['Enjoo', 'Dor de Cabeça', 'Coceira', 'Dor no corpo'],
 			optionVacinas: [],
       fileUrl: null,
+			dateError: ''
 		}
 	},
 	methods: {
 		async openModal (dependente) {
 			this.model.PessoaId = dependente.Id
-			const response = await GetVacinaByIdadePessoa(dependente.Id, 'filtroVacina');
+			const pessoa = await getPessoaById(dependente.Id);
+			console.log(pessoa)
+
+			const response = await getVacinas(pessoa)
+
 			this.optionVacinas = response.map(p => {
-				return { text: `${p.Nome} - ${p.TipoDose}`, value: p.Id }
+				return { text: `${p.nome} - ${p.tipoDose}`, value: p.id }
 			})
 			this.show = true
 		},
@@ -71,6 +84,29 @@ export default {
 			const [dia, mes, ano] = data.split('/');
 			return new Date(ano, mes - 1, dia);
 		},
+		validateDate() {
+      const date = this.model.DtAplicacao;
+			console.log(date)
+      if (this.isValidDate(date)) {
+        this.dateError = "";
+      } else {
+        this.dateError = "Data inválida.";
+      }
+    },
+    isValidDate(date) {
+      const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+      const match = date.match(regex);
+      if (!match) return false;
+
+      const day = parseInt(match[1], 10);
+      const month = parseInt(match[2], 10) - 1;
+      const year = parseInt(match[3], 10);
+
+      if (year < 1910) return false;
+
+      const dateObj = new Date(year, month, day);
+      return dateObj.getDate() === day && dateObj.getMonth() === month && dateObj.getFullYear() === year;
+    },
 		async submit () {
 			try {
 				const response = await CreateSolicitacaoVacina({...this.model, DtAplicacao: this.convertDateTime(this.model.DtAplicacao), Reacao: JSON.stringify(this.model.Reacao)});

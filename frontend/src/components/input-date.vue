@@ -2,7 +2,7 @@
   <v-container class="pa-0">
     <v-form v-model="formValid">
       <v-text-field
-        label="Data de Nascimento"
+        :label="label"
         v-model="formattedDate"
         variant="outlined"
         @click="showDatePicker = !showDatePicker"
@@ -29,7 +29,8 @@ export default {
 		modelValue: {
       type: String,
       default: ''
-    }
+    },
+		label: { type: String, default: '' }
 	},
   data() {
     return {

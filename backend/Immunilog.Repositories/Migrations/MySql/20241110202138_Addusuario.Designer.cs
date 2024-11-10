@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Immunilog.Repositories.Migrations.MySql
 {
     [DbContext(typeof(MySqlDbContext))]
-    [Migration("20241110191043_Addusuario")]
+    [Migration("20241110202138_Addusuario")]
     partial class Addusuario
     {
         /// <inheritdoc />
@@ -59,6 +59,9 @@ namespace Immunilog.Repositories.Migrations.MySql
                     b.Property<DateTime>("DtUpdate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("IdadeLog")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -91,9 +94,6 @@ namespace Immunilog.Repositories.Migrations.MySql
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("IdadeLog")
-                        .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("tinyint(1)");

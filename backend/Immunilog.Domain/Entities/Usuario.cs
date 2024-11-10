@@ -8,7 +8,6 @@ public class Usuario : SimpleEntityBase
     public string Senha { get; set; } = string.Empty;
     public string Nome { get; set; } = string.Empty;
     public bool IsActive { get; set; } = true;
-    public int IdadeLog { get; set; }
     public DateTime DtCriacao { get; set; }
     public DateTime? DtUpdate { get; set; }
     public DateTime? UltimoAcesso { get; set; }

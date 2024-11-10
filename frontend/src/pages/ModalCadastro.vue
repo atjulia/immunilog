@@ -27,12 +27,36 @@
             </v-col>
             <v-col cols="12">
               <input-date
-                label="Data de Nascimento"
+                :label="'Data de Nascimento'"
                 v-model="model.dtNascimento"
                 variant="outlined"
                 :rules="[requiredRule]"
               />
             </v-col>
+            <v-row align="center" class="pa-3">
+              <v-col cols="11" class="d-flex justify-center">
+                <v-text-field
+                  label="A partir de que idade deseja logar?"
+                  v-model="model.idadeLog"
+                  variant="outlined"
+                  v-mask="'##'"
+                  :rules="[idadeLogValidation]"
+                />
+              </v-col>
+              <v-col cols="1" class="pt-0 d-flex justify-center align-center">
+                <v-tooltip location="top">
+                  <template v-slot:activator="{ props }">
+                    <v-icon v-bind="props">
+                      <PhInfo :size="32" />
+                    </v-icon>
+                  </template>
+                  <span>
+                    Conforme a idade que for informada nesse campo, o Immunilog vai ignorar vacinas anteriores que não foram registradas.<br>
+                    Caso não seja informado nenhum valor, o sistema irá considerar todas as vacinas desde o nascimento.
+                  </span>
+                </v-tooltip>
+              </v-col>
+            </v-row>
             <v-divider class="mx-2"/>
             <v-col cols="12">
               <v-text-field
@@ -60,30 +84,6 @@
                 :rules="[requiredRule, passwordConfirmRule]"
               />
             </v-col>
-            <v-row align="center" class="pa-3">
-              <v-col cols="11" class="d-flex justify-center">
-                <v-text-field
-                  label="A partir de que idade deseja logar?"
-                  v-model="model.idadeLog"
-                  variant="outlined"
-                  v-mask="'##'"
-                  :rules="[idadeLogValidation]"
-                />
-              </v-col>
-              <v-col cols="1" class="pt-0 d-flex justify-center align-center">
-                <v-tooltip location="top">
-                  <template v-slot:activator="{ props }">
-                    <v-icon v-bind="props">
-                      <PhInfo :size="32" />
-                    </v-icon>
-                  </template>
-                  <span>
-                    Conforme a idade que for informada nesse campo, o Immunilog vai ignorar vacinas anteriores que não foram registradas.<br>
-                    Caso não seja informado nenhum valor, o sistema irá considerar todas as vacinas desde o nascimento.
-                  </span>
-                </v-tooltip>
-              </v-col>
-            </v-row>
           </v-row>
           <v-card-actions class="justify-space-between">
             <v-btn

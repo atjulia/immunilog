@@ -47,6 +47,8 @@ public class PessoaRepository : IPessoaRepository
             DtNascimento = pessoa.DtNascimento,
             DtCriacao = pessoa.DtCriacao,
             DtUpdate = pessoa.DtUpdate,
+            IdadeLog = pessoa.IdadeLog,
+            UsuarioId = pessoa.UsuarioId,
 
             Vacinas = await dbContext.Vacina
                 .Where(v => pessoa.Vacinas.Select(vp => vp.VacinaId).Contains(v.Id))

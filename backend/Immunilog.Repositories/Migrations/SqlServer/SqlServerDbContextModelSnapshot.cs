@@ -56,6 +56,9 @@ namespace Immunilog.Repositories.Migrations.SqlServer
                     b.Property<DateTime>("DtUpdate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("IdadeLog")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -88,9 +91,6 @@ namespace Immunilog.Repositories.Migrations.SqlServer
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdadeLog")
-                        .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");

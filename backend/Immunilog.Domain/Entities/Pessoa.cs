@@ -9,6 +9,7 @@ public class Pessoa : SimpleEntityBase
     public string Cpf { get; set; } = string.Empty;
     public int TipoPessoa { get; set; }
     public DateTime DtNascimento { get; set; }
+    public int IdadeLog { get; set; }
     public DateTime DtCriacao { get; set; }
     public DateTime DtUpdate { get; set; }
     public Guid UsuarioId { get; set; }

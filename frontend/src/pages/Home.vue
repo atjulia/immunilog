@@ -47,7 +47,7 @@
       </v-col>
       <v-col cols="6">
         <v-col cols="12" class="px-5 d-flex justify-space-between">
-          <span class="text-title">Gerenciar Dependentes</span>
+          <span class="text-title">Gerenciar Pessoas</span>
           <v-btn density="comfortable" color="primary" @click="addDependente">
             Adicionar Dependente
             <v-icon color="primary" class="pl-2">

@@ -1,28 +1,46 @@
 import { supabase } from '../supabaseClient.js';
 
 export const getVacinas = async (req, res) => {
-  try {
-    const { data, error } = await supabase
-      .from('vacina')
+  const today = new Date();
+  const birthDate = new Date(req.DtNascimento);
+  let ageInYears = today.getFullYear() - birthDate.getFullYear();
+
+  if (
+    today.getMonth() < birthDate.getMonth() ||
+    (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())
+  ) {
+    ageInYears -= 1;
+  }
+
+  const ageInDecimal = ageInYears + (today.getMonth() - birthDate.getMonth()) / 12;
+  const idadeLog = req.IdadeLog;
+
+  let query = supabase
+    .from('vacinas')
+    .select('*')
+    .gte('idadeRecomendada', idadeLog || 0)
+    .lte('idadeRecomendada', ageInDecimal);
+
+  if (idadeLog) {
+    query = supabase
+      .from('vacinas')
       .select('*')
-    if (error) {
-      return res.status(400).json({ error: error.message })
-    }
-
-    res.status(200).json(data)
-  } catch (err) {
-    res.status(500).json({ error: 'Erro ao buscar dados' })
+      .gte('idadeRecomendada', idadeLog)
+      .lte('idadeRecomendada', ageInDecimal);
   }
-}
+  const { data, error } = await query;
 
-import apiClient from '../index';
-
-export const GetVacinaByIdadePessoa = async (pessoaId, param) => {
-  try {
-    const response = await apiClient.get(`/Vacina/GetVacinaByIdadePessoa/${pessoaId}?param=${param}`);
-    return response.data;
-  } catch (error) {
-    console.error('Erro ao buscar vacinas:', error);
-    throw error;
+  if (error) {
+    return res.status(400).json({ error: error.message });
   }
+
+  let vacinasRegistradas = req.Vacinas.map(vacina => vacina.Id);
+
+  let vacinas = data;
+  if (vacinasRegistradas.length > 0) {
+    vacinas = vacinas.filter(vacina => !vacinasRegistradas.includes(vacina.id));
+  }
+  return vacinas;
 };
+
+

@@ -57,7 +57,6 @@ public class UsuarioRepository : IUsuarioRepository
             Nome = data.Nome,
             Email = data.Email,
             Senha = data.Senha,
-            IdadeLog = data.IdadeLog,
             IsActive = true,
             Role = 1
         };
@@ -68,6 +67,7 @@ public class UsuarioRepository : IUsuarioRepository
             DtCriacao = DateTime.Now,
             Nome = data.Nome,
             Cpf = data.Cpf,
+            IdadeLog = data.IdadeLog,
             DtNascimento = data.DtNascimento,
             UsuarioId = newUsuario.Id,
             TipoPessoa = 1
