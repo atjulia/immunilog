@@ -74,7 +74,6 @@ export default {
 		async submit () {
 			try {
 				const response = await CreateSolicitacaoVacina({...this.model, DtAplicacao: this.convertDateTime(this.model.DtAplicacao), Reacao: JSON.stringify(this.model.Reacao)});
-				console.log(response);
 				this.$emit('refresh')
 				this.close()
 			} catch (error) {

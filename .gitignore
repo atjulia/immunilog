@@ -14,3 +14,5 @@
 /backend/Immunilog.Domain/bin/Debug/
 
 /backend/.vs/
+/frontend/.env/
+sonar-project.properties

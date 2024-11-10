@@ -89,6 +89,9 @@ namespace Immunilog.Repositories.Migrations.SqlServer
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("IdadeLog")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 

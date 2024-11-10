@@ -11,6 +11,7 @@ import './styles/settings.scss';
 import VueTheMask from 'vue-the-mask'
 import PhosphorIcons from "@phosphor-icons/vue"
 
+
 const app = createApp(App)
 
 app.config.globalProperties.$api = {

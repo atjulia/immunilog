@@ -89,6 +89,9 @@ namespace Immunilog.Repositories.Migrations.MySql
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("IdadeLog")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("tinyint(1)");
 

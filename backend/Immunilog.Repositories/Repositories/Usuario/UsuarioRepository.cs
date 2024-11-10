@@ -57,11 +57,24 @@ public class UsuarioRepository : IUsuarioRepository
             Nome = data.Nome,
             Email = data.Email,
             Senha = data.Senha,
-            IsActive = data.IsActive,
-            Role = data.Role
+            IdadeLog = data.IdadeLog,
+            IsActive = true,
+            Role = 1
+        };
+
+        var newPessoa = new Pessoa
+        {
+            Id = Guid.NewGuid(),
+            DtCriacao = DateTime.Now,
+            Nome = data.Nome,
+            Cpf = data.Cpf,
+            DtNascimento = data.DtNascimento,
+            UsuarioId = newUsuario.Id,
+            TipoPessoa = 1
         };
 
         await dbContext.Usuario.AddAsync(newUsuario);
+        await dbContext.Pessoa.AddAsync(newPessoa);
         await dbContext.SaveChangesAsync();
 
         return newUsuario.Id;
