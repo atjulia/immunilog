@@ -1,8 +1,7 @@
 <template>
   <v-app>
-    <Login v-if="!credentials" />
-    <v-main v-else class="app-main">
-      <v-app-bar app flat>
+    <v-main v-if="credentials" class="app-main">
+      <v-app-bar app flat v-if="credentials">
         <Toolbar />
       </v-app-bar>
       <div class="content">
@@ -12,6 +11,7 @@
         <Footer />
       </v-footer>
     </v-main>
+    <Login v-else />
   </v-app>
 </template>
 

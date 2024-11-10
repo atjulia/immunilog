@@ -60,7 +60,7 @@ export default {
     }
   },
   methods: {
-    async login (data) {
+    async login () {
       try {
         const response = await authUsuario({ Email: this.model.email, Senha: this.model.senha })
         if (response.Token) {

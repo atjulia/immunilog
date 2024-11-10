@@ -1,8 +1,8 @@
 <template>
 	<v-toolbar density="compact" color="background" class="d-flex py-3 px-5 justify-space-between align-center">
 		<v-toolbar-title>
-			<v-icon color="primary"><PhList :size="32" /></v-icon>
-			<span class="text pl-3">Menu</span>
+			<!-- <v-icon color="primary"><PhList :size="32" /></v-icon>
+			<span class="text pl-3">Menu</span> -->
 		</v-toolbar-title>
 		
 		<v-toolbar-title class="text-center">
@@ -13,6 +13,7 @@
 			<span class="text pr-3">
 				{{ credentials.Nome }}
 			</span>
+			<v-btn color="primary" @click="logout" icon><PhSignOut :size="32" /></v-btn>
 		</v-toolbar-title>
 	</v-toolbar>
 </template>
@@ -23,6 +24,13 @@ export default {
     return {
       credentials: JSON.parse(localStorage.getItem('credentials'))
     }
+  },
+  methods: {
+		logout () {
+			localStorage.clear();
+			this.$router.push('/login')
+			location.reload();
+		}
   }
 }
 </script>
