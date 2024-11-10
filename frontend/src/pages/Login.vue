@@ -3,23 +3,21 @@
     <v-main>
       <v-container class="fill-height pa-0"
              fluid
-             :style="{ backgroundImage: 'url(/assets/background-login.svg)', backgroundPosition: 'center center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }">
-      <v-col offset-sm="1" sm="10">
+             :style="{ backgroundImage: 'url(../assets/background-login.svg)', backgroundPosition: 'center center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }">
+      <v-col offset-sm="1" sm="10" class="pt-0">
         <v-row class="flex-row-reverse">
-          <v-col sm="6" md="6" lg="4" xl="3" class="fill-height" align="center" style="background-color: #FFFFFF; border-radius: 12px;">
+          <v-col sm="6" md="6" lg="5" xl="4" class="fill-height pt-0" align="center" >
             <v-row align="center" class="fill-height">
               <v-col>
-                <v-avatar size="250" max-height="48px" tile>
-                  <v-img src="@/assets/logo.svg" height="10%" width="100%" contain />
-                </v-avatar>
-                <div>
+                <span class="text-primary title">Entre na sua conta</span>
+                <div class="py-4">
                   <v-col class="pb-5">
                     <v-text-field label="E-mail" v-model="model.email" prepend-icon="mdi mdi-email-outline" variant="outlined" />
                   </v-col>
                   <v-col class="pb-1 pt-2">
                     <v-text-field label="Senha" v-model="model.senha" type="password" prepend-icon="mdi mdi-lock-outline" variant="outlined" />
                   </v-col>
-                  <v-row class="flex-row-reverse pt-6 ma-3">
+                  <v-row class="flex-row-reverse pt-6 ma-3 mb-5">
                     <v-btn @click="login"
                             class="float-left"
                             block
@@ -27,14 +25,22 @@
                       Entrar
                     </v-btn>
                   </v-row>
-                  <v-divider />
-                  <span>Não tem uma conta ainda? <span class="secondary--text" style="cursor: pointer" @click="cadastrar">Cadastre-se</span></span>
+                  <v-divider class="py-2 mx-5" />
+                  <span>
+                    Não tem uma conta ainda? 
+                    <span class="text-secondary" style="font-weight: bold; cursor: pointer;" @click="cadastrar">Cadastre-se</span>
+                  </span>
                 </div>
               </v-col>
             </v-row>
           </v-col>
           <v-col>
-            <span>Controle de vacinação </span>
+            <v-row>
+              <span class="text-primary title">Controle de vacinação</span>
+            </v-row>
+            <v-row class="pt-3">
+              <span class="text-primary body d-block">Mais praticidade e conforto para seus atendimentos <br/> Obtenha um histórico da vacinação seu e dos seus filhos</span>
+            </v-row>
           </v-col>
         </v-row>
       </v-col>
@@ -82,3 +88,15 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.title {
+  font-weight: 800;
+  line-height: auto;
+  font-size: 36px;
+}
+.body {
+  font-size: 20px;
+  font-weight: normal;
+}
+</style>

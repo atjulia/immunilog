@@ -11,7 +11,19 @@
         <Footer />
       </v-footer>
     </v-main>
-    <Login v-else />
+    <div v-else>
+      <v-app-bar flat>
+        <v-toolbar density="compact" color="background" class="d-flex py-3 px-5 justify-space-between align-center">
+          <v-toolbar-title class="text-center">
+            <v-img src="@/assets/logo.svg" height="25" />
+          </v-toolbar-title>
+        </v-toolbar>
+      </v-app-bar>
+      <Login />
+      <v-footer app color="background">
+        <Footer />
+      </v-footer>
+    </div>
   </v-app>
 </template>
 
