@@ -3,6 +3,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    image: immunilog.azurecr.io/backend:latest
     ports:
       - "8080:80"
     depends_on:
@@ -14,6 +15,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    image: immunilog.azurecr.io/frontend:latest
     ports:
       - "9000:80"
     depends_on:
