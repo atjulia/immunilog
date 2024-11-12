@@ -1,3 +1,5 @@
+using Azure.Identity;
+using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Newtonsoft.Json.Converters;
 using PG.Immunilog.Configurations;
@@ -64,6 +66,12 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JwtSettings:Key"]))
     };
 });
+
+// URL do Key Vault
+string keyVaultUrl = builder.Configuration["https://keys-immunilog.vault.azure.net/"];
+
+builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUrl), new DefaultAzureCredential());
+
 
 builder.Services.AddCors(options =>
 {
