@@ -1,57 +1,32 @@
-name: Build and deploy container app to Azure Web App - immunilog-back
+name: Build and Push Backend Docker Image to ACR
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
+@@ -8,32 +11,41 @@ on:
 
 jobs:
   build:
-    runs-on: 'ubuntu-latest'
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Verify Docker version
-      run: docker --version
-
-    - name: Prune unused Docker objects
-      run: docker system prune -af
-
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
-      with:
-        use: true
-
-    - name: Log in to registry
-      uses: docker/login-action@v2
-      with:
-        registry: https://immunilog.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_0c3d29d7063548d7a32ff772b2e6414a }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_c4881ae997ef45a7b440cecb65ff9c41 }}
-
-    - name: Build and push container image to registry
-      uses: docker/build-push-action@v3
-      with:
-        push: true
-        tags: immunilog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_0c3d29d7063548d7a32ff772b2e6414a }}/backend-app:${{ github.sha }}
-        file: ./backend/Dockerfile
-        context: ./backend 
-
-  deploy:
     runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-    - name: Deploy to Azure Web App
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'immunilog-back'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_65cf23f6d45e4b39b46203c00c2dfa14 }}
-        images: 'immunilog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_0c3d29d7063548d7a32ff772b2e6414a }}/backend-app:${{ github.sha }}'
+      - uses: actions/checkout@v4
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Azure Container Registry Login
+        run: |
+          az acr login --name immunilog
+      - name: Build the Docker image
+        run: |
+          docker build -t immunilog.azurecr.io/backend-app:latest ./backend
+      - name: Push the Docker image to ACR
+        run: |
+          docker push immunilog.azurecr.io/backend-app:latest
+      - name: Clean up Docker images
+        run: |
+          docker rmi immunilog.azurecr.io/backend-app:latest
+
+      - name: Restart Azure App Service
+        run: |
+          az webapp restart --name immunilog-back --resource-group immunilog_group
