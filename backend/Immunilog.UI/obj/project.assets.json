@@ -1993,6 +1993,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "Azure.Security.KeyVault.Secrets": "4.7.0",
           "Immunilog.Domain": "1.0.0",
           "Mapster": "7.4.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8",
