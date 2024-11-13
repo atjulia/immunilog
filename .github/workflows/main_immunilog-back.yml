@@ -2,7 +2,9 @@ name: Build and Push Backend Docker Image to ACR
 
 on:
   push:
-@@ -8,32 +11,41 @@ on:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
