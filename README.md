@@ -17,7 +17,7 @@ Acesse a documentação nas respectivas páginas:
 - **Backend**: 
   - C# com .NET 8
 - **Frontend**: 
-  - Vue.js, utilizando Vuetify como design system
+  - Vue.js 3, utilizando Vuetify como design system
 - **Banco de Dados**: 
   - MySQL
  - **Testes**: 
