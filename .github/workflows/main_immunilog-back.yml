@@ -36,7 +36,7 @@ jobs:
       with:
         push: true
         tags: immunilog.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_0c3d29d7063548d7a32ff772b2e6414a }}/backend-app:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./backend/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
