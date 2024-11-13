@@ -11,6 +11,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Immunilog.Services.Services.Autenticacao;
 using Newtonsoft.Json.Serialization;
+using Azure.Core;
+using Azure.Security.KeyVault.Secrets;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,14 +74,21 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-string keyVaultUrl = builder.Configuration["KeyVaultUrl"];
-
-if (string.IsNullOrEmpty(keyVaultUrl))
+SecretClientOptions options = new SecretClientOptions()
 {
-    throw new ArgumentNullException(nameof(keyVaultUrl), "A URL do Key Vault não foi configurada corretamente.");
-}
+    Retry =
+        {
+            Delay= TimeSpan.FromSeconds(2),
+            MaxDelay = TimeSpan.FromSeconds(16),
+            MaxRetries = 5,
+            Mode = RetryMode.Exponential
+         }
+};
+var client = new SecretClient(new Uri(builder.Configuration["KeyVaultUrl"]), new DefaultAzureCredential(), options);
 
-builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUrl), new DefaultAzureCredential());
+KeyVaultSecret secret = client.GetSecret("mySecret");
+
+string secretValue = secret.Value;
 
 
 builder.Services.AddCors(options =>
