@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     image: immunilog.azurecr.io/backend:latest
     ports:
-      - "8080:80"
+      - "80:80"
     depends_on:
       - database
     networks:
