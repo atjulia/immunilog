@@ -1,27 +1,27 @@
-name: Build, Analyze, and Deploy ASP.Net Core and JavaScript App to Azure Web App - Immunilog
+name: Immunilog Pipeline
 
 on:
   push:
     branches:
-      - main
+      - "main"
   pull_request:
-    types: [opened, synchronize, reopened]
-  workflow_dispatch:
+    branches:
+      - "main"
 
 jobs:
   analyze:
     name: Build and Analyze with SonarCloud
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
       - name: Cache SonarCloud packages
         uses: actions/cache@v4
         with:
-          path: ~\sonar\cache
+          path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
@@ -29,78 +29,103 @@ jobs:
         id: cache-sonar-scanner
         uses: actions/cache@v4
         with:
-          path: .\.sonar\scanner
+          path: ~/.sonar/sonar-scanner
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner
 
       - name: Install SonarCloud scanner
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
-        shell: powershell
         run: |
-          New-Item -Path .\.sonar\scanner -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+          mkdir -p ~/.sonar/sonar-scanner
+          dotnet tool update dotnet-sonarscanner --tool-path ~/.sonar/sonar-scanner
 
       - name: Build and analyze backend with SonarCloud
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"atjulia_immunilog" /o:"atjulia" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          ~/.sonar/sonar-scanner/dotnet-sonarscanner begin /k:"atjulia_immunilog" /o:"atjulia" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
           dotnet build ./backend --configuration Release
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          ~/.sonar/sonar-scanner/dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
 
-  frontend-build:
-    name: Build Frontend (JavaScript)
+  backend-build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18.x'
-
-      - name: Install dependencies and build frontend
-        working-directory: ./frontend
-        run: |
-          npm install
-          npm run build
-
-      - name: Upload frontend artifact for deployment
-        uses: actions/upload-artifact@v4
-        with:
-          name: frontend
-          path: ./frontend/dist
-
-  backend-deploy:
-    name: Build and Deploy Backend to Azure Web App
-    runs-on: ubuntu-latest
-    needs: [analyze, frontend-build]
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up .NET Core
+      - name: Setup .NET 8
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
 
-      - name: Build backend
+      - name: Cache .NET NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Build Backend with .NET
         run: dotnet build ./backend --configuration Release
 
-      - name: dotnet publish
-        run: dotnet publish ./backend -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      - name: Publish Backend with .NET
+        run: dotnet publish ./backend -c Release -o ./backend-publish
 
       - name: Upload backend artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: backend
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ./backend-publish
+
+  frontend-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache Node.js dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
+
+      - name: Install Frontend Dependencies
+        run: npm install --prefix frontend/
+
+      - name: Build Frontend
+        run: npm run build --prefix frontend/
+
+      - name: Upload frontend artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend
+          path: frontend/dist
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [backend-build, frontend-build, analyze]
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Download backend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: backend
+          path: ./backend-publish
 
       - name: Download frontend artifact
         uses: actions/download-artifact@v4
@@ -108,16 +133,25 @@ jobs:
           name: frontend
           path: ./frontend-build
 
-      - name: Download backend artifact
-        uses: actions/download-artifact@v4
+      - name: Set up .NET 8
+        uses: actions/setup-dotnet@v4
         with:
-          name: backend
+          dotnet-version: '8.x'
 
-      - name: Deploy to Azure Web App
+      - name: Deploy Backend to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'immunilog'
+          app-name: 'immunilog-back'
           slot-name: 'Production'
-          package: ${{env.DOTNET_ROOT}}/myapp
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F5A7102A48024BBD93897BC0B39D7DB3 }}
+          package: ./backend-publish
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BACKEND }}
+
+      - name: Deploy Frontend to Azure Web App
+        id: deploy-frontend
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'immunilog-front'
+          slot-name: 'Production'
+          package: ./frontend-build
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FRONTEND }}
