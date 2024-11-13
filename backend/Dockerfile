@@ -17,4 +17,6 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 EXPOSE 80
+ENV ASPNETCORE_URLS=http://+:80
+
 ENTRYPOINT ["dotnet", "Immunilog.UI.dll"]

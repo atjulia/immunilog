@@ -72,8 +72,12 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// URL do Key Vault
-string keyVaultUrl = builder.Configuration["https://keys-immunilog.vault.azure.net/"];
+string keyVaultUrl = builder.Configuration["KeyVaultUrl"];
+
+if (string.IsNullOrEmpty(keyVaultUrl))
+{
+    throw new ArgumentNullException(nameof(keyVaultUrl), "A URL do Key Vault nÃ£o foi configurada corretamente.");
+}
 
 builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUrl), new DefaultAzureCredential());
 
@@ -111,8 +115,8 @@ app.UseRequestLocalization(new RequestLocalizationOptions
 app.UseSwaggerConfig(apiVersionDescriptionProvider);
 
 app.UseHttpsRedirection();
-app.UseAuthentication(); // Adiciona middleware de autenticação
-app.UseAuthorization();  // Adiciona middleware de autorização
+app.UseAuthentication(); // Adiciona middleware de autenticaï¿½ï¿½o
+app.UseAuthorization();  // Adiciona middleware de autorizaï¿½ï¿½o
 
 app.MapControllers();
 
