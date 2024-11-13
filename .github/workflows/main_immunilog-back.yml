@@ -36,4 +36,4 @@ jobs:
 
       - name: Restart Azure App Service
         run: |
-          az webapp restart --name backend-app --resource-group freetrial
+          az webapp restart --name immunilog-back --resource-group freetrial
