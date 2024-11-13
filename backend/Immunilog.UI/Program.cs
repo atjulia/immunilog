@@ -14,6 +14,11 @@ using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(80);
+});
+
 var appConfigFile = Environment.GetEnvironmentVariable("APP_CONFIG_FILE");
 if (!string.IsNullOrEmpty(appConfigFile) && File.Exists(appConfigFile))
 {
