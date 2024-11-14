@@ -1,4 +1,5 @@
 
+
 # Immunilog
 
 O **Immunilog** é uma aplicação projetada para gerenciar de forma eficiente o histórico de imunizações de indivíduos e seus dependentes. O sistema permite que usuários registrem e acompanhem o histórico de vacinas já realizadas para si e seus familiares.
@@ -22,7 +23,7 @@ Acesse a documentação nas respectivas páginas:
   - MySQL
   - Supabase
  - **Testes**: 
-  - Cypress
+   - Cypress
 - **Conteinerização**: 
   - Docker
 - **Cloud**: 
