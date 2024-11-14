@@ -20,8 +20,9 @@ Acesse a documentação nas respectivas páginas:
   - Vue.js 3, utilizando Vuetify como design system
 - **Banco de Dados**: 
   - MySQL
+  - Supabase
  - **Testes**: 
-	  - Cypress
+  - Cypress
 - **Conteinerização**: 
   - Docker
 - **Cloud**: 
