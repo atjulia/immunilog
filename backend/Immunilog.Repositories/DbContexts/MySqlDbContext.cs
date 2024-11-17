@@ -29,12 +29,12 @@ public class MySqlDbContext : ApiBaseDbContext
             }
         };
 
-        var client = new SecretClient(new Uri(configuration["KeyVaultUrl"]), new DefaultAzureCredential(), options);
+        var client = new SecretClient(new Uri(configuration["KeyVaultUrl"]!), new DefaultAzureCredential(), options);
 
         var dbUser = client.GetSecret("db-user").Value.Value;
         var dbPassword = client.GetSecret("db-password").Value.Value;
 
-        connectionString = connectionString.Replace("{db-user}", dbUser)
+        connectionString = connectionString!.Replace("{db-user}", dbUser)
                                            .Replace("{db-password}", dbPassword);
 
         var versionText = configuration["MySqlVersion"];

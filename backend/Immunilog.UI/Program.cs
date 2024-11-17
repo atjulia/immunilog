@@ -56,19 +56,15 @@ builder.Services.AddControllers()
 
 SecretClientOptions options = new SecretClientOptions()
 {
-    Retry =
-        {
-            Delay= TimeSpan.FromSeconds(2),
-            MaxDelay = TimeSpan.FromSeconds(16),
-            MaxRetries = 5,
-            Mode = RetryMode.Exponential
-         }
+    Retry = { Delay = TimeSpan.FromSeconds(2), MaxDelay = TimeSpan.FromSeconds(16), MaxRetries = 5, Mode = RetryMode.Exponential }
 };
-var client = new SecretClient(new Uri(builder.Configuration["KeyVaultUrl"]), new DefaultAzureCredential(), options);
+var keyVaultUrl = builder.Configuration["KeyVaultUrl"];
+if (string.IsNullOrEmpty(keyVaultUrl))
+{
+    throw new ArgumentNullException("KeyVaultUrl", "A configuração 'KeyVaultUrl' não pode ser nula ou vazia.");
+}
 
-KeyVaultSecret secret = client.GetSecret("mySecret");
-
-string secretValue = secret.Value;
+var client = new SecretClient(new Uri(keyVaultUrl), new DefaultAzureCredential(), options);
 
 KeyVaultSecret jwtKey = client.GetSecret("jwt-key");
 builder.Services.AddAuthentication(options =>
@@ -88,7 +84,7 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = false,
         ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
         ValidAudience = builder.Configuration["JwtSettings:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JwtSettings:" + jwtKey.Value]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JwtSettings:Key"]!))
     };
 });
 

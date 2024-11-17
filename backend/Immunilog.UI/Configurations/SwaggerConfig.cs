@@ -57,7 +57,7 @@ namespace PG.Immunilog.Configurations
             }
         }
 
-        private static string UriString => "http://localhost:5000";
+        private static string UriString => "";
 
         static OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description, string uriString)
         {
