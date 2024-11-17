@@ -27,7 +27,23 @@ public class AuthService : IAuthService
     public AuthService(IUsuarioRepository usuarioRepository, IConfiguration configuration)
     {
         _usuarioRepository = usuarioRepository;
-        _key = configuration["JwtSettings:Key"]!;
+
+        SecretClientOptions options = new SecretClientOptions()
+        {
+            Retry =
+            {
+                Delay = TimeSpan.FromSeconds(2),
+                MaxDelay = TimeSpan.FromSeconds(16),
+                MaxRetries = 5,
+                Mode = RetryMode.Exponential
+            }
+        };
+
+        var client = new SecretClient(new Uri(configuration["KeyVaultUrl"]!), new DefaultAzureCredential(), options);
+
+        var jwtKeySecret = client.GetSecret("jwt-key").Value.Value;
+
+        _key = jwtKeySecret;
     }
 
     public async Task<string?> Authenticate(string email, string senha)
