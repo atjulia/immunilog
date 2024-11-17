@@ -63,7 +63,7 @@ namespace PG.Immunilog.Configurations
         {
             var info = new OpenApiInfo()
             {
-                Title = "API Base",
+                Title = "API Immunilog",
                 Version = description.ApiVersion.ToString(),
             };
 
