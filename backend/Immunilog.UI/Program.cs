@@ -66,7 +66,6 @@ if (string.IsNullOrEmpty(keyVaultUrl))
 
 var client = new SecretClient(new Uri(keyVaultUrl), new DefaultAzureCredential(), options);
 
-KeyVaultSecret jwtKey = client.GetSecret("jwt-key");
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

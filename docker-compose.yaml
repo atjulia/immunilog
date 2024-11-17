@@ -4,6 +4,8 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     image: immunilog.azurecr.io/backend:latest
+    env_file:
+      - .env
     ports:
       - "8080:80"
     depends_on:
