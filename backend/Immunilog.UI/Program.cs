@@ -53,6 +53,23 @@ builder.Services.AddControllers()
         options.SerializerSettings.ContractResolver = new DefaultContractResolver();
     });
 
+var credential = new DefaultAzureCredential(new DefaultAzureCredentialOptions
+{
+    ExcludeEnvironmentCredential = false,
+    ExcludeManagedIdentityCredential = false,
+    ExcludeSharedTokenCacheCredential = true
+});
+
+try
+{
+    var accessToken = credential.GetToken(new Azure.Core.TokenRequestContext(new[] { builder.Configuration["KeyVaultUrl"]! }));
+    Console.WriteLine($"Token obtido com sucesso");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Erro de autenticação: {ex.Message}");
+}
+
 
 SecretClientOptions options = new SecretClientOptions()
 {

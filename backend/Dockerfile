@@ -12,6 +12,8 @@ RUN dotnet restore
 COPY . .
 RUN dotnet publish -c Release -o /app/publish
 
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/publish .
