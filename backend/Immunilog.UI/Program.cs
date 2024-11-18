@@ -24,6 +24,11 @@ builder.Host.UseSerilog((hostContext, loggerConfig) =>
         .Enrich.WithProperty("ApplicationName", hostContext.HostingEnvironment.ApplicationName);
 });
 
+builder.Services.AddLogging(logging =>
+{
+    logging.AddConsole();
+});
+
 builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenAnyIP(80);
@@ -143,11 +148,6 @@ app.UseRequestLocalization(new RequestLocalizationOptions
 });
 
 app.UseSwaggerConfig(apiVersionDescriptionProvider);
-
-builder.Services.AddLogging(logging =>
-{
-    logging.AddConsole();
-});
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
