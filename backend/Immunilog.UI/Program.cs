@@ -136,9 +136,15 @@ app.UseRequestLocalization(new RequestLocalizationOptions
 
 app.UseSwaggerConfig(apiVersionDescriptionProvider);
 
+builder.Services.AddLogging(logging =>
+{
+    logging.ClearProviders();
+    logging.AddConsole();
+});
+
 app.UseHttpsRedirection();
-app.UseAuthentication(); // Adiciona middleware de autentica��o
-app.UseAuthorization();  // Adiciona middleware de autoriza��o
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

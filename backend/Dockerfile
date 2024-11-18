@@ -9,7 +9,8 @@ COPY Immunilog.Domain/*.csproj ./Immunilog.Domain/
 
 RUN dotnet restore
 
-COPY . .
+COPY . ./
+
 RUN dotnet publish -c Release -o /app/publish
 
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
