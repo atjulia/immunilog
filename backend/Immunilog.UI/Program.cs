@@ -1,33 +1,18 @@
+using Azure.Security.KeyVault.Secrets;
 using Azure.Identity;
-using Azure.Extensions.AspNetCore.Configuration.Secrets;
+using Immunilog.Services.Services.Autenticacao;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Newtonsoft.Json.Converters;
+using Microsoft.IdentityModel.Tokens;
 using PG.Immunilog.Configurations;
 using PG.Immunilog.UI.Configurations;
 using Serilog;
 using System.Globalization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Immunilog.Services.Services.Autenticacao;
-using Newtonsoft.Json.Serialization;
-using Azure.Core;
-using Azure.Security.KeyVault.Secrets;
-using Microsoft.AspNetCore.Localization;
+using Newtonsoft.Json.Converters;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Host.UseSerilog((hostContext, loggerConfig) =>
-{
-    loggerConfig
-        .ReadFrom.Configuration(hostContext.Configuration)
-        .Enrich.WithProperty("ApplicationName", hostContext.HostingEnvironment.ApplicationName);
-});
-
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(80);
-});
 
 var appConfigFile = Environment.GetEnvironmentVariable("APP_CONFIG_FILE");
 if (!string.IsNullOrEmpty(appConfigFile) && File.Exists(appConfigFile))
@@ -44,15 +29,30 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddApiConfig();
 builder.Services.AddSwaggerConfig();
 builder.Services.AddHttpContextAccessor();
-
 builder.Services.AddScoped<IAuthService, AuthService>();
 
-builder.Services.AddControllers()
-    .AddNewtonsoftJson(options =>
-    {
-        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-        options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-    });
+var keyVaultUrl = builder.Configuration["KeyVaultUrl"];
+if (string.IsNullOrEmpty(keyVaultUrl))
+{
+    throw new ArgumentNullException("KeyVaultUrl", "A configuração 'KeyVaultUrl' não pode ser nula ou vazia.");
+}
+
+var credential = new DefaultAzureCredential();
+var client = new SecretClient(new Uri(keyVaultUrl), credential);
+
+var secretName = "jwt-key";
+
+KeyVaultSecret jwtSecret;
+try
+{
+    jwtSecret = client.GetSecret(secretName);
+    Console.WriteLine($"Chave JWT obtida com sucesso");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Erro ao obter chave do Key Vault: {ex.Message}");
+    throw;
+}
 
 builder.Services.AddAuthentication(options =>
 {
@@ -61,17 +61,17 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
-    options.RequireHttpsMetadata = false;
+    options.RequireHttpsMetadata = true;
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = false,
-        ValidateAudience = false,
+        ValidateIssuer = true,
+        ValidateAudience = true,
         ValidateLifetime = true,
-        ValidateIssuerSigningKey = false,
+        ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
         ValidAudience = builder.Configuration["JwtSettings:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["JwtSettings:Key"]!))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSecret.Value))
     };
 });
 
@@ -86,42 +86,11 @@ builder.Services.AddCors(options =>
         });
 });
 
-var credential = new DefaultAzureCredential(new DefaultAzureCredentialOptions
-{
-    ExcludeEnvironmentCredential = false,
-    ExcludeManagedIdentityCredential = false,
-    ExcludeSharedTokenCacheCredential = true
-});
-
-try
-{
-    var accessToken = credential.GetToken(new Azure.Core.TokenRequestContext(new[] { builder.Configuration["KeyVaultUrl"]! }));
-    Console.WriteLine($"Token obtido com sucesso");
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Erro de autenticação: {ex.Message}");
-}
-
-SecretClientOptions options = new SecretClientOptions()
-{
-    Retry = { Delay = TimeSpan.FromSeconds(2), MaxDelay = TimeSpan.FromSeconds(16), MaxRetries = 5, Mode = RetryMode.Exponential }
-};
-var keyVaultUrl = builder.Configuration["KeyVaultUrl"];
-if (string.IsNullOrEmpty(keyVaultUrl))
-{
-    throw new ArgumentNullException("KeyVaultUrl", "A configuração 'KeyVaultUrl' não pode ser nula ou vazia.");
-}
-
-var client = new SecretClient(new Uri(keyVaultUrl), new DefaultAzureCredential(), options);
-
 var app = builder.Build();
 
 app.UseCors("AllowAllOrigins");
 
 var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
-
-app.UseSerilogRequestLogging();
 
 try
 {

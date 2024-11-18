@@ -19,6 +19,7 @@
                   </v-col>
                   <v-row class="flex-row-reverse pt-6 ma-3 mb-5">
                     <v-btn @click="login"
+                            :disabled="!model.email && !model.senha"
                             class="float-left"
                             block
                             color="primary">
@@ -69,8 +70,9 @@ export default {
     async login () {
       try {
         const response = await authUsuario({ Email: this.model.email, Senha: this.model.senha })
-        if (response.Token) {
-          const decodedToken = jwtDecode(response.Token);
+        console.log(response)
+        if (response.token) {
+          const decodedToken = jwtDecode(response.token);
           localStorage.setItem("credentials", JSON.stringify({
             ...decodedToken
           }));
