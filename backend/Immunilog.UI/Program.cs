@@ -24,11 +24,6 @@ builder.Host.UseSerilog((hostContext, loggerConfig) =>
         .Enrich.WithProperty("ApplicationName", hostContext.HostingEnvironment.ApplicationName);
 });
 
-builder.Services.AddLogging(logging =>
-{
-    logging.AddConsole();
-});
-
 builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenAnyIP(80);
