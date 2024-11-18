@@ -88,6 +88,7 @@ public class PessoaRepository : IPessoaRepository
             Nome = data.Nome,
             UsuarioId = data.UsuarioId,
             Cpf = data.Cpf,
+            IdadeLog = data.IdadeLog ?? 0,
             DtNascimento = data.DtNascimento,
             TipoPessoa = data.TipoPessoa
         };

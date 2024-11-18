@@ -70,7 +70,6 @@ export default {
     async login () {
       try {
         const response = await authUsuario({ Email: this.model.email, Senha: this.model.senha })
-        console.log(response)
         if (response.token) {
           const decodedToken = jwtDecode(response.token);
           localStorage.setItem("credentials", JSON.stringify({

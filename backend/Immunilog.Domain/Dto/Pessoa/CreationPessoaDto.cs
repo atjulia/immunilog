@@ -11,4 +11,5 @@ public class CreationPessoaDto
     public int TipoPessoa { get; set; }
     public DateTime DtNascimento { get; set; }
     public Guid UsuarioId { get; set; }
+    public int? IdadeLog { get; set; }
 }

@@ -8,7 +8,7 @@
       <v-card title="Adicionar Vacina">
 				<v-row class="px-4">
 					<v-col cols="12">
-						<v-select :items="optionVacinas" label="Vacina" v-model="model.VacinaId" variant="outlined" item-title="text" item-value="value" />
+						<v-select :items="optionVacinas" label="Vacina" v-model="model.VacinaId" variant="outlined" no-data-text="Nenhuma vacina disponível" item-title="text" item-value="value" />
 					</v-col>
 					<v-col cols="12">
 						<v-select
@@ -61,7 +61,7 @@ export default {
 			show: false,
 			model: {},
 			tipo: null,
-			reacoes: ['Enjoo', 'Dor de Cabeça', 'Coceira', 'Dor no corpo'],
+			reacoes: ['Dor ou sensibilidade no local da aplicação', 'Febre', 'Fadiga', 'Dor muscular ou nas articulações', 'Dor de cabeça', 'Calafrios', 'Náusea', 'Inchaço', 'Tontura', 'Outros'],
 			optionVacinas: [],
       fileUrl: null,
 			dateError: ''
@@ -69,9 +69,8 @@ export default {
 	},
 	methods: {
 		async openModal (dependente) {
-			this.model.PessoaId = dependente.Id
-			const pessoa = await getPessoaById(dependente.Id);
-			console.log(pessoa)
+			this.model.PessoaId = dependente.id
+			const pessoa = await getPessoaById(dependente.id);
 
 			const response = await getVacinas(pessoa)
 
@@ -85,8 +84,7 @@ export default {
 			return new Date(ano, mes - 1, dia);
 		},
 		validateDate() {
-      const date = this.model.DtAplicacao;
-			console.log(date)
+      const date = this.model.dtAplicacao;
       if (this.isValidDate(date)) {
         this.dateError = "";
       } else {
@@ -109,7 +107,7 @@ export default {
     },
 		async submit () {
 			try {
-				const response = await CreateSolicitacaoVacina({...this.model, DtAplicacao: this.convertDateTime(this.model.DtAplicacao), Reacao: JSON.stringify(this.model.Reacao)});
+				const response = await CreateSolicitacaoVacina({...this.model, DtAplicacao: this.model.DtAplicacao, Reacao: JSON.stringify(this.model.Reacao)});
 				this.$emit('refresh')
 				this.close()
 			} catch (error) {

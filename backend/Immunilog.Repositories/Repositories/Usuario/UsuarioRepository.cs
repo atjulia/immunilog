@@ -67,7 +67,7 @@ public class UsuarioRepository : IUsuarioRepository
             DtCriacao = DateTime.Now,
             Nome = data.Nome,
             Cpf = data.Cpf,
-            IdadeLog = data.IdadeLog,
+            IdadeLog = data.IdadeLog ?? 0,
             DtNascimento = data.DtNascimento,
             UsuarioId = newUsuario.Id,
             TipoPessoa = 1

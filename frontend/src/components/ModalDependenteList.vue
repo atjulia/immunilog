@@ -3,7 +3,7 @@
     <v-dialog
       v-model="show"
 			persistent
-			width="800"
+			width="500"
     >
       <v-card
         :title="tipo === 1 ? 'Adicionar Vacina' : 'Carteira de Vacinação'"
@@ -22,11 +22,11 @@
 						<div style="cursor: pointer">
 							<v-row>
 								<v-col cols="8" class="pa-0">
-									{{ item.Nome }}
+									{{ item.nome }}
 								</v-col>
 								<v-col cols="4" class="pa-0">
 									<v-chip color="secondary">
-										{{ item.TipoPessoa === 1 ? 'Principal' : 'Dependente' }}
+										{{ item.tipoPessoa === 1 ? 'Principal' : 'Dependente' }}
 									</v-chip>
 								</v-col>
 							</v-row>
@@ -71,7 +71,7 @@ export default {
 				this.$emit('dependente', dependente)
 				this.close()
 			} else {
-				this.$router.push({ path: '/carteira', query: { id: dependente.Id } })
+				this.$router.push({ path: '/carteira', query: { id: dependente.id } })
 				this.close()
 			}
 		},

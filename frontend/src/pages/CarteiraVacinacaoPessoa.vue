@@ -4,15 +4,15 @@
       <v-row class="px-10">
         <v-col cols="12" class="justify-space-between d-flex">
           <span class="text-title">Carteira de Vacinação</span>
-          <span class="text-body"><b>{{ model.Nome }}</b> | {{ model.IdadeFormatada }}</span>
+          <span class="text-body"><b>{{ model.nome }}</b> | {{ model.idadeFormatada }}</span>
         </v-col>
         <v-divider></v-divider>
       </v-row>
-      <div class="pt-5" v-if="model.Vacinas.length > 0">
+      <div class="pt-5" v-if="model.vacinas.length > 0">
         <v-timeline side="end" align="start">
           <v-timeline-item
-            v-for="vacina in model.Vacinas"
-            :key="vacina.Id"
+            v-for="vacina in model.vacinas"
+            :key="vacina.id"
             fill-dot
             dot-color="secondary"
             size="small"
@@ -20,17 +20,17 @@
           <v-card style="min-width: 80vw;" :value="true">
             <v-card-title class="pt-4">
               <div class="d-flex justify-space-between" style="width: 100%;">
-                <span class="text-primary">{{ vacina.Nome }}</span>
+                <span class="text-primary">{{ vacina.nome }}</span>
                 <v-chip variant="outlined" color="secondary">
                   <span class="pr-1">
-                    {{ vacina.TipoDose }}
+                    {{ vacina.tipoDose }}
                   </span>
                   <v-icon><PhSyringe :size="32" /></v-icon>
                 </v-chip>
               </div>
             </v-card-title>
             <v-card-subtitle>
-              {{ vacina.Descricao }}
+              {{ vacina.descricao }}
             </v-card-subtitle>
             <div class="d-flex justify-space-between align-center py-2">
               <v-card-text class="text-primary">

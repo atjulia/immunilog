@@ -46,37 +46,55 @@
         </v-row>
       </v-col>
       <v-col cols="6">
-        <v-col cols="12" class="px-5 d-flex justify-space-between">
+        <v-col cols="12" class="d-flex justify-space-between">
           <span class="text-title">Gerenciar Pessoas</span>
           <v-btn density="comfortable" color="primary" @click="addDependente">
             Adicionar Dependente
-            <v-icon color="primary" class="pl-2">
+            <v-icon  class="pl-2">
               <PhPlus :size="24" />
             </v-icon>
           </v-btn>
         </v-col>
-        <v-col cols="12" class="mx-5">
+        <v-col cols="12" class="">
           <v-row v-for="(pessoa, i) in paginatedPessoas" :key="i">
             <v-col cols="12">
               <v-card variant="outlined" color="primary" class="mb-4 pa-5">
                 <v-row>
                   <v-col cols="7">
                     <div class="text-start">
-                      <strong>{{ pessoa.Nome }}</strong>
+                      <strong>{{ pessoa.nome }}</strong>
                     </div>
                     <div class="text-start">
-                      <span class="text-body-2">Idade: {{ pessoa.IdadeFormatada}}</span><br>
-                      <span class="text-body-2">Última imunização: 10/09/2024</span>
+                      <span class="text-body-2">Idade: {{ pessoa.idadeFormatada}}</span><br>
+                      <span class="text-body-2">Última imunização: Não informado</span>
                     </div>
                   </v-col>
   
                   <v-col cols="5" class="d-flex justify-end align-items-center">
                     <v-chip color="secondary" class="secondary--text text-caption" variant="outlined">
-                      {{ pessoa.TipoPessoa === 1 ? 'Principal' : 'Dependente' }}
+                      {{ pessoa.tipoPessoa === 1 ? 'Principal' : 'Dependente' }}
                     </v-chip>
-                    <v-icon color="primary" class="pl-2" style="cursor: pointer;">
-                      <PhDotsThreeVertical :size="32" />
-                    </v-icon>
+                    <v-menu>
+                      <template v-slot:activator="{ props }">
+                        <v-icon color="primary" v-bind="props" class="pl-2" style="cursor: pointer;">
+                          <PhDotsThreeVertical :size="32" />
+                        </v-icon>
+                      </template>
+                      <v-list>
+                        <v-list-item
+                          v-for="(item, index) in items"
+                          :key="index"
+                          :value="index"
+                        >
+                          <v-list-item-title @click="handleDeletePessoa(pessoa)" :disabled="pessoa.tipoPessoa === 1"> 
+                            <v-icon color="primary" v-bind="props" class="pr-2" style="cursor: pointer;">
+                              <PhTrash :size="32" />
+                            </v-icon>
+                            {{ item.title }}
+                          </v-list-item-title>
+                        </v-list-item>
+                      </v-list>
+                    </v-menu>
                   </v-col>
                 </v-row>
               </v-card>
@@ -94,6 +112,7 @@
     </v-row>
     <dependenteEdit ref="dependente" @refresh="fetchPessoas" />
     <VacinaEdit ref="vacinaAdd" />
+    <ConfirmacaoDeletePessoa ref="deletePessoa" @refresh="fetchPessoas" />
     <ModalDependenteList ref="dependenteList" @dependente="addVacina"/>
   </div>
 </template>
@@ -103,6 +122,7 @@
 import { getPessoasByUsuarioId } from '@/api/controllers/pessoa';
 import DependenteEdit from './DependenteEdit.vue';
 import VacinaEdit from './VacinaEdit.vue';
+import ConfirmacaoDeletePessoa from './ConfirmacaoDeletePessoa.vue';
 import ModalDependenteList from '../components/ModalDependenteList.vue';
 
 import AddVacina from '../assets/cards/AddVacina.svg';
@@ -114,14 +134,18 @@ export default {
   components: { 
     DependenteEdit,
     VacinaEdit,
-    ModalDependenteList
+    ModalDependenteList,
+    ConfirmacaoDeletePessoa
   },
   data () {
     return {
       credentials: JSON.parse(localStorage.getItem('credentials')),
       pessoas: [],
       currentPage: 1,
-      itemsPerPage: 3
+      itemsPerPage: 3,
+      items: [
+        { title: 'Deletar Pessoa' },
+      ]
     }
   },
   computed: {
@@ -153,12 +177,12 @@ export default {
           action: this.verProgramaImunizacao, 
           image: ProgramaImunizacao 
         },
-        { 
-          id: 3, 
-          text: 'Gerenciar Meu Perfil', 
-          action: this.gerenciarPerfil, 
-          image: GerenciarPerfil 
-        }
+        // { 
+        //   id: 3, 
+        //   text: 'Gerenciar Meu Perfil', 
+        //   action: this.gerenciarPerfil, 
+        //   image: GerenciarPerfil 
+        // }
       ];
     }
   },
@@ -185,10 +209,13 @@ export default {
       this.$refs.dependenteList.openModal(this.pessoas, 2)
     },
     verProgramaImunizacao() {
-      console.log('Visualizando Programa de Imunização');
+      window.open('https://www.gov.br/saude/pt-br/acesso-a-informacao/acoes-e-programas/pni', '_blank');
     },
     gerenciarPerfil() {
       console.log('Gerenciando Perfil');
+    },
+    handleDeletePessoa (pessoa) {
+      this.$refs.deletePessoa.openModal(pessoa)
     },
     async fetchPessoas () {
       try {

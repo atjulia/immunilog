@@ -2,7 +2,7 @@ import { supabase } from '../supabaseClient.js';
 
 export const getVacinas = async (req, res) => {
   const today = new Date();
-  const birthDate = new Date(req.DtNascimento);
+  const birthDate = new Date(req.dtNascimento);
   let ageInYears = today.getFullYear() - birthDate.getFullYear();
 
   if (
@@ -13,7 +13,7 @@ export const getVacinas = async (req, res) => {
   }
 
   const ageInDecimal = ageInYears + (today.getMonth() - birthDate.getMonth()) / 12;
-  const idadeLog = req.IdadeLog;
+  const idadeLog = req.idadeLog;
 
   let query = supabase
     .from('vacinas')
@@ -33,8 +33,7 @@ export const getVacinas = async (req, res) => {
   if (error) {
     return res.status(400).json({ error: error.message });
   }
-
-  let vacinasRegistradas = req.Vacinas.map(vacina => vacina.Id);
+  let vacinasRegistradas = req.vacinas.map(vacina => vacina.id);
 
   let vacinas = data;
   if (vacinasRegistradas.length > 0) {
