@@ -209,7 +209,7 @@ export default {
       this.$refs.dependenteList.openModal(this.pessoas, 2)
     },
     verProgramaImunizacao() {
-      window.open('https://www.gov.br/saude/pt-br/acesso-a-informacao/acoes-e-programas/pni', '_blank');
+      window.open('https://www.gov.br/saude/pt-br/acesso-a-informacao/acoes-e-programas/pni', '_blank', 'noopener');
     },
     gerenciarPerfil() {
       console.log('Gerenciando Perfil');
