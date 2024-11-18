@@ -13,8 +13,16 @@ using Immunilog.Services.Services.Autenticacao;
 using Newtonsoft.Json.Serialization;
 using Azure.Core;
 using Azure.Security.KeyVault.Secrets;
+using Microsoft.AspNetCore.Localization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((hostContext, loggerConfig) =>
+{
+    loggerConfig
+        .ReadFrom.Configuration(hostContext.Configuration)
+        .Enrich.WithProperty("ApplicationName", hostContext.HostingEnvironment.ApplicationName);
+});
 
 builder.WebHost.ConfigureKestrel(options =>
 {
@@ -26,13 +34,6 @@ if (!string.IsNullOrEmpty(appConfigFile) && File.Exists(appConfigFile))
 {
     builder.Configuration.AddJsonFile(appConfigFile);
 }
-
-builder.Host.UseSerilog((hostContext, loggerConfig) =>
-{
-    loggerConfig
-        .ReadFrom.Configuration(hostContext.Configuration)
-        .Enrich.WithProperty("ApplicationName", hostContext.HostingEnvironment.ApplicationName);
-});
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.Converters.Add(new StringEnumConverter()));
@@ -52,36 +53,6 @@ builder.Services.AddControllers()
         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         options.SerializerSettings.ContractResolver = new DefaultContractResolver();
     });
-
-var credential = new DefaultAzureCredential(new DefaultAzureCredentialOptions
-{
-    ExcludeEnvironmentCredential = false,
-    ExcludeManagedIdentityCredential = false,
-    ExcludeSharedTokenCacheCredential = true
-});
-
-try
-{
-    var accessToken = credential.GetToken(new Azure.Core.TokenRequestContext(new[] { builder.Configuration["KeyVaultUrl"]! }));
-    Console.WriteLine($"Token obtido com sucesso");
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Erro de autenticação: {ex.Message}");
-}
-
-
-SecretClientOptions options = new SecretClientOptions()
-{
-    Retry = { Delay = TimeSpan.FromSeconds(2), MaxDelay = TimeSpan.FromSeconds(16), MaxRetries = 5, Mode = RetryMode.Exponential }
-};
-var keyVaultUrl = builder.Configuration["KeyVaultUrl"];
-if (string.IsNullOrEmpty(keyVaultUrl))
-{
-    throw new ArgumentNullException("KeyVaultUrl", "A configuração 'KeyVaultUrl' não pode ser nula ou vazia.");
-}
-
-var client = new SecretClient(new Uri(keyVaultUrl), new DefaultAzureCredential(), options);
 
 builder.Services.AddAuthentication(options =>
 {
@@ -115,6 +86,35 @@ builder.Services.AddCors(options =>
         });
 });
 
+var credential = new DefaultAzureCredential(new DefaultAzureCredentialOptions
+{
+    ExcludeEnvironmentCredential = false,
+    ExcludeManagedIdentityCredential = false,
+    ExcludeSharedTokenCacheCredential = true
+});
+
+try
+{
+    var accessToken = credential.GetToken(new Azure.Core.TokenRequestContext(new[] { builder.Configuration["KeyVaultUrl"]! }));
+    Console.WriteLine($"Token obtido com sucesso");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Erro de autenticação: {ex.Message}");
+}
+
+SecretClientOptions options = new SecretClientOptions()
+{
+    Retry = { Delay = TimeSpan.FromSeconds(2), MaxDelay = TimeSpan.FromSeconds(16), MaxRetries = 5, Mode = RetryMode.Exponential }
+};
+var keyVaultUrl = builder.Configuration["KeyVaultUrl"];
+if (string.IsNullOrEmpty(keyVaultUrl))
+{
+    throw new ArgumentNullException("KeyVaultUrl", "A configuração 'KeyVaultUrl' não pode ser nula ou vazia.");
+}
+
+var client = new SecretClient(new Uri(keyVaultUrl), new DefaultAzureCredential(), options);
+
 var app = builder.Build();
 
 app.UseCors("AllowAllOrigins");
@@ -123,13 +123,21 @@ var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionD
 
 app.UseSerilogRequestLogging();
 
-app.Services.MigrateDatabaseAsync().Wait();
+try
+{
+    app.Services.MigrateDatabaseAsync().Wait();
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Erro durante a migração do banco de dados: {ex.Message}");
+    throw;
+}
 
 var supportedCultures = new[] { new CultureInfo("pt-BR") };
 
 app.UseRequestLocalization(new RequestLocalizationOptions
 {
-    DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("pt-BR"),
+    DefaultRequestCulture = new RequestCulture("pt-BR"),
     SupportedCultures = supportedCultures,
     SupportedUICultures = supportedCultures
 });
@@ -138,7 +146,6 @@ app.UseSwaggerConfig(apiVersionDescriptionProvider);
 
 builder.Services.AddLogging(logging =>
 {
-    logging.ClearProviders();
     logging.AddConsole();
 });
 
