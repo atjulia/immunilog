@@ -26,7 +26,7 @@ public class AuthController : ControllerBase
             return BadRequest(new { Message = "Dados de entrada inválidos" });
         }
 
-        var token = await _authService.GenerateToken(request.Email, request.Senha);
+        var token = await _authService.Authenticate(request.Email, request.Senha);
         if (token == null)
         {
             return Unauthorized(new { Message = "Credenciais inválidas" });
