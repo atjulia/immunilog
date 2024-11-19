@@ -11,6 +11,7 @@ using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Z.Expressions;
 
 namespace Immunilog.Services.Services.Autenticacao;
 
@@ -27,23 +28,6 @@ public class AuthService : IAuthService
     public AuthService(IUsuarioRepository usuarioRepository, IConfiguration configuration)
     {
         _usuarioRepository = usuarioRepository;
-
-        SecretClientOptions options = new SecretClientOptions()
-        {
-            Retry =
-            {
-                Delay = TimeSpan.FromSeconds(2),
-                MaxDelay = TimeSpan.FromSeconds(16),
-                MaxRetries = 5,
-                Mode = RetryMode.Exponential
-            }
-        };
-
-        var client = new SecretClient(new Uri(configuration["KeyVaultUrl"]!), new DefaultAzureCredential(), options);
-
-        var jwtKeySecret = client.GetSecret("jwt-key").Value.Value;
-
-        _key = jwtKeySecret;
     }
 
     public async Task<string?> Authenticate(string email, string senha)
@@ -54,16 +38,16 @@ public class AuthService : IAuthService
             return null;
 
         var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_key);
+        var key = Encoding.ASCII.GetBytes("fedaf7d8863b48e197b9287d492b708e");
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
-            new Claim("Nome", user.Nome),
-            new Claim("Email", user.Email),
-            new Claim("UsuarioId", user.Id.ToString()),
-            new Claim("Role", user.Role.ToString())
+                new Claim("Nome", user.Nome),
+                new Claim("Email", user.Email),
+                new Claim("UsuarioId", user.Id.ToString()),
+                new Claim("Role", user.Role.ToString())
             }),
             Expires = DateTime.UtcNow.AddHours(1),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -72,5 +56,4 @@ public class AuthService : IAuthService
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
-
 }

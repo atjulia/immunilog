@@ -1,6 +1,7 @@
 using Azure.Security.KeyVault.Secrets;
 using Azure.Identity;
 using Immunilog.Services.Services.Autenticacao;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.IdentityModel.Tokens;
@@ -38,6 +39,41 @@ if (string.IsNullOrEmpty(keyVaultUrl))
 
 var credential = new DefaultAzureCredential();
 var client = new SecretClient(new Uri(keyVaultUrl), credential);
+
+var secretName = "jwt-key";
+
+KeyVaultSecret jwtSecret;
+try
+{
+    jwtSecret = client.GetSecret(secretName);
+    Console.WriteLine($"Chave JWT obtida com sucesso");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Erro ao obter chave do Key Vault: {ex.Message}");
+    throw;
+}
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = true;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+        ValidAudience = builder.Configuration["JwtSettings:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSecret.Value))
+    };
+});
 
 builder.Services.AddCors(options =>
 {
