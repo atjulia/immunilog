@@ -60,4 +60,9 @@ public class UsuarioController : ControllerBase
 
         return Ok();
     }
+    [HttpGet("teste")]
+    public IActionResult teste()
+    {
+        return Ok();
+    }
 }
