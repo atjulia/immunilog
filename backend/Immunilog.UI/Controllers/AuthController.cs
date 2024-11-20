@@ -26,13 +26,13 @@ public class AuthController : ControllerBase
             return BadRequest(new { Message = "Dados de entrada inválidos" });
         }
 
-        var token = await _authService.Authenticate(request.Email, request.Senha);
-        if (token == null)
+        var usuario = await _authService.Authenticate(request.Email, request.Senha);
+        if (usuario == null)
         {
             return Unauthorized(new { Message = "Credenciais inválidas" });
         }
 
-        return Ok(new { Token = token });
+        return Ok(usuario);
     }
 
 }

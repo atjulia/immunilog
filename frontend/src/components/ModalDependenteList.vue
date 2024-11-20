@@ -56,8 +56,7 @@ export default {
 		return {
 			show: false,
 			dependentes: [],
-			tipo: null,
-      credentials: JSON.parse(localStorage.getItem('credentials')),
+			tipo: null
 		}
 	},
 	methods: {

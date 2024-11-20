@@ -128,7 +128,7 @@ export default {
 						...this.model,
 						DtNascimento: new Date(this.model.DtNascimento),
 						TipoPessoa: 2,
-						UsuarioId: this.credentials.UsuarioId
+						UsuarioId: this.credentials.usuarioId
 					}
 					const response = await CreatePessoa(dto);
 					if (response) {

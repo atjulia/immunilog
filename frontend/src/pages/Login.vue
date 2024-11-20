@@ -52,7 +52,6 @@
 </template>
 
 <script>
-import { jwtDecode } from 'jwt-decode';
 import ModalCadastro from './ModalCadastro.vue';
 import { authUsuario } from '@/api/controllers/auth';
 
@@ -69,12 +68,9 @@ export default {
   methods: {
     async login () {
       try {
-        const response = await authUsuario({ Email: this.model.email, Senha: this.model.senha })
-        if (response.token) {
-          const decodedToken = jwtDecode(response.token);
-          localStorage.setItem("credentials", JSON.stringify({
-            ...decodedToken
-          }));
+        const usuario = await authUsuario({ Email: this.model.email, Senha: this.model.senha })
+        if (usuario.usuarioId) {
+          localStorage.setItem("credentials", JSON.stringify(usuario));
           location.reload();
         } else {
           console.log("Falha na autenticação.");

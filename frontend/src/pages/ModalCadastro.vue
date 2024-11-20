@@ -183,12 +183,9 @@ export default {
           }
           const response = await CreateUsuario(dto);
           if (response) {
-            const response = await authUsuario({ Email: this.model.email, Senha: this.model.senha })
-            if (response.token) {
-              const decodedToken = jwtDecode(response.token);
-              localStorage.setItem("credentials", JSON.stringify({
-                ...decodedToken
-              }));
+            const usuario = await authUsuario({ Email: this.model.email, Senha: this.model.senha })
+            if (usuario.usuarioId) {
+              localStorage.setItem("credentials", JSON.stringify(usuario));
               location.reload();
               this.close()
             }

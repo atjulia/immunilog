@@ -17,43 +17,32 @@ namespace Immunilog.Services.Services.Autenticacao;
 
 public interface IAuthService
 {
-    Task<string?> Authenticate(string email, string senha);
+    Task<UsuarioCredentials?> Authenticate(string email, string senha);
 }
 
 public class AuthService : IAuthService
 {
     private readonly IUsuarioRepository _usuarioRepository;
-    private readonly string _key;
 
     public AuthService(IUsuarioRepository usuarioRepository, IConfiguration configuration)
     {
         _usuarioRepository = usuarioRepository;
     }
 
-    public async Task<string?> Authenticate(string email, string senha)
+    public async Task<UsuarioCredentials> Authenticate(string email, string senha)
     {
         var user = await _usuarioRepository.GetUserByEmail(email);
 
         if (user == null || user.Senha != senha)
             return null;
 
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes("fedaf7d8863b48e197b9287d492b708e");
-
-        var tokenDescriptor = new SecurityTokenDescriptor
+        var userCredentials = new UsuarioCredentials
         {
-            Subject = new ClaimsIdentity(new Claim[]
-            {
-                new Claim("Nome", user.Nome),
-                new Claim("Email", user.Email),
-                new Claim("UsuarioId", user.Id.ToString()),
-                new Claim("Role", user.Role.ToString())
-            }),
-            Expires = DateTime.UtcNow.AddHours(1),
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            Nome = user.Nome,
+            Email = user.Email,
+            UsuarioId = user.Id
         };
 
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
+        return userCredentials;
     }
 }

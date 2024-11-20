@@ -11,3 +11,10 @@ public class UsuarioDto : BaseDto
     public DateTime? DtUpdate { get; set; }
     public int Role { get; set; }
 }
+
+public class UsuarioCredentials : BaseDto
+{
+    public string Email { get; set; } = string.Empty;
+    public string Nome { get; set; } = string.Empty;
+    public Guid UsuarioId { get; set; }
+}

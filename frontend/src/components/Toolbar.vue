@@ -11,7 +11,7 @@
 		
 		<v-toolbar-title class="text-right pr-2">
 			<span class="text pr-3">
-				{{ credentials.Nome }}
+				{{ credentials.nome }}
 			</span>
 			<v-btn color="primary" @click="logout" icon><PhSignOut :size="32" /></v-btn>
 		</v-toolbar-title>
@@ -37,8 +37,8 @@ export default {
 
 <style scoped>
 .text {
-  font-weight: 600; /* Semibold */
-  font-size: 20px;  /* Tamanho da fonte */
-  color: #384593;   /* Cor especificada */
+  font-weight: 600;
+  font-size: 20px;
+  color: #384593;
 }
 </style>

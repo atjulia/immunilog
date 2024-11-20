@@ -219,7 +219,7 @@ export default {
     },
     async fetchPessoas () {
       try {
-        const response = await getPessoasByUsuarioId(this.credentials.UsuarioId);
+        const response = await getPessoasByUsuarioId(this.credentials.usuarioId);
         this.pessoas = response;
       } catch (error) {
         console.error('Erro ao buscar pessoas:', error);
