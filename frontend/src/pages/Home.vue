@@ -2,11 +2,9 @@
   <div>
     <v-row class="px-5 pt-8">
       <v-col cols="6">
-        <v-row>
-          <v-col cols="12">
-            <span class="text-title">Minha saúde</span>
-          </v-col>
-        </v-row>
+        <v-col cols="12">
+          <span class="text-title">Minha saúde</span>
+        </v-col>
         <v-row>
           <v-col
             v-for="card in cards"
@@ -34,7 +32,7 @@
             <span class="text-card pt-3">{{ card.text }}</span>
           </v-col>
         </v-row>
-        <v-row>
+        <!-- <v-row>
           <v-col cols="12" class="px-5">
             <span class="text-title2">Programas governamentais para saúde</span>
           </v-col>
@@ -43,7 +41,7 @@
               <v-img src="../assets/link1.svg" />
             </div>
           </v-row>
-        </v-row>
+        </v-row> -->
       </v-col>
       <v-col cols="6">
         <v-col cols="12" class="d-flex justify-space-between">
