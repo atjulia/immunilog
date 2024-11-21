@@ -27,10 +27,6 @@ public class AuthController : ControllerBase
         }
 
         var usuario = await _authService.Authenticate(request.Email, request.Senha);
-        if (usuario == null)
-        {
-            return Unauthorized(new { Message = "Credenciais inválidas" });
-        }
 
         return Ok(usuario);
     }

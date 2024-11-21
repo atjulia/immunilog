@@ -19,6 +19,7 @@ public interface IPessoaRepository
     Task<PessoaDto> GetPessoaByIdAsync(Guid id);
     Task UpdateAsync(PessoaDto data);
     Task<bool> DeleteAsync(Guid id);
+    Task<PessoaDto?> GetPessoasByDoc(string cpf);
 }
 public class PessoaRepository : IPessoaRepository
 {
@@ -78,7 +79,14 @@ public class PessoaRepository : IPessoaRepository
             .ThenBy(c => c.DtCriacao)
             .ToListAsync();
     }
-
+    public async Task<PessoaDto?> GetPessoasByDoc(string cpf)
+    {
+        return await dbContext.Pessoa
+            .AsNoTracking()
+            .Where(c => c.Cpf == cpf)
+            .ProjectToType<PessoaDto>()
+            .FirstOrDefaultAsync();
+    }
     public async Task<Guid> CreateAsync(CreationPessoaDto data)
     {
         var newPessoa = new Pessoa

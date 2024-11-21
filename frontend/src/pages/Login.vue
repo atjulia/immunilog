@@ -66,18 +66,13 @@ export default {
     }
   },
   methods: {
-    async login () {
-      try {
-        const usuario = await authUsuario({ Email: this.model.email, Senha: this.model.senha })
-        if (usuario.usuarioId) {
-          localStorage.setItem("credentials", JSON.stringify(usuario));
+    login () {
+      authUsuario({ Email: this.model.email, Senha: this.model.senha }).then((resp) => {
+        if (resp) {
+          localStorage.setItem("credentials", JSON.stringify(resp.data));
           location.reload();
-        } else {
-          console.log("Falha na autenticação.");
         }
-      } catch (error) {
-        console.error("Erro:", error);
-      }
+      })
     },
     cadastrar () {
       this.$refs.cadastro.openModal()

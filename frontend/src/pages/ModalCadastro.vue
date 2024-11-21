@@ -175,24 +175,26 @@ export default {
         return true;
       }
     },
-    async submit () {
-      try {
-        if (this.$refs.form.validate()) {
-          const dto = {
-            ...this.model
-          }
-          const response = await CreateUsuario(dto);
-          if (response) {
-            const usuario = await authUsuario({ Email: this.model.email, Senha: this.model.senha })
-            if (usuario.usuarioId) {
-              localStorage.setItem("credentials", JSON.stringify(usuario));
-              location.reload();
-              this.close()
-            }
-          }
+    convertDateTime (data) {
+			const [dia, mes, ano] = data.split('/');
+			return new Date(ano, mes - 1, dia);
+		},
+    submit () {
+      if (this.$refs.form.validate()) {
+        const dto = {
+          ...this.model,
+          dtNascimento: this.convertDateTime(this.model.dtNascimento)
         }
-      } catch (error) {
-        console.error('Erro ao buscar pessoas:', error);
+        CreateUsuario(dto).then((resp) => {
+          if (resp) {
+            authUsuario({ Email: this.model.email, Senha: this.model.senha }).then((resp) => {
+              if (resp) {
+                localStorage.setItem("credentials", JSON.stringify(resp.data));
+                location.reload();
+              }
+            })
+          }
+        })
       }
     },
   },

@@ -8,7 +8,7 @@ public interface IUsuarioService
 {
     Task<List<UsuarioDto>> GetListAsync();
     Task<UsuarioDto?> GetUsuarioById(Guid id);
-    Task<Guid> CreateAsync(CreationUsuarioDto model);
+    Task<dynamic> CreateAsync(CreationUsuarioDto model);
     Task<bool> UpdateAsync(UsuarioDto model);
     Task<bool> DeleteAsync(Guid id);
 }
@@ -32,15 +32,15 @@ public class UsuarioService : IUsuarioService
     public async Task<bool> DeleteAsync(Guid id)
     => await usuarioRepository.DeleteAsync(id);
 
-    public async Task<Guid> CreateAsync(CreationUsuarioDto model)
+    public async Task<dynamic> CreateAsync(CreationUsuarioDto model)
     {
-        if (model == null) throw new ValidationException("Dados inválidos");
+        if (model == null)
+            throw new ValidationException("Dados inválidos");
 
-        //VALIDACOES
+        
+        var response = await usuarioRepository.CreateAsync(model);
 
-        var usuarioId = await usuarioRepository.CreateAsync(model);
-
-        return usuarioId;
+        return response;
     }
 
     public async Task<bool> UpdateAsync(UsuarioDto model)

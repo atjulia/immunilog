@@ -1,9 +1,11 @@
-﻿using Immunilog.Domain.Dto.Usuario;
+﻿using Immunilog.Domain.Dto.Base;
+using Immunilog.Domain.Dto.Usuario;
 using Immunilog.Domain.Entities;
 using Immunilog.Repositories.DbContexts;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Z.EntityFramework.Plus;
+using Z.Expressions;
 
 namespace Immunilog.Repositories.Repositories;
 
@@ -11,7 +13,7 @@ public interface IUsuarioRepository
 {
     Task<List<UsuarioDto>> GetListAsync();
     Task<UsuarioDto?> GetUsuarioById(Guid id);
-    Task<Guid> CreateAsync(CreationUsuarioDto data);
+    Task<ApiResponse<Guid>> CreateAsync(CreationUsuarioDto data);
     Task UpdateAsync(UsuarioDto data);
     Task<bool> DeleteAsync(Guid id);
     Task<UsuarioDto> GetUserByEmail(string email);
@@ -48,8 +50,29 @@ public class UsuarioRepository : IUsuarioRepository
             .FirstOrDefaultAsync(u => u.Email == email);
     }
 
-    public async Task<Guid> CreateAsync(CreationUsuarioDto data)
+    public async Task<ApiResponse<Guid>> CreateAsync(CreationUsuarioDto data)
     {
+        // Verificar se o usuário já existe pelo e-mail
+        var existingUser = await dbContext.Usuario
+            .AsNoTracking()
+            .FirstOrDefaultAsync(u => u.Email == data.Email);
+
+        if (existingUser != null)
+        {
+            return ApiResponse<Guid>.FailureResponse("Usuário já cadastrado com este e-mail.");
+        }
+
+        // Verificar se a pessoa já existe pelo CPF
+        var existingPessoa = await dbContext.Pessoa
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p => p.Cpf == data.Cpf);
+
+        if (existingPessoa != null)
+        {
+            return ApiResponse<Guid>.FailureResponse("Já existe uma pessoa cadastrada com este CPF.");
+        }
+
+        // Criar nova instância de Usuario
         var newUsuario = new Usuario
         {
             Id = Guid.NewGuid(),
@@ -61,6 +84,7 @@ public class UsuarioRepository : IUsuarioRepository
             Role = 1
         };
 
+        // Criar nova instância de Pessoa
         var newPessoa = new Pessoa
         {
             Id = Guid.NewGuid(),
@@ -73,12 +97,15 @@ public class UsuarioRepository : IUsuarioRepository
             TipoPessoa = 1
         };
 
+        // Adicionar e salvar entidades no banco de dados
         await dbContext.Usuario.AddAsync(newUsuario);
         await dbContext.Pessoa.AddAsync(newPessoa);
         await dbContext.SaveChangesAsync();
 
-        return newUsuario.Id;
+        // Retornar sucesso com o ID do novo usuário
+        return ApiResponse<Guid>.SuccessResponse(newUsuario.Id);
     }
+
 
     public async Task UpdateAsync(UsuarioDto data)
     => await dbContext.Usuario

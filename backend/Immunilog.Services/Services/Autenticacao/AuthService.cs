@@ -1,6 +1,7 @@
 ﻿using Azure.Core;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
+using Immunilog.Domain.Dto.Base;
 using Immunilog.Domain.Dto.Usuario;
 using Immunilog.Domain.Dto.Vacina;
 using Immunilog.Domain.Entities;
@@ -17,7 +18,7 @@ namespace Immunilog.Services.Services.Autenticacao;
 
 public interface IAuthService
 {
-    Task<UsuarioCredentials?> Authenticate(string email, string senha);
+    Task<ApiResponse<UsuarioCredentials>> Authenticate(string email, string senha);
 }
 
 public class AuthService : IAuthService
@@ -29,20 +30,31 @@ public class AuthService : IAuthService
         _usuarioRepository = usuarioRepository;
     }
 
-    public async Task<UsuarioCredentials> Authenticate(string email, string senha)
+    public async Task<ApiResponse<UsuarioCredentials>> Authenticate(string email, string senha)
     {
         var user = await _usuarioRepository.GetUserByEmail(email);
 
-        if (user == null || user.Senha != senha)
-            return null;
-
-        var userCredentials = new UsuarioCredentials
+        if (user == null)
         {
-            Nome = user.Nome,
-            Email = user.Email,
-            UsuarioId = user.Id
-        };
+            return ApiResponse<UsuarioCredentials>.FailureResponse("Credenciais inválidas");
+        }
+        else
+        {
+            if (user.Senha != senha)
+            {
+                return ApiResponse<UsuarioCredentials>.FailureResponse("Credenciais inválidas");
+            }
+            else
+            {
+                var userCredentials = new UsuarioCredentials
+                {
+                    Nome = user.Nome,
+                    Email = user.Email,
+                    UsuarioId = user.Id
+                };
 
-        return userCredentials;
+                return ApiResponse<UsuarioCredentials>.SuccessResponse(userCredentials);
+            }
+        }
     }
 }
