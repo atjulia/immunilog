@@ -4,6 +4,7 @@ import "vue3-toastify/dist/index.css";
 
 export const CreateUsuario = async (data) => {
   await apiClient.post('/Usuario/CreateUsuario', data).then((response) => {
+    console.log(response)
     if (response.data.success) {
       return response.data.data;
     } else {

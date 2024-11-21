@@ -66,13 +66,8 @@ export default {
     }
   },
   methods: {
-    login () {
-      authUsuario({ Email: this.model.email, Senha: this.model.senha }).then((resp) => {
-        if (resp) {
-          localStorage.setItem("credentials", JSON.stringify(resp.data));
-          location.reload();
-        }
-      })
+    async login () {
+      await authUsuario({ Email: this.model.email, Senha: this.model.senha })
     },
     cadastrar () {
       this.$refs.cadastro.openModal()

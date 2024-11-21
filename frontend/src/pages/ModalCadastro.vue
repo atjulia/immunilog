@@ -109,7 +109,6 @@
 <script>
 import { CreateUsuario } from '@/api/controllers/usuario';
 import { authUsuario } from '@/api/controllers/auth';
-import { jwtDecode } from 'jwt-decode';
 
 export default {
   data() {
@@ -176,23 +175,20 @@ export default {
       }
     },
     convertDateTime (data) {
+      console.log(data)
 			const [dia, mes, ano] = data.split('/');
 			return new Date(ano, mes - 1, dia);
 		},
-    submit () {
+    async submit () {
       if (this.$refs.form.validate()) {
         const dto = {
           ...this.model,
           dtNascimento: this.convertDateTime(this.model.dtNascimento)
         }
-        CreateUsuario(dto).then((resp) => {
+        console.log(dto)
+        await CreateUsuario(dto).then((resp) => {
           if (resp) {
-            authUsuario({ Email: this.model.email, Senha: this.model.senha }).then((resp) => {
-              if (resp) {
-                localStorage.setItem("credentials", JSON.stringify(resp.data));
-                location.reload();
-              }
-            })
+            authUsuario({ Email: this.model.email, Senha: this.model.senha })
           }
         })
       }

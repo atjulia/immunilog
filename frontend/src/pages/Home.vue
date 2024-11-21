@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row class="px-5 pt-8">
-      <v-col cols="6">
+      <v-col cols="12">
         <v-row>
           <v-col cols="12">
             <span class="text-title">Minha saúde</span>
@@ -11,53 +11,52 @@
           <v-col
             v-for="card in cards"
             :key="card.id"
-            cols="1"
-            class="d-flex flex-column align-items-center pr-4"
-            style="min-width: 125px;"
+            cols="12"
+            md="4"
+            class="d-flex"
           >
-            <v-btn
-              height="100"
-              min-width="100"
-              flat
+            <v-card
+              class="pa-6 hover"
+              elevation="2"
               rounded="lg"
-              color="background"
               @click="card.action"
+              style="cursor: pointer"
+              color="background"
+              width="100%"
             >
-              <div class="d-flex align-items-center justify-center flex-grow-1">
-                <card class="card d-block">
-                  <div class="d-flex justify-center">
-                    <v-img :src="card.image" :width="42" />
-                  </div>
-                </card>
-              </div>
-            </v-btn>
-            <span class="text-card pt-3">{{ card.text }}</span>
+              <v-row class="align-center mb-4">
+                <v-avatar
+                  size="48"
+                >
+                  <v-img :src="card.image" />
+                </v-avatar>
+                <span class="pl-3 text-title2 font-weight-medium">{{ card.text }}</span>
+              </v-row>
+              <p class="text-body-2 mt-3 mb-5">{{ card.description }}</p>
+              <span
+                text
+                class="text-primary text-capitalize"
+              >
+                Ver mais
+                <v-icon size="18" class="ml-1">mdi-arrow-right</v-icon>
+              </span>
+            </v-card>
           </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" class="px-5">
-            <span class="text-title2">Programas governamentais para saúde</span>
-          </v-col>
-          <v-row class="pl-6 pt-6">
-            <div class="d-flex align-items-center justify-center card2">
-              <v-img src="../assets/link1.svg" />
-            </div>
-          </v-row>
         </v-row>
       </v-col>
-      <v-col cols="6">
+      <v-col cols="12">
         <v-col cols="12" class="d-flex justify-space-between">
           <span class="text-title">Gerenciar Pessoas</span>
           <v-btn density="comfortable" color="primary" @click="addDependente">
             Adicionar Dependente
             <v-icon  class="pl-2">
-              <PhPlus :size="24" />
+              <PhPlusCircle :size="32" />
             </v-icon>
           </v-btn>
         </v-col>
         <v-col cols="12" class="">
-          <v-row v-for="(pessoa, i) in paginatedPessoas" :key="i">
-            <v-col cols="12">
+          <v-row>
+            <v-col cols="12" v-for="(pessoa, i) in paginatedPessoas" :key="i">
               <v-card variant="outlined" color="primary" class="mb-4 pa-5">
                 <v-row>
                   <v-col cols="7">
@@ -162,19 +161,25 @@ export default {
         { 
           id: 0, 
           text: 'Adicionar Vacina', 
-          action: this.choseDependenteVacina, 
+          description: 'Registre suas novas imunizações no sistema. Garanta a organização e o acompanhamento eficaz do calendário vacinal.',
+          action: this.choseDependenteVacina,
+          avatarColor: 'primary-darken-1',
           image: AddVacina
         },
         { 
           id: 1, 
           text: 'Carteira de Vacinação', 
-          action: this.verCarteira, 
+          description: 'Acesse o histórico completo de vacinas registradas, incluindo datas de aplicação, doses e vacinas pendentes.',
+          action: this.verCarteira,
+          avatarColor: 'primary-darken-1',
           image: CarteiraVacina 
         },
         { 
           id: 2, 
           text: 'Programa de Imunização', 
-          action: this.verProgramaImunizacao, 
+          description: 'Consulte o calendário completo de vacinação. Tenha acesso a informações sobre campanhas, grupos prioritários e vacinas disponíveis.', 
+          action: this.verProgramaImunizacao,
+          avatarColor: 'primary-darken-1', 
           image: ProgramaImunizacao 
         },
         // { 
@@ -242,9 +247,9 @@ export default {
   color: #384593;
 }
 .text-title2 {
-  font-weight: 500;
+  font-weight: 600;
+  color: #333; 
   font-size: 16px;
-  color: #384593;
 }
 .card {
   width: 100px;
@@ -266,7 +271,27 @@ strong {
   color: #2f2f8d;
 }
 .v-card {
-  border-color: #2f2f8d;
-  border-radius: 12px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  border: 1px solid #e5e5e5;
+}
+.hover:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.v-card p {
+  color: #777;
+  line-height: 1.5;
+}
+
+.v-avatar {
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.v-avatar img {
+  object-fit: cover;
 }
 </style>
