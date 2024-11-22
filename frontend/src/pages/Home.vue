@@ -44,69 +44,68 @@
           </v-col>
         </v-row>
       </v-col>
+      <v-col cols="12" class="d-flex justify-space-between">
+        <span class="text-title">Gerenciar Pessoas</span>
+        <v-btn density="comfortable" color="primary" @click="addDependente">
+          Adicionar Dependente
+          <v-icon  class="pl-2">
+            <PhPlusCircle :size="32" />
+          </v-icon>
+        </v-btn>
+      </v-col>
       <v-col cols="12">
-        <v-col cols="12" class="d-flex justify-space-between">
-          <span class="text-title">Gerenciar Pessoas</span>
-          <v-btn density="comfortable" color="primary" @click="addDependente">
-            Adicionar Dependente
-            <v-icon  class="pl-2">
-              <PhPlusCircle :size="32" />
-            </v-icon>
-          </v-btn>
-        </v-col>
-        <v-col cols="12" class="">
-          <v-row>
-            <v-col cols="12" v-for="(pessoa, i) in paginatedPessoas" :key="i">
-              <v-card variant="outlined" color="primary" class="mb-4 pa-5">
-                <v-row>
-                  <v-col cols="7">
-                    <div class="text-start">
-                      <strong>{{ pessoa.nome }}</strong>
-                    </div>
-                    <div class="text-start">
-                      <span class="text-body-2">Idade: {{ pessoa.idadeFormatada}}</span><br>
-                      <span class="text-body-2">Última imunização: Não informado</span>
-                    </div>
-                  </v-col>
-  
-                  <v-col cols="5" class="d-flex justify-end align-items-center">
-                    <v-chip color="secondary" class="secondary--text text-caption" variant="outlined">
-                      {{ pessoa.tipoPessoa === 1 ? 'Principal' : 'Dependente' }}
-                    </v-chip>
-                    <v-menu>
-                      <template v-slot:activator="{ props }">
-                        <v-icon color="primary" v-bind="props" class="pl-2" style="cursor: pointer;">
-                          <PhDotsThreeVertical :size="32" />
-                        </v-icon>
-                      </template>
-                      <v-list>
-                        <v-list-item
-                          v-for="(item, index) in items"
-                          :key="index"
-                          :value="index"
-                        >
-                          <v-list-item-title @click="handleDeletePessoa(pessoa)" :disabled="pessoa.tipoPessoa === 1"> 
-                            <v-icon color="primary" v-bind="props" class="pr-2" style="cursor: pointer;">
-                              <PhTrash :size="32" />
-                            </v-icon>
-                            {{ item.title }}
-                          </v-list-item-title>
-                        </v-list-item>
-                      </v-list>
-                    </v-menu>
-                  </v-col>
-                </v-row>
-              </v-card>
-            </v-col>
-          </v-row>
-          <v-pagination
-            v-model="currentPage"
-            :length="totalPages"
-            :total-visible="5"
-            class="mx-auto mt-4"
-            @input="updatePage"
-          />
-       </v-col>
+        <v-row>
+          <v-col cols="12" v-for="(pessoa, i) in paginatedPessoas" :key="i">
+            <v-card variant="outlined" color="primary" class="mb-4 pa-5">
+              <v-row>
+                <v-col cols="7">
+                  <div class="text-start">
+                    <strong>{{ pessoa.nome }}</strong>
+                  </div>
+                  <div class="text-start">
+                    <span class="text-body-2">Idade: {{ pessoa.idadeFormatada}}</span><br>
+                    <span class="text-body-2">Última imunização: Não informado</span>
+                  </div>
+                </v-col>
+
+                <v-col cols="5" class="d-flex justify-end align-items-center">
+                  <v-chip color="secondary" class="secondary--text text-caption" variant="outlined">
+                    {{ pessoa.tipoPessoa === 1 ? 'Principal' : 'Dependente' }}
+                  </v-chip>
+                  <v-menu>
+                    <template v-slot:activator="{ props }">
+                      <v-icon color="primary" v-bind="props" class="pl-2" style="cursor: pointer;">
+                        <PhDotsThreeVertical :size="32" />
+                      </v-icon>
+                    </template>
+                    <v-list>
+                      <v-list-item
+                        v-for="(item, index) in items"
+                        :key="index"
+                        :value="index"
+                        :disabled="pessoa.tipoPessoa === 1"
+                      >
+                        <v-list-item-title @click="handleDeletePessoa(pessoa)"> 
+                          <v-icon color="primary" v-bind="props" class="pr-2" style="cursor: pointer;">
+                            <PhTrash :size="32" />
+                          </v-icon>
+                          {{ item.title }}
+                        </v-list-item-title>
+                      </v-list-item>
+                    </v-list>
+                  </v-menu>
+                </v-col>
+              </v-row>
+            </v-card>
+          </v-col>
+        </v-row>
+        <v-pagination
+          v-model="currentPage"
+          :length="totalPages"
+          :total-visible="5"
+          class="mx-auto mt-4"
+          @input="updatePage"
+        />
       </v-col>
     </v-row>
     <dependenteEdit ref="dependente" @refresh="fetchPessoas" />
@@ -127,7 +126,6 @@ import ModalDependenteList from '../components/ModalDependenteList.vue';
 import AddVacina from '../assets/cards/AddVacina.svg';
 import CarteiraVacina from '../assets/cards/CarteiraVacina.svg';
 import ProgramaImunizacao from '../assets/cards/ProgramaImunizacao.svg';
-import GerenciarPerfil from '../assets/cards/GerenciarPerfil.svg';
 
 export default {
   components: { 

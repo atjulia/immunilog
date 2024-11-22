@@ -20,17 +20,37 @@
 							variant="outlined" />
 					</v-col>
 					<v-col cols="12">
+						<input-date
+                :label="'Data de Aplicação'"
+                v-model="model.dtAplicacao"
+								:minDate="pessoa.dtNascimento"
+                variant="outlined"
+                :rules="[requiredRule]"
+              />
+					</v-col>
+					<v-col cols="12">
 						<v-text-field
-							label="Data de aplicação"
-							v-model="model.DtAplicacao"
+							label="Fabricante"
+							v-model="model.fabricante"
 							variant="outlined"
-							v-mask="'##/##/####'"
-							:error-messages="dateError"
-							@input="validateDate"
 						/>
 					</v-col>
-			</v-row>
-			<template v-slot:actions>
+					<v-col cols="12">
+						<v-text-field
+							label="Lote da vacina"
+							v-model="model.loteVacina"
+							variant="outlined"
+						/>
+					</v-col>
+					<v-col cols="12">
+						<v-text-field
+							label="Clínica ou UBS que o procedimento foi realizado"
+							v-model="model.loteVacina"
+							variant="outlined"
+						/>
+					</v-col>
+				</v-row>
+				<template v-slot:actions>
 					<v-row class="pa-2">
 						<v-btn
 							class="ml-2"
@@ -52,7 +72,7 @@
 
 <script>
 import { getVacinas } from '@/api/controllers/vacina';
-import { CreateSolicitacaoVacina } from '@/api/controllers/pessoaVacina';
+import { CreateSolicitacaoVacina, GetVacinasByPessoaId } from '@/api/controllers/pessoaVacina';
 import { getPessoaById } from '@/api/controllers/pessoa';
 
 export default {
@@ -64,15 +84,17 @@ export default {
 			reacoes: ['Dor ou sensibilidade no local da aplicação', 'Febre', 'Fadiga', 'Dor muscular ou nas articulações', 'Dor de cabeça', 'Calafrios', 'Náusea', 'Inchaço', 'Tontura', 'Outros'],
 			optionVacinas: [],
       fileUrl: null,
+			pessoa: {},
 			dateError: ''
 		}
 	},
 	methods: {
 		async openModal (dependente) {
 			this.model.PessoaId = dependente.id
-			const pessoa = await getPessoaById(dependente.id);
-
-			const response = await getVacinas(pessoa)
+			this.pessoa = await getPessoaById(dependente.id);
+			console.log(this.pessoa)
+			this.pessoa.vacinas = await GetVacinasByPessoaId(dependente.id, 'filtroVacina')
+			const response = await getVacinas(this.pessoa)
 
 			this.optionVacinas = response.map(p => {
 				return { text: `${p.nome} - ${p.tipoDose}`, value: p.id }
@@ -107,7 +129,7 @@ export default {
     },
 		async submit () {
 			try {
-				const response = await CreateSolicitacaoVacina({...this.model, DtAplicacao: this.model.DtAplicacao, Reacao: JSON.stringify(this.model.Reacao)});
+				const response = await CreateSolicitacaoVacina({...this.model, DtAplicacao: this.convertDateTime(this.model.dtAplicacao), Reacao: JSON.stringify(this.model.Reacao)});
 				this.$emit('refresh')
 				this.close()
 			} catch (error) {

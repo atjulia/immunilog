@@ -20,7 +20,7 @@
 						<v-col cols="12">
 								<input-date
 									:label="'Data de Nascimento'"
-									v-model="model.DtNascimento"
+									v-model="model.dtNascimento"
 									variant="outlined"
 									:rules="[requiredRule]"
 								/>
@@ -43,6 +43,7 @@
 										</v-icon>
 									</template>
 									<span>
+										Idade 
 										Conforme a idade que for informada nesse campo, o Immunilog vai ignorar vacinas anteriores que não foram registradas.<br>
 										Caso não seja informado nenhum valor, o sistema irá considerar todas as vacinas desde o nascimento.
 									</span>
@@ -95,6 +96,7 @@ export default {
       };
     },
     currentAge() {
+			console.log(this.model.DtNascimento)
       if (!this.model.DtNascimento) {
         return 0;
       } else {
@@ -125,8 +127,9 @@ export default {
 			try {
         if (this.$refs.form.validate()) {
 					const dto = {
-						...this.model,
-						DtNascimento: new Date(this.model.DtNascimento),
+						Nome: this.model.Nome,
+						Cpf: this.model.Cpf,
+						DtNascimento: this.convertDateTime(this.model.dtNascimento),
 						TipoPessoa: 2,
 						UsuarioId: this.credentials.usuarioId
 					}

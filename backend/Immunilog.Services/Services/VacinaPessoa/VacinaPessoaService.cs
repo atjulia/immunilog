@@ -8,7 +8,7 @@ public interface IVacinaPessoaService
 {
     Task<Guid> CreateSolicitacaoVacina(CreationVacinaPessoaDto model);
     Task<bool> UpdateVacinaPessoa(VacinaPessoaDto model);
-    Task<IEnumerable<VacinaPessoaDto>> GetVacinasByPessoaId(Guid pessoaId);
+    Task<List<Immunilog.Domain.Entities.VacinaPessoa>> GetVacinasByPessoaId(Guid pessoaId);
 
 }
 
@@ -31,7 +31,7 @@ public class VacinaPessoaService : IVacinaPessoaService
 
         return vacinaPessoaId;
     }
-    public async Task<IEnumerable<VacinaPessoaDto>> GetVacinasByPessoaId(Guid pessoaId)
+    public async Task<List<Immunilog.Domain.Entities.VacinaPessoa>> GetVacinasByPessoaId(Guid pessoaId)
     {
         if (pessoaId == null) throw new ValidationException("Dados inválidos");
 

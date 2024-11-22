@@ -11,7 +11,7 @@ public interface IVacinaPessoaRepository
 {
     Task<Guid> CreateSolicitacaoVacina(CreationVacinaPessoaDto data);
     Task UpdateVacinaPessoa(VacinaPessoaDto model);
-    Task<IEnumerable<VacinaPessoaDto>> GetVacinasByPessoaId(Guid pessoaId);
+    Task<List<VacinaPessoa>> GetVacinasByPessoaId(Guid pessoaId);
 }
 public class VacinaPessoaRepository : IVacinaPessoaRepository
 {
@@ -31,6 +31,7 @@ public class VacinaPessoaRepository : IVacinaPessoaRepository
             PessoaId = model.PessoaId,
             VacinaId = model.VacinaId,
             DtCriacao = new DateTime(),
+            DtAplicacao = model.DtAplicacao,
             Reacao = model.Reacao,
             ReacaoOutros = model.ReacaoOutros
         };
@@ -40,25 +41,15 @@ public class VacinaPessoaRepository : IVacinaPessoaRepository
 
         return newVacinaPessoa.Id;
     }
-    public async Task<IEnumerable<VacinaPessoaDto>> GetVacinasByPessoaId(Guid pessoaId)
+    public async Task<List<VacinaPessoa>> GetVacinasByPessoaId(Guid pessoaId)
     {
         var vacinaPessoas = await dbContext.VacinaPessoa
+            .ProjectToType<VacinaPessoa>()
             .AsNoTracking()
             .Where(vp => vp.PessoaId == pessoaId)
             .ToListAsync();
 
-        if (!vacinaPessoas.Any())
-            return Enumerable.Empty<VacinaPessoaDto>();
-
-        var vacinaIds = vacinaPessoas.Select(vp => vp.VacinaId).Distinct();
-
-        var vacinas = await dbContext.Vacina
-            .AsNoTracking()
-            .Where(v => vacinaIds.Contains(v.Id))
-            .ProjectToType<VacinaPessoaDto>()
-            .ToListAsync();
-
-        return vacinas;
+        return vacinaPessoas;
     }
     public async Task UpdateVacinaPessoa(VacinaPessoaDto data)
     => await dbContext.VacinaPessoa

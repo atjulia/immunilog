@@ -34,11 +34,11 @@
             </v-card-subtitle>
             <div class="d-flex justify-space-between align-center py-2">
               <v-card-text class="text-primary">
-                <p><strong>Idade Recomendada:</strong> {{ formatIdade(vacina.IdadeRecomendada) }}</p>
-                <p><strong>Data da aplicação:</strong> {{ vacina.DtUpdate ? formatDate(vacina.DtUpdate) : 'Não Aplicada' }}</p>
+                <p><strong>Idade Recomendada:</strong> {{ formatIdade(vacina.idadeRecomendada) }}</p>
+                <p><strong>Data da aplicação:</strong> {{ vacina.dtUpdate ? formatDate(vacina.dtUpdate) : 'Não Aplicada' }}</p>
               </v-card-text>
             
-              <v-btn @click="moreInfo(vacina.Id)" flat class="text-primary mr-4" text>
+              <v-btn @click="moreInfo(vacina.id)" flat class="text-primary mr-4" text>
                 <span class="pr-2">Saiba mais</span> 
                 <v-icon><PhInfo :size="32" /></v-icon>
               </v-btn>
@@ -60,6 +60,7 @@
 
 <script>
 import { getPessoaById } from '@/api/controllers/pessoa';
+import { GetVacinasByPessoaId } from '@/api/controllers/pessoaVacina';
 export default {
   data() {
     return {
@@ -92,6 +93,8 @@ export default {
   },
   async beforeCreate() {
     this.model = await getPessoaById(this.$route.query.id);
+    this.model.vacinas = await GetVacinasByPessoaId(this.$route.query.id, 'filtroVacina')
+    console.log('model', this.model)
     this.load = true;
   }
 }

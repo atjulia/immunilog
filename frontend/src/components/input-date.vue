@@ -30,7 +30,8 @@ export default {
       type: String,
       default: ''
     },
-		label: { type: String, default: '' }
+		label: { type: String, default: '' },
+    minDate: { type: String, default: '1910-01-01' }
 	},
   data() {
     return {
@@ -38,7 +39,7 @@ export default {
       formattedDate: "",
       showDatePicker: false,
       formValid: false,
-      minDate: '1910-01-01',
+      minDate: this.minDate,
 			maxDate: new Date()
     };
   },

@@ -9,7 +9,7 @@ export const getPessoasByUsuarioId = async (usuarioId) => {
     throw error;
   }
 };
-export const getPessoaById = async (pessoaId) => {
+export const getPessoaById = async (pessoaId, param) => {
   try {
     const response = await apiClient.get(`/Pessoa/getPessoaById/${pessoaId}`);
     return response.data;
