@@ -58,14 +58,9 @@
             </v-card-subtitle>
             <div class="d-flex justify-space-between align-center py-2">
               <v-card-text class="text-primary">
-                <p><strong>Idade Recomendada:</strong> {{ formatIdade(vacina.idadeRecomendada) }}</p>
-                <p><strong>Data da aplicação:</strong> {{ vacina.dtUpdate ? formatDate(vacina.dtUpdate) : 'Não Aplicada' }}</p>
+                <p><strong>Lote:</strong> {{ vacina.loteVacina || 'Não informado' }} | <strong>Fabricante:</strong> {{ vacina.fabricante || 'Não informado' }} | <strong>Local de Aplicação:</strong> {{ vacina.localAplicacao || 'Não informado' }}</p>
+                <p><strong>Data da aplicação:</strong> {{ vacina.dtAplicacao ? formatDate(vacina.dtAplicacao) : 'Não informada' }}</p>
               </v-card-text>
-            
-              <v-btn @click="moreInfo(vacina.id)" flat class="text-primary mr-4" text>
-                <span class="pr-2">Saiba mais</span> 
-                <v-icon><PhInfo :size="32" /></v-icon>
-              </v-btn>
             </div>
           </v-card>
           </v-timeline-item>
@@ -114,14 +109,17 @@ export default {
     formatIdade(idadeRecomendada) {
       return idadeRecomendada > 1 ? idadeRecomendada : (idadeRecomendada.toString().split(".")[1] === '1' ? idadeRecomendada.toString().split(".")[1] + ' mês': + idadeRecomendada.toString().split(".")[1] + ' meses');
     },
-    formatDate(date) {
-      return new Date(date).toLocaleDateString('pt-BR');
+    formatDate(dateString) {
+      const date = new Date(dateString);
+      
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const year = date.getFullYear();
+
+      return `${day}/${month}/${year}`;
     },
     listVacinasPendentes () {
       this.$refs.vacinaPendente.openModal(this.model.vacinasPendentes)
-    },
-    moreInfo(vacinaId) {
-      console.log('More info for vaccine ID:', vacinaId);
     }
   },
   async beforeCreate() {

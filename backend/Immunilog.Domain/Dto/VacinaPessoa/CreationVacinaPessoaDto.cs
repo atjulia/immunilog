@@ -15,4 +15,7 @@ public class CreationVacinaPessoaDto
     public DateTime DtAplicacao { get; set; }
     public string Reacao { get; set; } = string.Empty;
     public string? ReacaoOutros { get; set; } = string.Empty;
+    public string Fabricante { get; set; } = string.Empty;
+    public string LoteVacina { get; set; } = string.Empty;
+    public string LocalAplicacao { get; set; } = string.Empty;
 }

@@ -45,7 +45,7 @@
 					<v-col cols="12">
 						<v-text-field
 							label="Clínica ou UBS que o procedimento foi realizado"
-							v-model="model.loteVacina"
+							v-model="model.localAplicacao"
 							variant="outlined"
 						/>
 					</v-col>

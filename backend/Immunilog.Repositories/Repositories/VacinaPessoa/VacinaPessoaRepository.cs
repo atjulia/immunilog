@@ -33,7 +33,10 @@ public class VacinaPessoaRepository : IVacinaPessoaRepository
             DtCriacao = new DateTime(),
             DtAplicacao = model.DtAplicacao,
             Reacao = model.Reacao,
-            ReacaoOutros = model.ReacaoOutros
+            ReacaoOutros = model.ReacaoOutros,
+            Fabricante = model.Fabricante,
+            LocalAplicacao = model.LocalAplicacao,
+            LoteVacina = model.LoteVacina
         };
 
         await dbContext.VacinaPessoa.AddAsync(newVacinaPessoa);

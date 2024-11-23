@@ -132,7 +132,7 @@ export default {
 					if (response) {
 						toast('Dependente cadastrado com sucesso!', {
 							theme: "colored",
-							type: "error",
+							type: "success",
 							dangerouslyHTMLString: true
 						})
 						this.$emit('refresh')
@@ -140,7 +140,7 @@ export default {
 					}
 				}	
 			} catch (error) {
-				console.error('Erro ao buscar pessoas:', error);
+				console.error('Erro ao cadastrar pessoa:', error);
 			}
 		},
 		convertDateTime (data) {
