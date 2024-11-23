@@ -21,25 +21,20 @@ export const getVacinas = async (req, res) => {
     .gte('idadeRecomendada', idadeLog || 0)
     .lte('idadeRecomendada', ageInDecimal);
 
-  if (idadeLog) {
-    query = supabase
-      .from('vacinas')
-      .select('*')
-      .gte('idadeRecomendada', idadeLog)
-      .lte('idadeRecomendada', ageInDecimal);
-  }
   const { data, error } = await query;
 
   if (error) {
     return res.status(400).json({ error: error.message });
   }
+
   let vacinasRegistradas = req.vacinas.map(vacina => vacina.id);
 
-  let vacinas = data;
+  let vacinas = data.sort((a, b) => a.idadeRecomendada - b.idadeRecomendada)
   if (vacinasRegistradas.length > 0) {
-    vacinas = vacinas.filter(vacina => !vacinasRegistradas.includes(vacina.id));
+    return vacinas.filter(vacina => !vacinasRegistradas.includes(vacina.id));
+  } else {
+    return vacinas;
   }
-  return vacinas;
 };
 
 

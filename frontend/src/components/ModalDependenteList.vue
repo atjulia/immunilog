@@ -31,8 +31,6 @@
 								</v-col>
 							</v-row>
 						</div>
-						<span>
-						</span>
 					</card>
 				</v-col>
 			</v-row>

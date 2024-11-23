@@ -1,8 +1,7 @@
 <template>
 	<v-toolbar density="compact" color="background" class="d-flex py-3 px-5 justify-space-between align-center">
 		<v-toolbar-title>
-			<!-- <v-icon color="primary"><PhList :size="32" /></v-icon>
-			<span class="text pl-3">Menu</span> -->
+			<v-btn color="primary" v-if="$route.path !== '/home'" @click="$router.push('/home')" icon><PhCaretLeft :size="32" /></v-btn>
 		</v-toolbar-title>
 		
 		<v-toolbar-title class="text-center">

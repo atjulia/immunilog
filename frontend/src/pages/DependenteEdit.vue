@@ -2,7 +2,8 @@
   <div class="text-center pa-4" v-if="show">
     <v-dialog
       v-model="show"
-      width="400"
+      width="450"
+			class="ma-5"
 			persistent
     >
       <v-card
@@ -25,33 +26,25 @@
 									:rules="[requiredRule]"
 								/>
 						</v-col>
-						<v-row align="center" class="pa-3">
-							<v-col cols="11" class="d-flex justify-center">
-								<v-text-field
-									label="A partir de que idade deseja logar?"
-									v-model="model.IdadeLog"
-									variant="outlined"
-									v-mask="'##'"
-									:rules="[idadeLogValidation]"
-								/>
-							</v-col>
-							<v-col cols="1" class="pt-0 d-flex justify-center align-center">
-								<v-tooltip location="top">
-									<template v-slot:activator="{ props }">
-										<v-icon v-bind="props">
-											<PhInfo :size="32" />
-										</v-icon>
-									</template>
-									<span>
-										Idade 
-										Conforme a idade que for informada nesse campo, o Immunilog vai ignorar vacinas anteriores que não foram registradas.<br>
-										Caso não seja informado nenhum valor, o sistema irá considerar todas as vacinas desde o nascimento.
-									</span>
-								</v-tooltip>
-							</v-col>
-						</v-row>
+						<v-col cols="12" class="pa-0">
+							<v-radio-group @change="model.IdadeLog = null" inline label="Deseja registrar todas suas vacinas?" v-model="handleIdadeLog" hide-details>
+								<v-radio label="Sim" :value="1" />
+								<v-radio label="Não" :value="2" />
+							</v-radio-group>
+						</v-col>
+						<v-col cols="12">
+							<v-text-field
+								label="A partir de que idade deseja registrar?"
+								v-model="model.IdadeLog"
+								variant="outlined"
+								v-mask="'##'"
+								:disabled="handleIdadeLog !== 2"
+								hint="Se uma idade for informada, o Immunilog ignorará vacinas anteriores não registradas. Caso contrário, considerará todas as vacinas desde o nascimento."
+								:rules="[idadeLogValidation]"
+							/>
+						</v-col>
 					</v-row>
-          <v-card-actions class="justify-space-between">
+          <v-card-actions class="justify-space-between pt-4">
 						<v-row class="pa-2">
 							<v-btn
 								class="ml-2"
@@ -75,6 +68,8 @@
 
 <script>
 import { CreatePessoa } from '@/api/controllers/pessoa';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 
 export default {
 	data () {
@@ -83,6 +78,7 @@ export default {
 			model: {},
 			formValid: false,
       credentials: JSON.parse(localStorage.getItem('credentials')),
+			handleIdadeLog: null
 		}
 	},
   computed: {
@@ -96,7 +92,6 @@ export default {
       };
     },
     currentAge() {
-			console.log(this.model.DtNascimento)
       if (!this.model.DtNascimento) {
         return 0;
       } else {
@@ -135,6 +130,11 @@ export default {
 					}
 					const response = await CreatePessoa(dto);
 					if (response) {
+						toast('Dependente cadastrado com sucesso!', {
+							theme: "colored",
+							type: "error",
+							dangerouslyHTMLString: true
+						})
 						this.$emit('refresh')
 						this.close()
 					}

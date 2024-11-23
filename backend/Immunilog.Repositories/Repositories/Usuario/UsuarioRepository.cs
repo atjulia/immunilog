@@ -52,7 +52,6 @@ public class UsuarioRepository : IUsuarioRepository
 
     public async Task<ApiResponse<Guid>> CreateAsync(CreationUsuarioDto data)
     {
-        // Verificar se o usuário já existe pelo e-mail
         var existingUser = await dbContext.Usuario
             .AsNoTracking()
             .FirstOrDefaultAsync(u => u.Email == data.Email);
@@ -62,7 +61,6 @@ public class UsuarioRepository : IUsuarioRepository
             return ApiResponse<Guid>.FailureResponse("Usuário já cadastrado com este e-mail.");
         }
 
-        // Verificar se a pessoa já existe pelo CPF
         var existingPessoa = await dbContext.Pessoa
             .AsNoTracking()
             .FirstOrDefaultAsync(p => p.Cpf == data.Cpf);
@@ -72,7 +70,6 @@ public class UsuarioRepository : IUsuarioRepository
             return ApiResponse<Guid>.FailureResponse("Já existe uma pessoa cadastrada com este CPF.");
         }
 
-        // Criar nova instância de Usuario
         var newUsuario = new Usuario
         {
             Id = Guid.NewGuid(),

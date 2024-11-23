@@ -1,4 +1,5 @@
-﻿using Immunilog.Domain.Dto.Pessoa;
+﻿using Immunilog.Domain.Dto.Base;
+using Immunilog.Domain.Dto.Pessoa;
 using Immunilog.Domain.Dto.Vacina;
 using Immunilog.Domain.Entities;
 using Immunilog.Domain.Enums;
@@ -6,6 +7,7 @@ using Immunilog.Repositories.DbContexts;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using Z.EntityFramework.Plus;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -89,6 +91,14 @@ public class PessoaRepository : IPessoaRepository
     }
     public async Task<Guid> CreateAsync(CreationPessoaDto data)
     {
+        var existingPessoa = await dbContext.Pessoa
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p => p.Cpf == data.Cpf);
+
+        if (existingPessoa != null)
+        {
+            throw new Exception("Já existe uma pessoa cadastrada com este CPF.");
+        }
         var newPessoa = new Pessoa
         {
             Id = Guid.NewGuid(),

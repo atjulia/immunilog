@@ -1,4 +1,6 @@
 import apiClient from '../index';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 
 export const getPessoasByUsuarioId = async (usuarioId) => {
   try {
@@ -24,8 +26,11 @@ export const CreatePessoa = async (data) => {
     const response = await apiClient.post('/Pessoa/CreatePessoa', data);
     return response.data;
   } catch (error) {
-    console.error('Erro ao criar pessoa:', error);
-    throw error;
+    toast('Já existe uma pessoa cadastrada para o CPF informado', {
+      theme: "colored",
+      type: "error",
+      dangerouslyHTMLString: true
+    })
   }
 };
 

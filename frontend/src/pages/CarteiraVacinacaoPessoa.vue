@@ -8,6 +8,30 @@
         </v-col>
         <v-divider></v-divider>
       </v-row>
+      <div v-if="model.vacinasPendentes.length > 0" class="pt-6 mx-8">
+        <v-alert
+          closable
+          density="compact"
+          title="Vacinas pendentes"
+          type="warning"
+          variant="tonal"
+        >
+          <div>
+            Esta pessoa possui vacinas pendentes. Verifique a lista para regularizar a situação.
+          </div>
+          <div class="mt-2">
+            <v-btn
+              color="warning"
+              text
+              small
+              variant="outlined"
+              @click="listVacinasPendentes"
+            >
+              Ver vacinas
+            </v-btn>
+          </div>
+        </v-alert>
+      </div>
       <div class="pt-5" v-if="model.vacinas.length > 0">
         <v-timeline side="end" align="start">
           <v-timeline-item
@@ -55,13 +79,19 @@
         </div>
       </div>
     </div>
+    <ModalVacinasPendentes ref="vacinaPendente" />
   </v-container>
 </template>
 
 <script>
+import { getVacinas } from '@/api/controllers/vacina';
 import { getPessoaById } from '@/api/controllers/pessoa';
 import { GetVacinasByPessoaId } from '@/api/controllers/pessoaVacina';
+import ModalVacinasPendentes from './ModalVacinasPendentes.vue';
 export default {
+  components: {
+    ModalVacinasPendentes
+  },
   data() {
     return {
       model: {},
@@ -87,6 +117,9 @@ export default {
     formatDate(date) {
       return new Date(date).toLocaleDateString('pt-BR');
     },
+    listVacinasPendentes () {
+      this.$refs.vacinaPendente.openModal(this.model.vacinasPendentes)
+    },
     moreInfo(vacinaId) {
       console.log('More info for vaccine ID:', vacinaId);
     }
@@ -94,7 +127,11 @@ export default {
   async beforeCreate() {
     this.model = await getPessoaById(this.$route.query.id);
     this.model.vacinas = await GetVacinasByPessoaId(this.$route.query.id, 'filtroVacina')
-    console.log('model', this.model)
+    this.model.vacinasPendentes = await getVacinas(this.model)
+    this.model.vacinasPendentes = this.model.vacinasPendentes.map(vacina => ({
+      ...vacina,
+      idadeRecomendada: this.formatIdade(vacina.idadeRecomendada),
+    }))
     this.load = true;
   }
 }

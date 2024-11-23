@@ -180,12 +180,6 @@ export default {
           avatarColor: 'primary-darken-1', 
           image: ProgramaImunizacao 
         },
-        // { 
-        //   id: 3, 
-        //   text: 'Gerenciar Meu Perfil', 
-        //   action: this.gerenciarPerfil, 
-        //   image: GerenciarPerfil 
-        // }
       ];
     }
   },
@@ -213,9 +207,6 @@ export default {
     },
     verProgramaImunizacao() {
       window.open('https://www.gov.br/saude/pt-br/acesso-a-informacao/acoes-e-programas/pni', '_blank', 'noopener');
-    },
-    gerenciarPerfil() {
-      console.log('Gerenciando Perfil');
     },
     handleDeletePessoa (pessoa) {
       this.$refs.deletePessoa.openModal(pessoa)

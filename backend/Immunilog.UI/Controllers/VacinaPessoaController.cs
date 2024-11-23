@@ -38,11 +38,6 @@ public class VacinaPessoaController : ControllerBase
 
         var vacinas = await vacinaPessoaService.GetVacinasByPessoaId(pessoaId);
 
-        if (vacinas == null || !vacinas.Any())
-        {
-            return NotFound("Nenhuma vacina encontrada para o ID da pessoa fornecido.");
-        }
-
         return Ok(vacinas);
     }
 

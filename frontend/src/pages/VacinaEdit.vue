@@ -74,6 +74,8 @@
 import { getVacinas } from '@/api/controllers/vacina';
 import { CreateSolicitacaoVacina, GetVacinasByPessoaId } from '@/api/controllers/pessoaVacina';
 import { getPessoaById } from '@/api/controllers/pessoa';
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 
 export default {
 	data () {
@@ -92,7 +94,6 @@ export default {
 		async openModal (dependente) {
 			this.model.PessoaId = dependente.id
 			this.pessoa = await getPessoaById(dependente.id);
-			console.log(this.pessoa)
 			this.pessoa.vacinas = await GetVacinasByPessoaId(dependente.id, 'filtroVacina')
 			const response = await getVacinas(this.pessoa)
 
@@ -130,8 +131,15 @@ export default {
 		async submit () {
 			try {
 				const response = await CreateSolicitacaoVacina({...this.model, DtAplicacao: this.convertDateTime(this.model.dtAplicacao), Reacao: JSON.stringify(this.model.Reacao)});
-				this.$emit('refresh')
-				this.close()
+				if (response) {
+					toast('Vacina Cadastrada com sucesso!', {
+						theme: "colored",
+						type: "success",
+						dangerouslyHTMLString: true
+					})
+					this.$emit('refresh')
+					this.close()
+				}
 			} catch (error) {
 				console.error('Erro ao criar vacina:', error);
 			}
