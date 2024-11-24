@@ -15,6 +15,5 @@
 
 /backend/.vs/
 /frontend/.env/
-sonar-project.properties
 
 .env
