@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage line-rate="1" branch-rate="1" complexity="1" version="1.9" timestamp="1732484389" lines-covered="2" lines-valid="2">
+  <packages>
+    <package line-rate="1" branch-rate="1" complexity="1" name="mstests">
+      <classes>
+        <class line-rate="1" branch-rate="1" complexity="1" name="mstests.UnitTest1" filename="C:\Users\Dev\Desktop\projeto\immunilog\backend\Immunilog.UI\mstests\UnitTest1.cs">
+          <methods>
+            <method line-rate="1" branch-rate="1" complexity="1" name="TestMethod1" signature="()">
+              <lines>
+                <line number="8" hits="1" branch="False" />
+                <line number="9" hits="1" branch="False" />
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="8" hits="1" branch="False" />
+            <line number="9" hits="1" branch="False" />
+          </lines>
+        </class>
+      </classes>
+    </package>
+  </packages>
+</coverage>
