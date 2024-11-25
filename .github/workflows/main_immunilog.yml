@@ -48,15 +48,15 @@ jobs:
             /d:sonar.exclusions="frontend/**/*" \
             /d:sonar.inclusions="**/*.cs,**/*.cshtml"
 
-            dotnet build -c Release
+          dotnet build backend/Immunilog.UI/Immunilog.UI.csproj -c Release
 
-            dotnet test backend/Immunilog.UI/Immunilog.UI.csproj \
-              --no-build --logger:trx --results-directory ./backend/Immunilog.UI/mstests/TestResults \
-              /p:CollectCoverage=true \
-              /p:CoverletOutputFormat=opencover \
-              /p:CoverletOutput=./backend/Immunilog.UI/mstests/TestResults/coverage.opencover.xml
+          dotnet test backend/Immunilog.UI/Immunilog.UI.csproj \
+            --no-build --logger:trx --results-directory backend/Immunilog.UI/mstests/TestResults \
+            /p:CollectCoverage=true \
+            /p:CoverletOutputFormat=opencover \
+            /p:CoverletOutput=backend/Immunilog.UI/mstests/TestResults/coverage.opencover.xml
 
-            dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+          dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
 
       - name: Publish backend artifact
         uses: actions/upload-artifact@v4
