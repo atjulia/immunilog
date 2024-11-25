@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Immunilog.UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+71d90da29c65854322884b207fcce47d7c052917")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c8a1f0038d510182979e4680718dbd4899081612")]
 [assembly: System.Reflection.AssemblyProductAttribute("Immunilog.UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Immunilog.UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
