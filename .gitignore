@@ -17,3 +17,5 @@
 /frontend/.env/
 
 .env
+
+.sonarqube/

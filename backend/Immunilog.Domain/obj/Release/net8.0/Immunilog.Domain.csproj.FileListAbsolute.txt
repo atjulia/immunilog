@@ -1,0 +1,12 @@
+C:\Users\Dev\Desktop\projeto\immunilog\backend\Immunilog.Domain\bin\Release\net8.0\Immunilog.Domain.deps.json
+C:\Users\Dev\Desktop\projeto\immunilog\backend\Immunilog.Domain\bin\Release\net8.0\Immunilog.Domain.dll
+C:\Users\Dev\Desktop\projeto\immunilog\backend\Immunilog.Domain\bin\Release\net8.0\Immunilog.Domain.pdb
+C:\Users\Dev\Desktop\projeto\immunilog\backend\Immunilog.Domain\obj\Release\net8.0\Immunilog.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dev\Desktop\projeto\immunilog\backend\Immunilog.Domain\obj\Release\net8.0\Immunilog.Domain.AssemblyInfoInputs.cache
+C:\Users\Dev\Desktop\projeto\immunilog\backend\Immunilog.Domain\obj\Release\net8.0\Immunilog.Domain.AssemblyInfo.cs
+C:\Users\Dev\Desktop\projeto\immunilog\backend\Immunilog.Domain\obj\Release\net8.0\Immunilog.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Dev\Desktop\projeto\immunilog\backend\Immunilog.Domain\obj\Release\net8.0\Immunilog.Domain.sourcelink.json
+C:\Users\Dev\Desktop\projeto\immunilog\backend\Immunilog.Domain\obj\Release\net8.0\Immunilog.Domain.dll
+C:\Users\Dev\Desktop\projeto\immunilog\backend\Immunilog.Domain\obj\Release\net8.0\refint\Immunilog.Domain.dll
+C:\Users\Dev\Desktop\projeto\immunilog\backend\Immunilog.Domain\obj\Release\net8.0\Immunilog.Domain.pdb
+C:\Users\Dev\Desktop\projeto\immunilog\backend\Immunilog.Domain\obj\Release\net8.0\ref\Immunilog.Domain.dll
