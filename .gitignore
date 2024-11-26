@@ -16,6 +16,7 @@
 /backend/.vs/
 /frontend/.env/
 
+/backend/Immunilog.Tests/coverage-report
 .env
 
 .sonarqube/
