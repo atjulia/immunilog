@@ -28,7 +28,10 @@ public class UsuarioController : ControllerBase
     [HttpPost("CreateUsuario")]
     public async Task<ActionResult> CreateUsuario([FromBody] CreationUsuarioDto usuario)
     {
-        if (!ModelState.IsValid) return BadRequest();
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
         var id = await _usuarioService.CreateAsync(usuario);
 
@@ -36,13 +39,21 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPut("UpdateUsuario")]
-    public async Task<ActionResult> UpdateUsuario([FromBody] UsuarioDto usuarioDto)
+    public async Task<IActionResult> UpdateUsuario([FromBody] UsuarioDto dto)
     {
-        if (!ModelState.IsValid) return BadRequest();
-            
-        var id = await _usuarioService.UpdateAsync(usuarioDto);
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
-        return Ok(id);
+        var result = await _usuarioService.UpdateAsync(dto);
+
+        if (result)
+        {
+            return Ok(dto.Id);
+        }
+
+        return BadRequest("Não foi possível atualizar o usuário.");
     }
 
     [HttpGet("GetUsuarioById/{usuarioId}")]
@@ -58,11 +69,6 @@ public class UsuarioController : ControllerBase
     {
         await _usuarioService.DeleteAsync(usuarioId);
 
-        return Ok();
-    }
-    [HttpGet("teste")]
-    public IActionResult teste()
-    {
         return Ok();
     }
 }
