@@ -5,12 +5,11 @@
 1.  **Cadastro de usuário**: O usuário deve poder criar uma conta pessoal com suas informações básicas, como nome, e-mail e senha.
 2.  **Login do usuário**: Usuários já registrados previamente devem conseguir acessar a aplicação usando suas credenciais de acesso (e-mail e senha).
 3.  **Registrar Vacina**: O usuário deve conseguir registrar as vacinas que já foram tomadas.
-4.  **Validação de vacina registrada**: Ao cadastrar uma vacina, o sistema deve receber algum tipo de comprovação que a mesma foi realmente realizada, a fim de aprovar ou recusar o registro.
-5.  **Adicionar dependentes**: O usuário deve conseguir adicionar dependentes a sua conta, limitando a 5 dependentes por pessoa.
-6.  **Consultar calendário vacinal PNI**: O usuário deve conseguir consultar o calendário básico vacinal PNI (SUS).
-7.  **Consultar calendário vacinal Sociedade Brasileira de Imunizações**: O usuário deve conseguir consultar o calendário da Sociedade Brasileira de Imunizações.
-8.  **Notificar vacinas**: O usuário deve receber uma notificação por e-mail quando a data da sua próxima vacina estiver chegando.
-9. **Integração com API própria**: A aplicação deve integrar com uma API dedicada para base de dados das vacinas disponíveis conforme calendário vacinal.
+5.  **Adicionar dependentes**: O usuário deve conseguir adicionar dependentes a sua conta.
+6.  **Consultar carteirinha**: O usuário deve conseguir consultar sua carteirinha de vacinação, mostrando vacinas que já foram cadastradas pelo o mesmo.
+6.  **Vacinas pendentes**: O usuário deve conseguir consultar quais vacinas ainda estão pendentes de serem realizadas.
+7.  **Consultar calendário vacinal PNI**: O usuário deve conseguir consultar o calendário básico vacinal PNI (SUS).
+8. **Integração com API própria**: A aplicação deve integrar com uma API dedicada para base de dados das vacinas disponíveis conforme calendário vacinal.
 
 ## Requisitos Não-Funcionais
 
