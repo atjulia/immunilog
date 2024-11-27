@@ -3,6 +3,7 @@ using Immunilog.Domain.Entities;
 using Immunilog.Repositories.DbContexts;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
+using System;
 using Z.EntityFramework.Plus;
 
 namespace Immunilog.Repositories.Repositories;
@@ -30,8 +31,8 @@ public class VacinaPessoaRepository : IVacinaPessoaRepository
             Id = Guid.NewGuid(),
             PessoaId = model.PessoaId,
             VacinaId = model.VacinaId,
-            DtCriacao = new DateTime(),
-            DtAplicacao = model.DtAplicacao,
+            DtCriacao = DateTime.Now,
+            DtAplicacao = DateTime.ParseExact(model.DtAplicacao, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture),
             Reacao = model.Reacao,
             ReacaoOutros = model.ReacaoOutros,
             Fabricante = model.Fabricante,

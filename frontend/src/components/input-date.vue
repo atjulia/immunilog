@@ -7,6 +7,7 @@
         variant="outlined"
         @click="showDatePicker = !showDatePicker"
 				@focus="showDatePicker = true"
+        :rules="rules"
         readonly
       />
       <v-date-picker
@@ -31,7 +32,8 @@ export default {
       default: ''
     },
 		label: { type: String, default: '' },
-    minDate: { type: String, default: '1910-01-01' }
+    minDate: { type: String, default: '1910-01-01' },
+    rules: { type: Array, default: [] }
 	},
   data() {
     return {

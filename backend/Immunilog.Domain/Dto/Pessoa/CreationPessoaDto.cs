@@ -9,7 +9,7 @@ public class CreationPessoaDto
     public string Nome { get; set; } = string.Empty;
     public string Cpf { get; set; } = string.Empty;
     public int TipoPessoa { get; set; }
-    public DateTime DtNascimento { get; set; }
+    public string DtNascimento { get; set; }
     public Guid UsuarioId { get; set; }
     public int? IdadeLog { get; set; }
 }

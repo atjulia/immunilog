@@ -6,65 +6,66 @@
 			width="500"
     >
       <v-card title="Adicionar Vacina">
-				<v-row class="px-4">
-					<v-col cols="12">
-						<v-select :items="optionVacinas" label="Vacina" v-model="model.VacinaId" variant="outlined" no-data-text="Nenhuma vacina disponível" item-title="text" item-value="value" />
-					</v-col>
-					<v-col cols="12">
-						<v-select
-							v-model="model.Reacao"
-							:items="reacoes"
-							label="Reação"
-							chips
-							multiple
-							variant="outlined" />
-					</v-col>
-					<v-col cols="12">
-						<input-date
-                :label="'Data de Aplicação'"
-                v-model="model.dtAplicacao"
-								:minDate="pessoa.dtNascimento"
-                variant="outlined"
-                :rules="[requiredRule]"
-              />
-					</v-col>
-					<v-col cols="12">
-						<v-text-field
-							label="Fabricante"
-							v-model="model.fabricante"
-							variant="outlined"
-						/>
-					</v-col>
-					<v-col cols="12">
-						<v-text-field
-							label="Lote da vacina"
-							v-model="model.loteVacina"
-							variant="outlined"
-						/>
-					</v-col>
-					<v-col cols="12">
-						<v-text-field
-							label="Clínica ou UBS que o procedimento foi realizado"
-							v-model="model.localAplicacao"
-							variant="outlined"
-						/>
-					</v-col>
-				</v-row>
-				<template v-slot:actions>
-					<v-row class="pa-2">
-						<v-btn
-							class="ml-2"
-							text="Fechar"
-							@click="show = false"
-						></v-btn>
-						<v-btn
-							class="ms-auto"
-							text="Confirmar"
-							type="submit"
-							@click="submit"
-						></v-btn>
+        <v-form ref="form" v-model="formValid" @submit.prevent="submit">
+					<v-row class="px-4">
+						<v-col cols="12">
+							<v-select :items="optionVacinas" label="Vacina" v-model="model.VacinaId" variant="outlined" no-data-text="Nenhuma vacina disponível" item-title="text" item-value="value" :rules="[requiredRule]"/>
+						</v-col>
+						<v-col cols="12">
+							<v-select
+								v-model="model.Reacao"
+								:items="reacoes"
+								label="Reação"
+								chips
+								multiple
+								variant="outlined" />
+						</v-col>
+						<v-col cols="12">
+							<input-date
+									:label="'Data de Aplicação'"
+									v-model="model.dtAplicacao"
+									variant="outlined"
+									:rules="[requiredRule]"
+								/>
+						</v-col>
+						<v-col cols="12">
+							<v-text-field
+								label="Fabricante"
+								v-model="model.fabricante"
+								variant="outlined"
+							/>
+						</v-col>
+						<v-col cols="12">
+							<v-text-field
+								label="Lote da vacina"
+								v-model="model.loteVacina"
+								variant="outlined"
+							/>
+						</v-col>
+						<v-col cols="12">
+							<v-text-field
+								label="Clínica ou UBS que o procedimento foi realizado"
+								v-model="model.localAplicacao"
+								variant="outlined"
+							/>
+						</v-col>
 					</v-row>
-        </template>
+					<v-card-actions>
+						<v-row class="pa-2">
+							<v-btn
+								class="ml-2"
+								text="Fechar"
+								@click="show = false"
+							></v-btn>
+							<v-btn
+								class="ms-auto"
+								text="Confirmar"
+								:disabled="!formValid"
+								type="submit"
+							></v-btn>
+						</v-row>
+					</v-card-actions>
+				</v-form>
       </v-card>
     </v-dialog>
   </div>
@@ -81,14 +82,22 @@ export default {
 	data () {
 		return {
 			show: false,
-			model: {},
+			model: {
+        dtAplicacao: ''
+			},
 			tipo: null,
 			reacoes: ['Dor ou sensibilidade no local da aplicação', 'Febre', 'Fadiga', 'Dor muscular ou nas articulações', 'Dor de cabeça', 'Calafrios', 'Náusea', 'Inchaço', 'Tontura', 'Outros'],
 			optionVacinas: [],
       fileUrl: null,
 			pessoa: {},
-			dateError: ''
+			dateError: '',
+			formValid: false
 		}
+	},
+	computed: {
+    requiredRule() {
+      return v => !!v || 'Este campo é obrigatório';
+    },
 	},
 	methods: {
 		async openModal (dependente) {
@@ -130,7 +139,7 @@ export default {
     },
 		async submit () {
 			try {
-				const response = await CreateSolicitacaoVacina({...this.model, DtAplicacao: this.convertDateTime(this.model.dtAplicacao), Reacao: JSON.stringify(this.model.Reacao)});
+				const response = await CreateSolicitacaoVacina({...this.model, Reacao: JSON.stringify(this.model.Reacao)});
 				if (response) {
 					toast('Vacina Cadastrada com sucesso!', {
 						theme: "colored",

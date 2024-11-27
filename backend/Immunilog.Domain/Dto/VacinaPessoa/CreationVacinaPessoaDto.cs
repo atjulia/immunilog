@@ -12,7 +12,7 @@ public class CreationVacinaPessoaDto
 {
     public Guid VacinaId { get; set; }
     public Guid PessoaId { get; set; }
-    public DateTime DtAplicacao { get; set; }
+    public string DtAplicacao { get; set; }
     public string Reacao { get; set; } = string.Empty;
     public string? ReacaoOutros { get; set; } = string.Empty;
     public string Fabricante { get; set; } = string.Empty;

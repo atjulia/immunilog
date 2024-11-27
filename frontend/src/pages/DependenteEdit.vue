@@ -3,7 +3,6 @@
     <v-dialog
       v-model="show"
       width="450"
-			class="ma-5"
 			persistent
     >
       <v-card
@@ -27,7 +26,7 @@
 								/>
 						</v-col>
 						<v-col cols="12" class="pa-0">
-							<v-radio-group @change="model.IdadeLog = null" inline label="Deseja registrar todas suas vacinas?" v-model="handleIdadeLog" hide-details>
+							<v-radio-group @change="model.IdadeLog = null" inline label="Deseja registrar todas suas vacinas?" v-model="model.handleIdadeLog" :rules="[requiredRule]" hide-details>
 								<v-radio label="Sim" :value="1" />
 								<v-radio label="Não" :value="2" />
 							</v-radio-group>
@@ -38,7 +37,7 @@
 								v-model="model.IdadeLog"
 								variant="outlined"
 								v-mask="'##'"
-								:disabled="handleIdadeLog !== 2"
+								:disabled="model.handleIdadeLog !== 2"
 								hint="Se uma idade for informada, o Immunilog ignorará vacinas anteriores não registradas. Caso contrário, considerará todas as vacinas desde o nascimento."
 								:rules="[idadeLogValidation]"
 							/>
@@ -108,6 +107,7 @@ export default {
   },
 	methods: {
 		openModal () {
+			this.model = {}
 			this.show = true
 		},
     idadeLogValidation(v) {
@@ -124,7 +124,7 @@ export default {
 					const dto = {
 						Nome: this.model.Nome,
 						Cpf: this.model.Cpf,
-						DtNascimento: this.convertDateTime(this.model.dtNascimento),
+						DtNascimento: this.model.dtNascimento,
 						TipoPessoa: 2,
 						UsuarioId: this.credentials.usuarioId
 					}

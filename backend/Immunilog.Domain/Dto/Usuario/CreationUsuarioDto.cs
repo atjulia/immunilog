@@ -13,7 +13,7 @@ public class CreationUsuarioDto
     public string Senha { get; set; } = string.Empty;
     public string Nome { get; set; } = string.Empty;
     public string Cpf { get; set; } = string.Empty;
-    public DateTime DtNascimento { get; set; }
+    public string DtNascimento { get; set; }
     public int? IdadeLog { get; set; }
     public bool IsActive { get; set; }
     public int Role { get; set; }

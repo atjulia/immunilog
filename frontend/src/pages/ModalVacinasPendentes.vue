@@ -2,10 +2,10 @@
 	<div class="text-center pa-4" v-if="dialog">
 		<v-dialog v-model="dialog" max-width="900px">
       <v-card title="Vacinas pendentes">
-        <v-card-text>
+        <v-card-text class="py-0">
           <v-divider></v-divider>
-          <v-row v-for="vacina in vacinas" :key="vacina.id">
-            <v-col cols="12" class="pb-0">
+          <v-row class="pt-4">
+            <v-col cols="12" class="pb-0" v-for="(vacina, i) in paginatedVacinas" :key="i">
               <v-card class="mb-2" variant="outlined" color="primary">
                 <v-card-title class="d-flex justify-space-between">
                   {{ vacina.nome }}
@@ -24,6 +24,13 @@
               </v-card>
             </v-col>
           </v-row>
+					<v-pagination
+						v-model="currentPage"
+						:length="totalPages"
+						:total-visible="5"
+						class="mx-auto mt-4"
+						@input="updatePage"
+					/>
         </v-card-text>
         
         <v-card-actions>
@@ -42,8 +49,20 @@ export default {
 	data () {
 		return {
 			dialog: false,
-			vacinas: []
+			vacinas: [],
+      currentPage: 1,
+      itemsPerPage: 5,
 		}
+	},
+	computed: {
+    paginatedVacinas() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.vacinas.slice(start, end);
+    },
+    totalPages() {
+      return Math.ceil(this.vacinas.length / this.itemsPerPage);
+    },
 	},
 	methods: {
 		openModal (sender) {

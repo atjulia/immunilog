@@ -81,7 +81,6 @@ public class UsuarioRepository : IUsuarioRepository
             Role = 1
         };
 
-        // Criar nova instância de Pessoa
         var newPessoa = new Pessoa
         {
             Id = Guid.NewGuid(),
@@ -89,17 +88,15 @@ public class UsuarioRepository : IUsuarioRepository
             Nome = data.Nome,
             Cpf = data.Cpf,
             IdadeLog = data.IdadeLog ?? 0,
-            DtNascimento = data.DtNascimento,
+            DtNascimento = DateTime.ParseExact(data.DtNascimento, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture),
             UsuarioId = newUsuario.Id,
             TipoPessoa = 1
         };
 
-        // Adicionar e salvar entidades no banco de dados
         await dbContext.Usuario.AddAsync(newUsuario);
         await dbContext.Pessoa.AddAsync(newPessoa);
         await dbContext.SaveChangesAsync();
 
-        // Retornar sucesso com o ID do novo usuário
         return ApiResponse<Guid>.SuccessResponse(newUsuario.Id);
     }
 

@@ -33,16 +33,23 @@
                 :rules="[requiredRule]"
               />
             </v-col>
-            <v-col cols="12">
-              <v-text-field
-                label="A partir de que idade deseja logar?"
-                v-model="model.idadeLog"
-                variant="outlined"
-                hint="Se uma idade for informada, o Immunilog ignorará vacinas anteriores não registradas. Caso contrário, considerará todas as vacinas desde o nascimento."
-                v-mask="'##'"
-                :rules="[idadeLogValidation]"
-              />
-            </v-col>
+						<v-col cols="12" class="pa-0">
+							<v-radio-group @change="model.IdadeLog = null" inline label="Deseja registrar todas suas vacinas?" v-model="model.handleIdadeLog" hide-details>
+								<v-radio label="Sim" :value="1" />
+								<v-radio label="Não" :value="2" />
+							</v-radio-group>
+						</v-col>
+						<v-col cols="12">
+							<v-text-field
+								label="A partir de que idade deseja registrar?"
+								v-model="model.IdadeLog"
+								variant="outlined"
+								v-mask="'##'"
+								:disabled="model.handleIdadeLog !== 2"
+								hint="Se uma idade for informada, o Immunilog ignorará vacinas anteriores não registradas. Caso contrário, considerará todas as vacinas desde o nascimento."
+								:rules="[idadeLogValidation]"
+							/>
+						</v-col>
             <v-divider class="mx-2"/>
             <v-col cols="12">
               <v-text-field
@@ -95,6 +102,7 @@
 <script>
 import { CreateUsuario } from '@/api/controllers/usuario';
 import { authUsuario } from '@/api/controllers/auth';
+import { th } from 'vuetify/locale';
 
 export default {
   data() {
@@ -103,7 +111,7 @@ export default {
       model: {
         dtNascimento: ''
       },
-      formValid: false,
+      formValid: false
     };
   },
   computed: {
@@ -166,11 +174,7 @@ export default {
 		},
     async submit () {
       if (this.$refs.form.validate()) {
-        const dto = {
-          ...this.model,
-          dtNascimento: this.convertDateTime(this.model.dtNascimento)
-        }
-        await CreateUsuario(dto).then((resp) => {
+        await CreateUsuario(th.model).then((resp) => {
           if (resp) {
             authUsuario({ Email: this.model.email, Senha: this.model.senha })
           }

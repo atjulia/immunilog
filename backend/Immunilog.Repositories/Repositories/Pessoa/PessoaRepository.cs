@@ -107,7 +107,7 @@ public class PessoaRepository : IPessoaRepository
             UsuarioId = data.UsuarioId,
             Cpf = data.Cpf,
             IdadeLog = data.IdadeLog ?? 0,
-            DtNascimento = data.DtNascimento,
+            DtNascimento = DateTime.ParseExact(data.DtNascimento, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture),
             TipoPessoa = data.TipoPessoa
         };
 
