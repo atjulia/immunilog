@@ -12,7 +12,7 @@
 				</template>
 
         <v-card-text class="pt-4 pb-0">
-          <v-row v-for="item in paginatedPessoas" :key="item.Id" class="align-center mb-3">
+          <v-row v-for="(item, i) in paginatedPessoas" :key="item.Id" class="align-center mb-3" :data-cy="`pessoa_${i}`">
             <v-col cols="12" class="d-flex justify-space-between align-center" @click="selectDependente(item)">
               <div class="d-flex align-center">
                 <span class="font-weight-medium">{{ item.nome }}</span>

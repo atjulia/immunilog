@@ -9,7 +9,7 @@
         <v-form ref="form" v-model="formValid" @submit.prevent="submit">
 					<v-row class="px-4">
 						<v-col cols="12">
-							<v-select :items="optionVacinas" label="Vacina" v-model="model.VacinaId" variant="outlined" no-data-text="Nenhuma vacina disponível" item-title="text" item-value="value" :rules="[requiredRule]"/>
+							<v-select :items="optionVacinas" label="Vacina" v-model="model.VacinaId" data-cy="selectVacina" variant="outlined" no-data-text="Nenhuma vacina disponível" item-title="text" item-value="value" :rules="[requiredRule]"/>
 						</v-col>
 						<v-col cols="12">
 							<v-select
@@ -24,6 +24,7 @@
 							<input-date
 									:label="'Data de Aplicação'"
 									v-model="model.dtAplicacao"
+									data-cy="dtAplicacao"
 									variant="outlined"
 									:rules="[requiredRule]"
 								/>

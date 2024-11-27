@@ -1,17 +1,20 @@
 .vs/
 
-/backend/Immunilog.Repositories/obj/Debug/
-/backend/Immunilog.Repositories/bin/Debug/
+/backend/Immunilog.Repositories/obj/
+/backend/Immunilog.Repositories/bin/
 
-/backend/Immunilog.UI/obj/Debug/
-/backend/Immunilog.UI/bin/Debug/
+/backend/Immunilog.UI/obj/
+/backend/Immunilog.UI/bin/
 /backend/Immunilog.UI/log/
 
-/backend/Immunilog.Services/obj/Debug/
-/backend/Immunilog.Services/bin/Debug/
+/backend/Immunilog.Services/obj/
+/backend/Immunilog.Services/bin/
 
-/backend/Immunilog.Domain/obj/Debug/
-/backend/Immunilog.Domain/bin/Debug/
+/backend/Immunilog.Domain/obj/
+/backend/Immunilog.Domain/bin/
+
+/backend/Immunilog.Tests/obj/
+/backend/Immunilog.Tests/bin/
 
 /backend/.vs/
 /frontend/.env/

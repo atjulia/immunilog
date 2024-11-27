@@ -22,6 +22,7 @@
               @click="card.action"
               style="cursor: pointer"
               color="background"
+              :data-cy="card.cy"
               width="100%"
             >
               <v-row class="align-center mb-4">
@@ -162,6 +163,7 @@ export default {
           description: 'Registre suas novas imunizações no sistema. Garanta a organização e o acompanhamento eficaz do calendário vacinal.',
           action: this.choseDependenteVacina,
           avatarColor: 'primary-darken-1',
+          cy: 'addVacina',
           image: AddVacina
         },
         { 
@@ -170,6 +172,7 @@ export default {
           description: 'Acesse o histórico completo de vacinas registradas, incluindo datas de aplicação, doses e vacinas pendentes.',
           action: this.verCarteira,
           avatarColor: 'primary-darken-1',
+          cy: 'carteiraVacinacao',
           image: CarteiraVacina 
         },
         { 
@@ -177,7 +180,8 @@ export default {
           text: 'Programa de Imunização', 
           description: 'Consulte o calendário completo de vacinação. Tenha acesso a informações sobre campanhas, grupos prioritários e vacinas disponíveis.', 
           action: this.verProgramaImunizacao,
-          avatarColor: 'primary-darken-1', 
+          avatarColor: 'primary-darken-1',
+          cy: 'programaImunizacao', 
           image: ProgramaImunizacao 
         },
       ];

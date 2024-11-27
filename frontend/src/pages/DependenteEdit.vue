@@ -12,15 +12,16 @@
 				<v-form ref="form" v-model="formValid" @submit.prevent="submit">
 					<v-row class="px-4">
 						<v-col cols="12">
-							<v-text-field label="CPF" v-model="model.Cpf" variant="outlined" v-mask="'###.###.###-##'" :rules="[requiredRule, cpfRule]"/>
+							<v-text-field label="CPF" v-model="model.Cpf" variant="outlined" v-mask="'###.###.###-##'" data-cy="CPF" :rules="[requiredRule, cpfRule]"/>
 						</v-col>
 						<v-col cols="12">
-							<v-text-field label="Nome" v-model="model.Nome" variant="outlined" :rules="[requiredRule]" />
+							<v-text-field label="Nome" v-model="model.Nome" variant="outlined" data-cy="Nome" :rules="[requiredRule]" />
 						</v-col>
 						<v-col cols="12">
 								<input-date
 									:label="'Data de Nascimento'"
 									v-model="model.dtNascimento"
+									data-cy="dtNascimento"
 									variant="outlined"
 									:rules="[requiredRule]"
 								/>
