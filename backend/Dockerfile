@@ -6,6 +6,7 @@ COPY Immunilog.UI/*.csproj ./Immunilog.UI/
 COPY Immunilog.Services/*.csproj ./Immunilog.Services/
 COPY Immunilog.Repositories/*.csproj ./Immunilog.Repositories/
 COPY Immunilog.Domain/*.csproj ./Immunilog.Domain/
+COPY Immunilog.Tests/*.csproj ./Immunilog.Tests/
 
 RUN dotnet restore
 
