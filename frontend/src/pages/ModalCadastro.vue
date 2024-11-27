@@ -101,8 +101,6 @@
 
 <script>
 import { CreateUsuario } from '@/api/controllers/usuario';
-import { authUsuario } from '@/api/controllers/auth';
-import { th } from 'vuetify/locale';
 
 export default {
   data() {
@@ -174,11 +172,8 @@ export default {
 		},
     async submit () {
       if (this.$refs.form.validate()) {
-        await CreateUsuario(th.model).then((resp) => {
-          if (resp) {
-            authUsuario({ Email: this.model.email, Senha: this.model.senha })
-          }
-        })
+        const dto = this.model
+        CreateUsuario(dto, { Email: this.model.email, Senha: this.model.senha })
       }
     },
   },
