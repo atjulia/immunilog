@@ -13,7 +13,7 @@
 
         <v-card-text class="pt-4 pb-0">
           <v-row v-for="item in paginatedPessoas" :key="item.Id" class="align-center mb-3">
-            <v-col cols="12" class="d-flex justify-space-between align-center">
+            <v-col cols="12" class="d-flex justify-space-between align-center" @click="selectDependente(item)">
               <div class="d-flex align-center">
                 <span class="font-weight-medium">{{ item.nome }}</span>
               </div>
@@ -92,7 +92,6 @@ export default {
 </script>
 
 <style scoped>
-/* Estilização aprimorada para as linhas */
 .v-row {
   padding: 8px 16px;
   border: 1px solid #e0e0e0;
@@ -105,12 +104,10 @@ export default {
   background-color: #f5f5f5;
 }
 
-/* Chip para tipos */
 .v-chip {
   font-weight: 500;
 }
 
-/* Botão de ação */
 .v-btn {
   transition: transform 0.2s ease-in-out;
 }
