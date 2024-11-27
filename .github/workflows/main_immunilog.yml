@@ -16,7 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0
+
       - name: Cache SonarCloud packages
         uses: actions/cache@v4
         with:
@@ -38,25 +39,22 @@ jobs:
           mkdir -p ~/.sonar/sonar-scanner
           dotnet tool update dotnet-sonarscanner --tool-path ~/.sonar/sonar-scanner
       - name: Build and analyze backend with SonarCloud
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: |
-        ~/.sonar/sonar-scanner/dotnet-sonarscanner begin /k:"atjulia_immunilog" /o:"atjulia" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.coverageReportPaths="TestResults/coverage.cobertura.xml"
-        dotnet build ./backend --configuration Release
-        ~/.sonar/sonar-scanner/dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
-
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          ~/.sonar/sonar-scanner/dotnet-sonarscanner begin /k:"atjulia_immunilog" /o:"atjulia" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          dotnet build ./backend --configuration Release
+          ~/.sonar/sonar-scanner/dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
   backend-build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Setup .NET 8
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
-
       - name: Cache .NET NuGet packages
         uses: actions/cache@v4
         with:
@@ -66,16 +64,13 @@ jobs:
             ${{ runner.os }}-nuget-
       - name: Build Backend with .NET
         run: dotnet build ./backend --configuration Release
-
       - name: Publish Backend with .NET
         run: dotnet publish ./backend -c Release -o ./backend-publish
-
       - name: Upload backend artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: backend
           path: ./backend-publish
-
   frontend-build:
     runs-on: ubuntu-latest
     steps:
@@ -96,10 +91,8 @@ jobs:
 
       - name: Install Frontend Dependencies
         run: npm install --prefix frontend/
-
       - name: Build Frontend
         run: npm run build --prefix frontend/
-
       - name: Upload frontend artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -142,7 +135,6 @@ jobs:
           slot-name: 'Production'
           package: ./backend-publish
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BACKEND }}
-
       - name: Deploy Frontend to Azure Web App
         id: deploy-frontend
         uses: azure/webapps-deploy@v3
