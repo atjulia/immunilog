@@ -58,8 +58,8 @@
             </v-card-subtitle>
             <div class="d-flex justify-space-between align-center py-2">
               <v-card-text class="text-primary">
-                <p><strong>Lote:</strong> {{ vacina.loteVacina || 'Não informado' }} | <strong>Fabricante:</strong> {{ vacina.fabricante || 'Não informado' }} | <strong>Local de Aplicação:</strong> {{ vacina.localAplicacao || 'Não informado' }}</p>
                 <p><strong>Data da aplicação:</strong> {{ vacina.dtAplicacao ? formatDate(vacina.dtAplicacao) : 'Não informada' }}</p>
+                <p><strong>Lote:</strong> {{ vacina.loteVacina || 'Não informado' }} | <strong>Fabricante:</strong> {{ vacina.fabricante || 'Não informado' }} | <strong>Local de Aplicação:</strong> {{ vacina.localAplicacao || 'Não informado' }}</p>
               </v-card-text>
             </div>
           </v-card>

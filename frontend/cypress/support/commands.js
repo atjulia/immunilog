@@ -15,5 +15,5 @@ Cypress.Commands.addAll({
 			cy.get('#' + response).contains(option).click();
 		  });
 		});
-	  },
+	},
 })

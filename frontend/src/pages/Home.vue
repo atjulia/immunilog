@@ -70,7 +70,11 @@
                 </v-col>
 
                 <v-col cols="5" class="d-flex justify-end align-items-center">
-                  <v-chip color="secondary" class="secondary--text text-caption" variant="outlined">
+                  <v-chip
+                    :color="pessoa.tipoPessoa === 1 ? 'primary' : 'secondary'"
+                    class="ml-3"
+                    small
+                  >
                     {{ pessoa.tipoPessoa === 1 ? 'Principal' : 'Dependente' }}
                   </v-chip>
                   <v-menu>

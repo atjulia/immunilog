@@ -61,7 +61,7 @@
 							<v-btn
 								class="ms-auto"
 								text="Confirmar"
-								:disabled="!formValid"
+								:disabled="!disabledButton"
 								type="submit"
 							></v-btn>
 						</v-row>
@@ -96,6 +96,9 @@ export default {
 		}
 	},
 	computed: {
+		disabledButton () {
+			return !!(this.formValid && this.model.dtAplicacao?.length > 0)
+		},
     requiredRule() {
       return v => !!v || 'Este campo é obrigatório';
     },

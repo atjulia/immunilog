@@ -56,7 +56,7 @@
 								text="Confirmar"
               	color="primary"
 								type="submit"
-								:disabled="!formValid"
+								:disabled="!disabledButton"
 							></v-btn>
 						</v-row>
 					</v-card-actions>
@@ -82,6 +82,9 @@ export default {
 		}
 	},
   computed: {
+		disabledButton () {
+			return !!(this.formValid && this.model.dtNascimento?.length > 0)
+		},
     requiredRule() {
       return v => !!v || 'Este campo é obrigatório';
     },
