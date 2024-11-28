@@ -41,7 +41,7 @@ public class PessoaDto : BaseDto
         return idade;
     }
 
-    private int CalcularMeses(DateTime dataNascimento)
+    private int CalcularMeses(DateTime dataNascimento, int idade)
     {
         var hoje = DateTime.UtcNow;
         int meses = hoje.Month - dataNascimento.Month;

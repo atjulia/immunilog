@@ -8,8 +8,8 @@ public abstract class BaseDto
 public class ApiResponse<T>
 {
     public bool Success { get; set; }
-    public string Msg { get; set; }
-    public T Data { get; set; }
+    public string? Msg { get; set; }
+    public T? Data { get; set; }
 
     public static ApiResponse<T> SuccessResponse(T data, string msg = "Operação bem-sucedida")
     {
