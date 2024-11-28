@@ -17,5 +17,5 @@ public class CreationVacinaDto
     public int TipoDose { get; set; }
     public string? TipoDoseObs { get; set; }
 
-    public List<string> Doencas { get; set; }
+    public List<string> Doencas { get; set; } = [];
 }
