@@ -10,7 +10,7 @@ namespace Immunilog.Repositories.Repositories;
 
 public interface IVacinaPessoaRepository
 {
-    Task<Guid> CreateSolicitacaoVacina(CreationVacinaPessoaDto data);
+    Task<Guid> CreateSolicitacaoVacina(CreationVacinaPessoaDto model);
     Task UpdateVacinaPessoa(VacinaPessoaDto model);
     Task<List<VacinaPessoa>> GetVacinasByPessoaId(Guid pessoaId);
 }
@@ -55,10 +55,10 @@ public class VacinaPessoaRepository : IVacinaPessoaRepository
 
         return vacinaPessoas;
     }
-    public async Task UpdateVacinaPessoa(VacinaPessoaDto data)
+    public async Task UpdateVacinaPessoa(VacinaPessoaDto model)
     => await dbContext.VacinaPessoa
         .AsNoTracking()
-        .Where(c => c.Id == data.Id)
+        .Where(c => c.Id == model.Id)
         .UpdateAsync(c => new VacinaPessoa
         {
             DtUpdate = DateTime.Now,

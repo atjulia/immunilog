@@ -13,8 +13,6 @@ public static class Extensions
     {
         services.AddApiBaseRepositories(configuration);
 
-        //services.AddScoped<INotifier, Notifier>();
-
         services.AddScoped<IPessoaService, PessoaService>();
         services.AddScoped<IUsuarioService, UsuarioService>();
         services.AddScoped<IVacinaService, VacinaService>(); 

@@ -11,5 +11,5 @@ public class VacinaDto : BaseDto
     public int TipoCalendario { get; set; }
     public int TipoDose { get; set; }
     public string? TipoDoseObs { get; set; }
-    public List<string> Doencas { get; set; }
+    public List<string> Doencas { get; set; } = [];
 }

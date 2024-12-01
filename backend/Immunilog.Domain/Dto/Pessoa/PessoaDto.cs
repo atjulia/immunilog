@@ -15,20 +15,20 @@ public class PessoaDto : BaseDto
     public DateTime DtCriacao { get; set; }
     public DateTime DtUpdate { get; set; }
     public string IdadeFormatada => CalcularIdade(DtNascimento);
-    
+
     [ForeignKey(nameof(UsuarioId))]
     public Guid UsuarioId { get; set; }
     public List<PessoaVacinaDTO> Vacinas { get; set; } = new List<PessoaVacinaDTO>();
 
-    private string CalcularIdade(DateTime dataNascimento)
+    private static string CalcularIdade(DateTime dataNascimento)
     {
         int anos = CalcularAnos(dataNascimento);
-        int meses = CalcularMeses(dataNascimento, anos);
+        int meses = CalcularMeses(dataNascimento);
 
         return FormatarIdade(anos, meses);
     }
 
-    private int CalcularAnos(DateTime dataNascimento)
+    private static int CalcularAnos(DateTime dataNascimento)
     {
         var hoje = DateTime.UtcNow;
         int idade = hoje.Year - dataNascimento.Year;
@@ -41,7 +41,7 @@ public class PessoaDto : BaseDto
         return idade;
     }
 
-    private int CalcularMeses(DateTime dataNascimento, int idade)
+    private static int CalcularMeses(DateTime dataNascimento)
     {
         var hoje = DateTime.UtcNow;
         int meses = hoje.Month - dataNascimento.Month;
@@ -64,7 +64,7 @@ public class PessoaDto : BaseDto
         return meses;
     }
 
-    private string FormatarIdade(int anos, int meses)
+    private static string FormatarIdade(int anos, int meses)
     {
         if (anos == 0)
         {
@@ -81,6 +81,4 @@ public class PessoaDto : BaseDto
             return $"{ano} e {mes}";
         }
     }
-
 }
-

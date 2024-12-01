@@ -18,7 +18,7 @@ public interface IPessoaRepository
 {
     Task<List<PessoaDto>> GetPessoasByUsuarioId(Guid id);
     Task<Guid> CreateAsync(CreationPessoaDto data);
-    Task<PessoaDto> GetPessoaByIdAsync(Guid id);
+    Task<PessoaDto?> GetPessoaByIdAsync(Guid id);
     Task UpdateAsync(PessoaDto data);
     Task<bool> DeleteAsync(Guid id);
     Task<PessoaDto?> GetPessoasByDoc(string cpf);
@@ -32,7 +32,7 @@ public class PessoaRepository : IPessoaRepository
         this.dbContext = dbContext;
     }
 
-    public async Task<PessoaDto> GetPessoaByIdAsync(Guid id)
+    public async Task<PessoaDto?> GetPessoaByIdAsync(Guid id)
     {
         var pessoa = await dbContext.Pessoa
                                    .AsNoTracking()
@@ -97,7 +97,7 @@ public class PessoaRepository : IPessoaRepository
 
         if (existingPessoa != null)
         {
-            throw new Exception("Já existe uma pessoa cadastrada com este CPF.");
+            throw new InvalidOperationException("Já existe uma pessoa cadastrada com este CPF.");
         }
         var newPessoa = new Pessoa
         {
@@ -147,10 +147,13 @@ public class PessoaRepository : IPessoaRepository
     //TODO: colocar em um helper
     public static string GetEnumDescription(Enum value)
     {
-        FieldInfo field = value.GetType().GetField(value.ToString());
+        FieldInfo? field = value.GetType().GetField(value.ToString());
+        if (field == null)
+        {
+            return value.ToString();
+        }
 
-        DescriptionAttribute attribute = field.GetCustomAttribute<DescriptionAttribute>();
-
+        DescriptionAttribute? attribute = field.GetCustomAttribute<DescriptionAttribute>();
         return attribute == null ? value.ToString() : attribute.Description;
     }
 }

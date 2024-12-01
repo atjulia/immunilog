@@ -25,17 +25,13 @@ public class VacinaPessoaService : IVacinaPessoaService
     {
         if (model == null) throw new ValidationException("Dados inválidos");
 
-        //VALIDACOES
-
         var vacinaPessoaId = await vacinaPessoaRepository.CreateSolicitacaoVacina(model);
 
         return vacinaPessoaId;
     }
     public async Task<List<Immunilog.Domain.Entities.VacinaPessoa>> GetVacinasByPessoaId(Guid pessoaId)
     {
-        if (pessoaId == null) throw new ValidationException("Dados inválidos");
-
-        //VALIDACOES
+        if (pessoaId == Guid.Empty) throw new ValidationException("Dados inválidos");
 
         var vacinaPessoaId = await vacinaPessoaRepository.GetVacinasByPessoaId(pessoaId);
 
@@ -44,8 +40,6 @@ public class VacinaPessoaService : IVacinaPessoaService
     public async Task<bool> UpdateVacinaPessoa(VacinaPessoaDto model)
     {
         if (model == null) throw new ValidationException("Dados inválidos");
-
-        //VALIDACOES
 
         await vacinaPessoaRepository.UpdateVacinaPessoa(model);
 

@@ -16,7 +16,5 @@ public class Pessoa : SimpleEntityBase
 
     [ForeignKey(nameof(UsuarioId))]
     public Usuario Usuario { get; set; } = default!;
-    public virtual ICollection<VacinaPessoa> Vacinas { get; set; }
-
-    //public Guid UpdatedById { get; set; }
+    public virtual ICollection<VacinaPessoa> Vacinas { get; set; } = new List<VacinaPessoa>();
 }
