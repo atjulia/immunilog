@@ -41,7 +41,7 @@
             dot-color="secondary"
             size="small"
           >
-          <v-card style="min-width: 80vw;" :value="true">
+          <v-card style="min-width: 80vw; max-width: 80vw;" :value="true">
             <v-card-title class="pt-4">
               <div class="d-flex justify-space-between" style="width: 100%;">
                 <span class="text-primary">{{ vacina.nome }}</span>
@@ -53,7 +53,7 @@
                 </v-chip>
               </div>
             </v-card-title>
-            <v-card-subtitle>
+            <v-card-subtitle style="white-space: pre-wrap; word-wrap: break-word;">
               {{ vacina.descricao }}
             </v-card-subtitle>
             <div class="d-flex justify-space-between align-center py-2">
